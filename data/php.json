@@ -1,0 +1,33 @@
+[
+    {
+        "name": "omrekenen",
+        "link": "opdrachten.php",
+        "text": "Een PHP pagina waar simplele (om)reken sommen staan"
+    },
+    {
+        "name": "cijferlijst",
+        "link": "opdrachten_2.php",
+        "text": "Een PHP pagina waarbij cijfers worden omgezet in text"
+    },
+    {
+        "name": "gelukszoekers",
+        "link": "opdrachten_3.php",
+        "img": "fedora.png",
+        "text": "Een PHP pagina die je toekomst gaat voorspellen door middel van een paar simpele vragen"
+    },
+    {
+        "name": "minigame",
+        "link": "minigames.php",
+        "text": "Een PHP pagina met een simpele Steen-papier-schaar spelletje"
+    },
+    {
+        "name": "afstanden berekenen",
+        "link": "afstanden.php",
+        "text": "Een PHP pagina waarbij je de afstanden tussen een paar grote europese steden kunt bepalen"
+    },
+    {
+        "name": "commetaar pagina",
+        "link": "commetaar.php",
+        "text": "Een PHP pagina waar je commetaar kunt lezen (wat ik zekersteweten NIET ga lezen)"
+    }
+]

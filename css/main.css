@@ -1,0 +1,60 @@
+main {
+    padding-top: 5vh;
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+    background-color: darkslategray;
+    box-shadow: 0px 1px 10px black;
+    min-height: 95vh;
+    z-index: 1;
+}
+
+main .content {
+    display: flex;
+    grid-column: 2 / 3;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    height: fit-content;
+}
+
+main form {
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    grid-column: 2 / 3;
+    padding: 10px;
+    background-color: gray;
+    border-radius: 5px;
+}
+
+main form label{
+    margin-bottom: 10px;
+}
+
+main form select {
+    margin-bottom: 10px;
+}
+
+main form p {
+    margin-top: 10px;
+}
+
+main .radio {
+    display: flex;
+    width: 20%;
+    justify-content: space-between;
+}
+
+main .succes {
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    grid-column: 2 / 3;
+    padding: 10px;
+    background-color: gray;
+    border-radius: 5px;
+    height: min-content;
+}

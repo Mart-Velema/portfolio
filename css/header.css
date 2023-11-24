@@ -1,0 +1,33 @@
+header {
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    align-items: center;
+    height: 50px;
+    width: 100vw;
+    background-color: darkslateblue;
+    z-index: 100;
+    box-shadow: 0px 1px 10px black;
+}
+
+header img {
+    object-fit: scale-down;
+    height: 40px;
+    padding-left: 1vh;
+}
+
+header ul {
+    display: flex;
+    flex-direction: row;
+    grid-column: 2 / 3;
+    width: 100%;
+    justify-content: space-around;
+}
+
+header li {
+    list-style-type: none;
+}
+
+header li a {
+    color: white;
+    text-decoration: none;
+}

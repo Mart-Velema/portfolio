@@ -1,0 +1,33 @@
+
+[
+    {
+        "imgL": 
+            {
+                "img":      "k_angedol", 
+                "rotate":   1,
+                "talking":  0
+            },
+        "imgR": 
+            {
+                "img":      "k_cro01_egao",
+                "rotate":   0,
+                "talking":  0
+            },
+        "dialogue": "Lorum Ipsum"
+    },
+    {
+        "imgL": 
+            {
+                "img":      "k_angedol", 
+                "rotate":   0,
+                "talking":  0
+            },
+        "imgR": 
+            {
+                "img":      "k_cro01_egao",
+                "rotate":   1,
+                "talking":  1
+            },
+        "dialogue": "Lorum Ipsum"
+    }
+]
