@@ -99,12 +99,28 @@
                 $inverse = "";
             };
             //going from variables to actual display
-            echo "<div class='game'>
-                <img src='" .$dir, $imgL['img'] . ".png' alt='" . $imgL['img'] . "' class='game-image game-talking-" . $imgL['talking'] ." game-rotate-" . $imgL['rotate'] . "'>
-                <img src='" .$dir, $imgR['img'] . ".png' alt='" . $imgR['img'] . "' class='game-image game-talking-" . $imgR['talking'] ." game-rotate-" . $imgR['rotate'] . "'>
+            echo "<div class='game'>";
+            $imgCount = 0;
+            if($imgL['img'] != 0)
+            {
+                echo"
+                <img src='" .$dir, $imgL['img'] . ".png' alt='" . $imgL['img'] . "' class='game-image game-talking-" . $imgL['talking'] ." game-rotate-" . $imgL['rotate'] . "'>";
+                $imgCount++;
+            };
+            if($imgR['img'] != 0)
+            {
+                echo"
+                <img src='" .$dir, $imgR['img'] . ".png' alt='" . $imgR['img'] . "' class='game-image game-talking-" . $imgR['talking'] ." game-rotate-" . $imgR['rotate'] . "'>";
+                $imgCount++;
+            };
+            echo "
             </div>
-            <div class='game-talking " . $inverse . "'>
+            <div class='game-talking " . $inverse . "'>";
+            if($imgCount == 2)
+            {
+                echo"
                 <img src='" . $dir . "speech_bubble.png' alt='speech bubble'>";
+            };
             if(isset($item))
             {
                 echo"

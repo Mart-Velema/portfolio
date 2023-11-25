@@ -3,7 +3,7 @@
     {
         "imgL": 
             {
-                "img":      "", 
+                "img":      0, 
                 "rotate":   0,
                 "talking":  0
             },
