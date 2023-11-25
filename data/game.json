@@ -9,11 +9,10 @@
             },
         "imgR": 
             {
-                "img":      "",
+                "img":      "k_kit01_egao",
                 "rotate":   0,
-                "talking":  0
+                "talking":  1
             },
-        "item":     0,
         "dialogue": ""
     },
     {
