@@ -3,6 +3,23 @@
     {
         "imgL": 
             {
+                "img":      "", 
+                "rotate":   0,
+                "talking":  0,
+                "item":     0
+            },
+        "imgR": 
+            {
+                "img":      "",
+                "rotate":   0,
+                "talking":  0,
+                "item":     0
+            },
+        "dialogue": ""
+    },
+    {
+        "imgL": 
+            {
                 "img":      "k_angedoll", 
                 "rotate":   1,
                 "talking":  1

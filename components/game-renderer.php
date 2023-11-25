@@ -59,16 +59,16 @@
                 $errorNumber = rand(0,(count($error)-1));       //variable for a random error message
                 $data[$page] = array(
                     "imgL"     => array (
-                        "img"       => "",
-                        "rotate"    => "",
-                        "talking"   => "",
-                        "item"      => ""
+                        "img"       => "dev/missing_textures.png",
+                        "rotate"    => 0,
+                        "talking"   => 0,
+                        "item"      => 0
                     ),
                     "imgR"     => array (
-                        "img"       => "",
-                        "rotate"    => "",
-                        "talking"   => "",
-                        "item"      => ""
+                        "img"       => "dev/missing_textures.png",
+                        "rotate"    => 0,
+                        "talking"   => 0,
+                        "item"      => 0
                     ),
                     "dialogue"      => "$error[$errorNumber]<br><br> End of JSON file. No valid data entries to be loaded",      /*put a random error message into the "text" key*/
                 );

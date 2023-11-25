@@ -13,13 +13,11 @@
 }
 
 .game-image {
-    background-image: url(/portfolio2/img/GR-Portrait/dev/missing_textures.png);
     color: white;
     font-size: xx-large;
     width: 25%;
     border-radius: 15px;
     object-fit: scale-down;
-    min-height: 50px;
 }
 
 .game-talking {
