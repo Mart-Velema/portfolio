@@ -62,11 +62,13 @@
                         "img"       => "",
                         "rotate"    => "",
                         "talking"   => "",
+                        "item"      => ""
                     ),
                     "imgR"     => array (
                         "img"       => "",
                         "rotate"    => "",
                         "talking"   => "",
+                        "item"      => ""
                     ),
                     "dialogue"      => "$error[$errorNumber]<br><br> End of JSON file. No valid data entries to be loaded",      /*put a random error message into the "text" key*/
                 );
@@ -74,6 +76,11 @@
             foreach($data[$page] as $name => $contents)                 //puts all the data of the .json entry corresponding with the page number into the $contents variable,
             {                                                           //import the entry name of the .json file as $name
                 ${$name} = $contents;                                   //make new variable with the same name as the $name variable
+                if(isset(${$name}['item']))
+                {
+                    $item = ${$name}['item'];
+                };
+                var_dump(${$name});
             };
             $page++;                        //increment page variable to value of next page
             if(empty($data[$page]))
@@ -90,7 +97,7 @@
             };
             if($imgR['talking'] == 1)                               //Check if the inverse tag is set. If set, set $inverse to inverse, else to nothing
             {
-                $inverse = "inverse";
+                $inverse = "rotate-1";
             }
             else 
             {
@@ -102,7 +109,13 @@
                 <img src='" .$dir, $imgR['img'] . ".png' alt='" . $imgR['img'] . "' class='game-image game-talking-" . $imgR['talking'] ." game-rotate-" . $imgR['rotate'] . "'>
             </div>
             <div class='game-talking " . $inverse . "'>
-                <img src='" . $dir . "speech_bubble.png' alt='speech bubble'> 
+                <img src='" . $dir . "speech_bubble.png' alt='speech bubble'>";
+            if($item != 0)
+            {
+                echo"
+                    <img src='" . $dir, $item . ".png' alt='$item' class='item'>";
+            };
+            echo"
             </div>
             <div class='game'>
                 <div class='game-center'>

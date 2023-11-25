@@ -33,8 +33,24 @@
     margin-bottom: -1px;
 }
 
-.inverse {
+.rotate-1 {
     transform: scaleX(-1);
+}
+
+.game-talking .item {
+    scale: 1.5;
+    margin-left: 30px;
+    border: 1px solid black;
+    border-radius: 15px;
+    transition: 0.2s;
+    background-image: url(/portfolio2/img/GR-Portrait/dev/missing_textures.png);
+    min-height: 10px;
+    min-width: 10px;
+}
+
+.game-talking .item:hover{
+    scale: 1.8;
+    margin-left: 35px;
 }
 
 .game-center {
@@ -65,10 +81,6 @@
 .game-talking-1 {
     scale: 1.1;
     box-shadow: 0px 0px 5px whitesmoke;
-}
-
-.game-rotate-1 {
-    transform: scaleX(-1);
 }
 
 /* CSS for dev-page */

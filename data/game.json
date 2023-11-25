@@ -35,13 +35,15 @@
             {
                 "img":      "k_angedoll", 
                 "rotate":   0,
-                "talking":  0
+                "talking":  0,
+                "item":     0
             },
         "imgR": 
             {
                 "img":      "k_cro01_egao",
                 "rotate":   1,
-                "talking":  1
+                "talking":  1,
+                "item":     0
             },
         "dialogue": "Lorum Ipsum"
     }
