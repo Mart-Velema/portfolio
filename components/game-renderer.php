@@ -90,7 +90,7 @@
             };
             echo "<div class='game'>
                 <img src='" .$dir, $imgL['img'] . ".png' alt='" . $imgL['img'] . "' class='game-image game-talking-" . $imgL['talking'] ." game-rotate-" . $imgL['rotate'] . "'>
-                <img src='" .$dir, $imgR['img'] . ".png' alt='" . $imgR['img'] . "' class='game-image game-talking" . $imgR['talking'] ." game-rotate-" . $imgR['rotate'] . "'>
+                <img src='" .$dir, $imgR['img'] . ".png' alt='" . $imgR['img'] . "' class='game-image game-talking-" . $imgR['talking'] ." game-rotate-" . $imgR['rotate'] . "'>
             </div>
             <div class='game-talking'>
                 <img src='img/fedora.png' alt='fedora'> 
