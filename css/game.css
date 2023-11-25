@@ -53,7 +53,7 @@
 
 .game-button {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
 .game-talking-1 {
@@ -71,12 +71,19 @@
 }
 
 .dev img {
-    width: 400px;
+    width: 100%;
+    object-fit: scale-down;
 }
 
 .dev .image {
+    width: 400px;
     border-style: solid;
     border-color: black;
     background-color: beige;
     margin: 20px;
+    transition: .2s;
+}
+
+.dev .image:hover{
+    width: 450px;
 }
