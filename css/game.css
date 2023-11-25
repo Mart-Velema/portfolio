@@ -2,9 +2,8 @@
     display: flex;
     grid-column: 1 / 4;
     flex-direction: column;
-    justify-content: space-around;
     background-color: darkslategray;
-    min-height: calc(95vh - 50px);
+    min-height: 100%;
 }
 
 .game {
@@ -13,7 +12,7 @@
     width: 100%
 }
 
-.game-left {
+.game-image {
     background-image: url(/portfolio2/img/GR-Portrait/dev/missing_textures.png);
     color: white;
     font-size: xx-large;
@@ -23,14 +22,12 @@
     min-height: 50px;
 }
 
-.game-right {
-    background-image: url(/portfolio2/img/GR-Portrait/dev/missing_textures.png);
-    font-size: xx-large;
-    color: white;
-    width: 25%;
-    border-radius: 15px;
+.game-talking {
+    display: flex;
+    justify-content: center;
+    height: 5%;
+    width: 40%;
     object-fit: scale-down;
-    min-height: 50px;
 }
 
 .game-center {
@@ -63,6 +60,8 @@
 .game-rotate-1 {
     transform: scaleX(-1);
 }
+
+/* CSS for dev-page */
 
 .dev {
     display: flex;
