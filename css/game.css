@@ -25,12 +25,16 @@
 .game-talking {
     margin-top: 10px;
     display: flex;
-    justify-content: center;
+    align-self: center;
     height: 5%;
     width: 40%;
     object-fit: scale-down;
     z-index: 2;
     margin-bottom: -1px;
+}
+
+.inverse {
+    transform: scaleX(-1);
 }
 
 .game-center {
