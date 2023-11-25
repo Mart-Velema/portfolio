@@ -45,8 +45,9 @@
 }
 
 .game-center a {
-    background-color: brown;
-    border-radius: 5px;
+    background-color: whitesmoke;
+    border: 1px solid black;
+    border-radius: 3px;
     padding: 2px;
 }
 
