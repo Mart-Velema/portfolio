@@ -75,6 +75,15 @@
             {                                                           //import the entry name of the .json file as $name
                 ${$name} = $contents;                                   //make new variable with the same name as the $name variable
             };
+            $page++;
+            if(empty($data[$page]))
+            {
+                $pageRef = "game.php";
+            }
+            else
+            {
+                $pageRef = "game.php?page=$page";
+            };
             echo "<div class='game'>
                 <img src='" .$dir, $imgL['img'] . ".png' alt='" . $imgL['img'] . "' class='game-left game-talking-" . $imgL['talking'] ." game-rotate-" . $imgL['rotate'] . "'>
                 <img src='" .$dir, $imgR['img'] . ".png' alt='" . $imgR['img'] . "' class='game-right game-talking" . $imgR['talking'] ." game-rotate-" . $imgR['rotate'] . "'>
@@ -84,9 +93,8 @@
                     <p>" . $dialogue . "</p>
                     <div class='game-button'>
                         <a href='?page=" . $page - 1 ."'>&larr;Previous</a>
-                        <a href='?page=" . $page + 1 ."'>Next&rarr;</a>
-                        <!--<a href='?page=dev'>dev-page</a>!-->
-                    </div>
+                        <a href='" . $pageRef . "'>Next&rarr;</a>
+                   </div>
                 </div>
             </div>
 ";

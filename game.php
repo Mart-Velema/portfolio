@@ -9,7 +9,7 @@
 </head>
 <body>
     <?php
-        include "components/header.php";
+
     ?>
     <main>
         <div class='main-game'>
