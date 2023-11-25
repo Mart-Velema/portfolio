@@ -29,6 +29,8 @@
     height: 5%;
     width: 40%;
     object-fit: scale-down;
+    z-index: 2;
+    margin-bottom: -1px;
 }
 
 .game-center {
@@ -41,6 +43,7 @@
     padding: 30px;
     border: 1px solid black;
     border-radius: 15px;
+    z-index: 1;
 }
 
 .game-center a {

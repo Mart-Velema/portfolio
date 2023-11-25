@@ -93,7 +93,7 @@
                 <img src='" .$dir, $imgR['img'] . ".png' alt='" . $imgR['img'] . "' class='game-image game-talking-" . $imgR['talking'] ." game-rotate-" . $imgR['rotate'] . "'>
             </div>
             <div class='game-talking'>
-                <img src='img/fedora.png' alt='fedora'> 
+                <img src='" . $dir . "speech_bubble.png' alt='fedora'> 
             </div>
             <div class='game'>
                 <div class='game-center'>
