@@ -9,7 +9,18 @@
 </head>
 <body>
     <?php
-
+        if(empty($_GET['nonav']))    //check if the $nonav tab exists inside of the URL
+        {
+            $nonav = 0;              //If empty, set to 0
+        }
+        else
+        {
+            $nonav = $_GET['nonav'];  //import the $nonav variable from the URL
+        };
+        if($nonav == 0)
+        {
+            include "components/header.php";
+        };
     ?>
     <main>
         <div class='main-game'>

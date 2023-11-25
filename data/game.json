@@ -18,6 +18,21 @@
     {
         "imgL": 
             {
+                "img":      "", 
+                "rotate":   1,
+                "talking":  0
+            },
+        "imgR": 
+            {
+                "img":      "",
+                "rotate":   0,
+                "talking":  0
+            },
+        "dialogue": ""
+    },
+    {
+        "imgL": 
+            {
                 "img":      "k_angedol", 
                 "rotate":   0,
                 "talking":  0

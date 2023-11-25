@@ -82,7 +82,7 @@
             }
             else
             {
-                $pageRef = "game.php?page=$page";
+                $pageRef = "?page=$page";
             };
             echo "<div class='game'>
                 <img src='" .$dir, $imgL['img'] . ".png' alt='" . $imgL['img'] . "' class='game-left game-talking-" . $imgL['talking'] ." game-rotate-" . $imgL['rotate'] . "'>
