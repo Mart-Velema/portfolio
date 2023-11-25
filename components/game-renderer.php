@@ -76,10 +76,6 @@
             foreach($data[$page] as $name => $contents)                 //puts all the data of the .json entry corresponding with the page number into the $contents variable,
             {                                                           //import the entry name of the .json file as $name
                 ${$name} = $contents;                                   //make new variable with the same name as the $name variable
-                if(isset(${$name}['item']))
-                {
-                    $item = ${$name}['item'];
-                };
             };
             $page++;                        //increment page variable to value of next page
             if(empty($data[$page]))
@@ -109,7 +105,7 @@
             </div>
             <div class='game-talking " . $inverse . "'>
                 <img src='" . $dir . "speech_bubble.png' alt='speech bubble'>";
-            if($item != 0)
+            if(isset($item))
             {
                 echo"
                 <img src='" . $dir, $item . ".png' alt='$item' class='item'>";

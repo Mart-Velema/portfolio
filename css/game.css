@@ -55,6 +55,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    font-size: large;
     min-height: 196px;
     width: 65vw;
     background-color: wheat;
