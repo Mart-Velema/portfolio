@@ -80,7 +80,6 @@
                 {
                     $item = ${$name}['item'];
                 };
-                var_dump(${$name});
             };
             $page++;                        //increment page variable to value of next page
             if(empty($data[$page]))
@@ -113,7 +112,7 @@
             if($item != 0)
             {
                 echo"
-                    <img src='" . $dir, $item . ".png' alt='$item' class='item'>";
+                <img src='" . $dir, $item . ".png' alt='$item' class='item'>";
             };
             echo"
             </div>

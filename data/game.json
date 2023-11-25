@@ -43,7 +43,7 @@
                 "img":      "k_cro01_egao",
                 "rotate":   1,
                 "talking":  1,
-                "item":     0
+                "item":     "/dev/missing_textures"
             },
         "dialogue": "Lorum Ipsum"
     }
