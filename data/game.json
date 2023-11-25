@@ -11,56 +11,71 @@
             {
                 "img":      "k_kit01_egao",
                 "rotate":   0,
-                "talking":  1
+                "talking":  0
             },
-        "dialogue": ""
+        "dialogue": "Hi there! I'm the person responsible for making this website! hope you like it"
     },
     {
         "imgL": 
             {
-                "img":      "k_angedoll", 
-                "rotate":   1,
-                "talking":  1
+                "img":      0, 
+                "rotate":   0,
+                "talking":  0
             },
         "imgR": 
             {
-                "img":      "k_cro01_egao",
+                "img":      "k_kit01_konwaku",
                 "rotate":   0,
-                "talking":  1
+                "talking":  0
             },
-        "dialogue": "Lorum Ipsum"
+        "dialogue": "Well... Kinda... Last time I checked I didn't look like this"
     },
     {
         "imgL": 
             {
-                "img":      "k_angedoll", 
-                "rotate":   1,
-                "talking":  1
+                "img":      0, 
+                "rotate":   0,
+                "talking":  0
             },
         "imgR": 
             {
-                "img":      "k_cro01_egao",
+                "img":      "k_kit01_konwaku",
                 "rotate":   0,
-                "talking":  1
+                "talking":  0
             },
-        "dialogue": "Lorum Ipsum",
-        "item": "/dev/missing_textures"
+        "dialogue": "I also stole this images as placeholder. <br>Check out Gravity Rush! Great game on the PS Vita"
     },
     {
         "imgL": 
             {
-                "img":      "k_angedoll", 
+                "img":      0, 
                 "rotate":   0,
-                "talking":  0,
-                "item":     0
+                "talking":  0
             },
         "imgR": 
             {
-                "img":      "k_cro01_egao",
-                "rotate":   1,
-                "talking":  1,
-                "item":     "/dev/missing_textures"
+                "img":      "k_kit01_konwaku",
+                "rotate":   0,
+                "talking":  0
             },
-        "dialogue": "Lorum Ipsum"
+        "dialogue": "I did spend like a week on this, but I'll eventually replace them with my own textures"
+    },
+    {
+        "empty": "yes"
+    },
+    {
+        "imgL": 
+        {
+            "img":      0, 
+            "rotate":   0,
+            "talking":  0
+        },
+        "imgR": 
+        {
+            "img":      "k_kit01_konwaku",
+            "rotate":   0,
+            "talking":  0
+        },
+        "dialogue": "'Cause if I don't, that'll happen" 
     }
 ]

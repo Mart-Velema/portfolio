@@ -59,13 +59,13 @@
                 $errorNumber = rand(0,(count($error)-1));       //variable for a random error message
                 $data[$page] = array(
                     "imgL"     => array (
-                        "img"       => "dev/missing_textures.png",
+                        "img"       => "dev/missing_textures",
                         "rotate"    => 0,
                         "talking"   => 0,
                         "item"      => 0
                     ),
                     "imgR"     => array (
-                        "img"       => "dev/missing_textures.png",
+                        "img"       => "dev/missing_textures",
                         "rotate"    => 0,
                         "talking"   => 0,
                         "item"      => 0
@@ -100,14 +100,14 @@
             };
             //going from variables to actual display
             echo "<div class='game'>";
-            $imgCount = 0;
-            if($imgL['img'] != 0)
+            $imgCount = 0;              //empty string that needs to be here to work properly
+            if($imgL['img'] != 0)       //check if left image is present
             {
                 echo"
                 <img src='" .$dir, $imgL['img'] . ".png' alt='" . $imgL['img'] . "' class='game-image game-talking-" . $imgL['talking'] ." game-rotate-" . $imgL['rotate'] . "'>";
                 $imgCount++;
             };
-            if($imgR['img'] != 0)
+            if($imgR['img'] != 0)       //check if right image is present
             {
                 echo"
                 <img src='" .$dir, $imgR['img'] . ".png' alt='" . $imgR['img'] . "' class='game-image game-talking-" . $imgR['talking'] ." game-rotate-" . $imgR['rotate'] . "'>";
@@ -116,12 +116,12 @@
             echo "
             </div>
             <div class='game-talking " . $inverse . "'>";
-            if($imgCount == 2)
+            if($imgCount == 2)          //check if there are two images availabe, if not, don't render a specch bubble arrow
             {
                 echo"
                 <img src='" . $dir . "speech_bubble.png' alt='speech bubble'>";
             };
-            if(isset($item))
+            if(isset($item))            //check if the item variable is set
             {
                 echo"
                 <img src='" . $dir, $item . ".png' alt='$item' class='item'>";
