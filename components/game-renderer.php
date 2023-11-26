@@ -5,7 +5,7 @@
 * Description   : "Rendering engine" for personal game project
 * Programmer    : Mart Velema
 */
-    $dir = "img/GR-Portrait/";  //directory of the images
+    $dir = "img/assets/GR-Portrait/";  //directory of the images
     if(empty($_GET['page']))    //check if the $page tab exists inside of the URL
     {
         $page = 0;              //If empty, set to 0
@@ -63,7 +63,7 @@
             $page++;                        //increment page variable to value of next page
             if(empty($data[$page]))
             {
-                $pageRef = "game.php";      //if next page is empty, redirect to first page
+                $pageRef = "game.php";      //if next page is empty, redirect to game's homepage
             }
             else
             {   

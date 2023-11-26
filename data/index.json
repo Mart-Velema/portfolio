@@ -1,12 +1,12 @@
 [
     {
-        "name": "logic",
-        "link": "logic.phpS",
-        "text": "Lorem Ipsum <br><br> Lorem Ipsum <br><br> Lorem Ipsum <br><br> Lorem Ipsum <br><br> Lorem Ipsum <br><br> Lorem Ipsum <br><br> Lorem Ipsum"
+        "name": "PHP game engine",
+        "link": "games.php",
+        "text": "Een primitieve 'game engine' volledig gemaakt in HTML, CSS en PHP. <br><br> Er zijn verschillende games, waaronder een snelle introductie van hoe de engine in elkaar steekt.<br><br> Er wordt momenteel ook gewerkt aan een meer interactive game en een level editor om zo gemakkelijk zelf je eigen games te maken voor deze game engine"
     },
     {
-        "name": "logic",
-        "link": "logic.php",
-        "text": "Lorem Ipsum <br><br> Lorem Ipsum <br><br> Lorem Ipsum <br><br> Lorem Ipsum <br><br> Lorem Ipsum <br><br> Lorem Ipsum <br><br> Lorem Ipsum"
+        "name": "block renderer",
+        "link": "game.php?level=block-renderer",
+        "text": "Nieuwschierig hoe deze website werkt? Vrijwel alles op deze website wordt dynamisch gegenereerd door middel van PHP.<br><br> Deze blokken waar dit verhaaltje in staat, wordt gedaan door de zogenoemde 'block renderer'. Deze improteert data uit een .json bestand om zo de gehele website form te geven. Voor meer voorbeelden hiervoor, kun je kijken onder 'PHP opdrachten'.<br><br>Meer weten, click dan op de title van dit blok. (wordt nog aan gewerkt)"
     }
 ]

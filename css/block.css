@@ -26,6 +26,7 @@
     box-shadow: 0px 0px 10px black;
     border-radius: 5px;
     padding: 3px;
+    font-size: large;
 }
 
 .inner-block img {
