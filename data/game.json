@@ -1,13 +1,7 @@
 
 [
     {
-        "imgL": 
-            {
-                "img":      0, 
-                "rotate":   0,
-                "talking":  0
-            },
-        "imgR": 
+        "img": 
             {
                 "img":      "k_kit01_egao",
                 "rotate":   0,
@@ -18,7 +12,7 @@
     {
         "imgL": 
             {
-                "img":      0, 
+
                 "rotate":   0,
                 "talking":  0
             },
@@ -46,6 +40,9 @@
         "dialogue": "I also stole this images as placeholder. <br>Check out Gravity Rush! Great game on the PS Vita"
     },
     {
+        "empty": "yes"
+    },
+    {
         "imgL": 
             {
                 "img":      0, 
@@ -61,9 +58,6 @@
         "dialogue": "I did spend like a week on this, but I'll eventually replace them with my own textures"
     },
     {
-        "empty": "yes"
-    },
-    {
         "imgL": 
         {
             "img":      0, 
@@ -77,5 +71,155 @@
             "talking":  0
         },
         "dialogue": "'Cause if I don't, that'll happen" 
+    },
+    {
+        "imgL": 
+        {
+            "img":      0, 
+            "rotate":   0,
+            "talking":  0
+        },
+        "imgR": 
+        {
+            "img":      "k_kit01_egao",
+            "rotate":   0,
+            "talking":  0
+        },
+        "dialogue": "But don't worry, I tried my best to make sure that doesn't happen on purpose! <br><br>(but can stil happen accidentally tho)" 
+    },
+    {
+        "imgL": 
+        {
+            "img":      0, 
+            "rotate":   0,
+            "talking":  0
+        },
+        "imgR": 
+        {
+            "img":      "k_kit01_egao",
+            "rotate":   0,
+            "talking":  0
+        },
+        "dialogue": "But enough about me, lets talk about what this Source2 speck spaghetti monster can do!" 
+    },
+    {
+        "imgL": 
+        {
+            "img":      0, 
+            "rotate":   0,
+            "talking":  0
+        },
+        "imgR": 
+        {
+            "img":      "k_kit01_egao",
+            "rotate":   0,
+            "talking":  1
+        },
+        "dialogue": "Firstly, I can GLOW!" 
+    },
+    {
+        "imgL": 
+        {
+            "img":      "k_kit01_odoroki", 
+            "rotate":   1,
+            "talking":  0
+        },
+        "imgR": 
+        {
+            "img":      "k_kit01_egao",
+            "rotate":   0,
+            "talking":  1
+        },
+        "dialogue": "Hard to see? Don't worry worry, I'll help you. <br><br> The right me is talking and has a nice glow.<br> Whilst left me is silent, and doesn't glow." 
+    },
+    {
+        "imgL": 
+        {
+            "img":      "k_kit01_odoroki", 
+            "rotate":   1,
+            "talking":  0
+        },
+        "imgR": 
+        {
+            "img":      "k_kit01_odoroki",
+            "rotate":   0,
+            "talking":  1
+        },
+        "dialogue": "And to add to that, I can be rotated as well!" 
+    },
+    {
+        "imgL": 
+        {
+            "img":      "k_kit01_odoroki", 
+            "rotate":   0,
+            "talking":  0
+        },
+        "imgR": 
+        {
+            "img":      "k_kit01_odoroki",
+            "rotate":   1,
+            "talking":  1
+        },
+        "dialogue": "See? Now me and I are looking the other way!" 
+    },
+    {
+        "imgL": 
+        {
+            "img":      "k_dus01_meari", 
+            "rotate":   0,
+            "talking":  0
+        },
+        "imgR": 
+        {
+            "img":      "k_kit01_egao",
+            "rotate":   0,
+            "talking":  1
+        },
+        "dialogue": "But I'm not alone. Here's my favourite companion, Dusty." 
+    },
+    {
+        "imgL": 
+        {
+            "img":      "k_dus01_menashi", 
+            "rotate":   0,
+            "talking":  0
+        },
+        "imgR": 
+        {
+            "img":      "k_kit01_tujyo",
+            "rotate":   0,
+            "talking":  1
+        },
+        "dialogue": "What do you say, Dusty? Quite impressive isn't it?" 
+    },
+    {
+        "imgL": 
+        {
+            "img":      "k_dus01_meari", 
+            "rotate":   0,
+            "talking":  1
+        },
+        "imgR": 
+        {
+            "img":      "k_kit01_odoroki",
+            "rotate":   0,
+            "talking":  0
+        },
+        "dialogue": "Meaw..." 
+    },
+    {
+        "imgL": 
+        {
+            "img":      "k_dus01_menashi", 
+            "rotate":   0,
+            "talking":  0
+        },
+        "imgR": 
+        {
+            "img":      "k_kit01_konwaku",
+            "rotate":   0,
+            "talking":  1
+        },
+        "dialogue": "Meaw? What am I supposed to make from that?" 
     }
 ]
