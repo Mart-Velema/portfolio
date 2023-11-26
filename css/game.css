@@ -38,16 +38,16 @@
 .game-talking .item {
     scale: 1.5;
     margin-left: 30px;
-    border: 1px solid black;
-    border-radius: 15px;
+    border: .3px solid black;
+    border-radius: 5px;
     transition: 0.2s;
-    background-image: url(/portfolio2/img/GR-Portrait/dev/missing_textures.png);
+    background-image: url(/portfolio2/img/assets/GR-Portrait/dev/missing_textures.png);
     min-height: 10px;
     min-width: 10px;
 }
 
 .game-talking .item:hover{
-    scale: 1.8;
+    scale: 3;
     margin-left: 35px;
 }
 

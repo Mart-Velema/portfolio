@@ -46,7 +46,7 @@
             "rotate":   0,
             "talking":  0
         },
-        "dialogue": "But don't worry, I tried my best to make sure that doesn't happen on purpose! <br><br>(but can stil happen accidentally tho)" 
+        "dialogue": "But don't worry, I tried my best to make sure that doesn't happen accidentally! <br><br>(but can stil happen on purpose tho)" 
     },
     {
         "img": 
@@ -190,6 +190,80 @@
         "dialogue": "Meaw? What am I supposed to make from that?" 
     },
     {
+        "imgL": 
+        {
+            "img":      "k_dus01_menashi", 
+            "rotate":   0,
+            "talking":  0
+        },
+        "imgR": 
+        {
+            "img":      "k_kit01_odoroki",
+            "rotate":   0,
+            "talking":  1
+        },
+        "item":     "k_kushi_nikuari",
+        "dialogue": "You want something to eat?" 
+    },
+    {
+        "imgL": 
+        {
+            "img":      "k_dus01_menashi", 
+            "rotate":   0,
+            "talking":  0
+        },
+        "imgR": 
+        {
+            "img":      "k_kit01_egao",
+            "rotate":   0,
+            "talking":  1
+        },
+        "item":     "k_kushi_nikuari",
+        "dialogue": "Oh yea that's right! Characters can also hold items. They currently server no purpose, but they will later on in a second, way better version of SCUFF" 
+    },
+    {
+        "imgL": 
+        {
+            "img":      "k_dus01_meari", 
+            "rotate":   0,
+            "talking":  0
+        },
+        "imgR": 
+        {
+            "img":      "k_kit01_egao",
+            "rotate":   0,
+            "talking":  1
+        },
+        "item":     "k_kushi_nikuari",
+        "dialogue": "You can hover over an item to incraese its size so you can clearly see what the item is.<br><br>Try it out!" 
+    },
+    {
+        "imgL": 
+        {
+            "img":      "k_dus01_menashi", 
+            "rotate":   0,
+            "talking":  1
+        },
+        "imgR": 
+        {
+            "img":      "k_kit01_egao",
+            "rotate":   0,
+            "talking":  0
+        },
+        "item":     "k_kushi_nikuari",
+        "dialogue": "Meaw!" 
+    },
+    {
+        "img": 
+        {
+            "img":      "k_kit01_egao",
+            "rotate":   0,
+            "talking":  1
+        },
+        "item":     "k_kushi_nikuari",
+        "dialogue": "That silly cat sure does love his little meat sticks!<br><br>But lets' continiue, shall we?" 
+    },
+    {
         "img":
         {
             "img":      "k_kit01_egao",
@@ -224,5 +298,441 @@
             "talking":  0
         },
         "dialogue":"That one is stolen from the Source game engine made by Valve."
+    },    
+    {
+        "img":
+        {
+            "img":      "k_kit01_egao",
+            "rotate":   0,
+            "talking":  0
+        },
+        "dialogue":"Their Source engine was a major inspiration for the SCUFF Engine. <br>I'll eventually port it away from PHP into something that'll run on your PC, like a normal game."
+    },    
+    {
+        "img":
+        {
+            "img":      "k_kit01_egao",
+            "rotate":   0,
+            "talking":  0
+        },
+        "dialogue":"But enough about what SCUFF can do, lets delve into HOW the SCUFF Engine works."
+    },    
+    {
+        "img":
+        {
+            "img":      "k_kit01_tujyo",
+            "rotate":   0,
+            "talking":  0
+        },
+        "dialogue":"Lets start off with the absolute basics; how are these dialogues stored?"
+    },    
+    {
+        "img":
+        {
+            "img":      "k_kit01_tujyo",
+            "rotate":   0,
+            "talking":  0
+        },
+        "dialogue":"In a very old version of SCUFF that has been lost to time, every dialoge, image name and item name was stored into one giant array."
+    },    
+    {
+        "img":
+        {
+            "img":      "k_kit01_tujyo",
+            "rotate":   0,
+            "talking":  0
+        },
+        "dialogue":"At the time, it was seen like a good idea, since the testing arrays were only tested with about five pages."
+    },    
+    {
+        "img":
+        {
+            "img":      "k_kit01_konwaku",
+            "rotate":   0,
+            "talking":  0
+        },
+        "dialogue":"But as you might have noticed, we're way past five pages. in fact, we're at 31 as of this one."
+    },    
+    {
+        "img":
+        {
+            "img":      "k_kit01_egao",
+            "rotate":   0,
+            "talking":  0
+        },
+        "dialogue":"So the entire idea of one large array was axed and was replaced by a giant .json file."
+    },    
+    {
+        "img":
+        {
+            "img":      "k_kit01_tujyo",
+            "rotate":   0,
+            "talking":  0
+        },
+        "dialogue":"This .json file contains all the data to generate all the pages. It does this by having an entry for each page, which gets fetched and decoded depending on what page you're on.<br>Each json entry has a set of arrays and objects."
+    },    
+    {
+        "img":
+        {
+            "img":      "k_kit01_tujyo",
+            "rotate":   0,
+            "talking":  0
+        },
+        "dialogue":"To start off with, the images"
+    },    
+    {
+        "imgL":
+        {
+            "img":      "k_100diary",
+            "rotate":   0,
+            "talking":  0
+        },
+        "imgR":
+        {
+            "img":      "k_kit01_tujyo",
+            "rotate":   0,
+            "talking":  1
+        },
+        "dialogue":"Each image consists of an array; an array for a left image, and an array for a right image.<br><br>Each array for each image contains data for the filename of the image, wether it should be rotated or not and wether it should be 'talking'<br><br> All of these entries need to be set to either 1 or 0, or else SCUFF will throw errors at you."
+    },    
+    {
+        "imgL":
+        {
+            "img":      "k_100diary",
+            "rotate":   0,
+            "talking":  0
+        },
+        "imgR":
+        {
+            "img":      "k_kit01_egao",
+            "rotate":   0,
+            "talking":  1
+        },
+        "dialogue":"In this scenario, I am the 'talking image', as the talking tag inside of the array for right image is set to 1"
+    },    
+    {
+        "imgL":
+        {
+            "img":      "k_kit01_odoroki",
+            "rotate":   0,
+            "talking":  1
+        },
+        "imgR":
+        {
+            "img":      "k_100diary",
+            "rotate":   0,
+            "talking":  0
+        },
+        "dialogue":"But now it's reverded. the talking tag inside of the array for the left image is set to 1, whilst the same tag in the array for the right image is set to 0"
+    },    
+    {
+        "imgL":
+        {
+            "img":      "k_100diary",
+            "rotate":   0,
+            "talking":  1
+        },
+        "imgR":
+        {
+            "img":      "k_kit01_odoroki",
+            "rotate":   0,
+            "talking":  1
+        },
+        "dialogue":"And now, the talking tag in both arrays is set to 1. When this is the case, it is assumed that the right image is supposed to be talking, because the right image takes priority over the left image<br><br>This does still effortlessly apply the glowing border effect described before to both images, in case that's somethign the scene creator wants."
+    },    
+    {
+        "imgL":
+        {
+            "img":      "k_per01_tujyo",
+            "rotate":   0,
+            "talking":  0
+        },
+        "imgR":
+        {
+            "img":      "k_kit01_egao",
+            "rotate":   0,
+            "talking":  1
+        },
+        "dialogue":"The talking tag isn't just for pointing the little arrow and applying the silly border, it has one more function.. Buuuuut I'll get to that in just a moment"
+    },  
+    {
+        "imgL":
+        {
+            "img":      "k_per01_tujyo",
+            "rotate":   0,
+            "talking":  0
+        },
+        "imgR":
+        {
+            "img":      "k_kit01_egao",
+            "rotate":   0,
+            "talking":  1
+        },
+        "dialogue":"The second tag that is important, is the rotate tag."
+    },
+    {
+        "imgL":
+        {
+            "img":      "k_per01_tujyo",
+            "rotate":   0,
+            "talking":  0
+        },
+        "imgR":
+        {
+            "img":      "k_kit01_egao",
+            "rotate":   0,
+            "talking":  1
+        },
+        "dialogue":"Some images are unfortunetly mirrored compared to what you want to see on screen. This could be solved several ways. You could try to manually rotate every image in MS Paint, but that'll take ages. To save everyone from that hassle, the rotate tag has been introduced."
+    }, 
+    {
+        "imgL":
+        {
+            "img":      "k_per01_tujyo",
+            "rotate":   0,
+            "talking":  0
+        },
+        "imgR":
+        {
+            "img":      "k_kit01_tujyo",
+            "rotate":   0,
+            "talking":  1
+        },
+        "dialogue":"The rotate tag does exactly what it says: it mirrors the image...<br><br>In all seriousness, inside of the arrays for the images, there is a tag for rotate. If it is set to 1, it'll mirror the image along the vertical axis."
+    }, 
+    {
+        "imgL":
+        {
+            "img":      "k_per01_tujyo",
+            "rotate":   0,
+            "talking":  0
+        },
+        "imgR":
+        {
+            "img":      "k_kit01_tujyo",
+            "rotate":   1,
+            "talking":  1
+        },
+        "dialogue":"In this scenario, the rotate tag of the right image has been set to 1. This will mirror the image on the right side"
+    }, 
+    {
+        "imgL":
+        {
+            "img":      "k_per01_tujyo",
+            "rotate":   1,
+            "talking":  0
+        },
+        "imgR":
+        {
+            "img":      "k_kit01_tujyo",
+            "rotate":   0,
+            "talking":  1
+        },
+        "dialogue":"Now, the left image is rotated"
+    },
+    {
+        "imgL":
+        {
+            "img":      "k_per01_tujyo",
+            "rotate":   1,
+            "talking":  0
+        },
+        "imgR":
+        {
+            "img":      "k_kit01_tujyo",
+            "rotate":   1,
+            "talking":  1
+        },
+        "dialogue":"Just like with the talking tag, you can set both to 1 no issues. But unlike the talking tag, there won't be any weird priority for who is and who isn't mirrored. It just mirrors both images"
+    },
+    {
+        "imgL":
+        {
+            "img":      "k_per01_tujyo",
+            "rotate":   0,
+            "talking":  0
+        },
+        "imgR":
+        {
+            "img":      "k_kit01_tujyo",
+            "rotate":   0,
+            "talking":  1
+        },
+        "item":"k_pickles",
+        "dialogue":"But trying to apply the rotate tag to an item will not work. Let me demonstrate"
+    },
+    {
+        "imgL":
+        {
+            "img":      "k_per01_tujyo",
+            "rotate":   0,
+            "talking":  0
+        },
+        "imgR":
+        {
+            "img":      "k_kit01_tujyo",
+            "rotate":   0,
+            "talking":  1
+        },
+        "item":"k_pickles",
+        "dialogue":"But trying to apply the rotate tag to an item will not work. Let me demonstrate"
+    },
+    {
+        "item":
+        {
+            "img":"k_pickles",
+            "rotate":1
+        },
+        "dialogue":"<br><br><br><br><br><br><br>Because that'll happen when you try. You cannot mirror items"
+    },    
+    {
+        "img":
+        {
+            "img":      "k_kit01_egao",
+            "rotate":   0,
+            "talking":  1
+        },
+        "item":"k_pickles",
+        "dialogue":"Items can be every image included in the selected folder."
+    },  
+    {
+        "img":
+        {
+            "img":      "k_kit01_egao",
+            "rotate":   0,
+            "talking":  1
+        },
+        "item":"k_kit01_odoroki",
+        "dialogue":"And when I say every image, I mean every image."
+    },
+    {
+        "img":
+        {
+            "img":      "k_kit01_tujyo",
+            "rotate":   0,
+            "talking":  1
+        },
+        "item":"k_pickles",
+        "dialogue":"Which nicely brings me to the thing I was talking about before, what else does the talking tag do?"
+    },  
+    {
+        "img":
+        {
+            "img":      "k_kit01_tujyo",
+            "rotate":   0,
+            "talking":  1
+        },
+        "item":"k_pickles",
+        "dialogue":"Well as you might have guessed, it works together with items. The person who is talking, will also be the person who's 'holding' the item. Let me demonstrate"
+    },
+    {
+        "imgL":
+        {
+            "img":      "k_man26_tujyo",
+            "rotate":   0,
+            "talking":  0
+        },
+        "imgR":
+        {
+            "img":      "k_kit01_tujyo",
+            "rotate":   0,
+            "talking":  1
+        },
+        "item":"k_pickles",
+        "dialogue":"In this scenario, I am the 'talking' image again. What this means, is that I am also the one 'holding' the jar of pickles."
+    },
+    {
+        "imgL":
+        {
+            "img":      "k_man26_konwaku",
+            "rotate":   0,
+            "talking":  1
+        },
+        "imgR":
+        {
+            "img":      "k_kit01_ikari",
+            "rotate":   0,
+            "talking":  0
+        },
+        "item":"k_pickles",
+        "dialogue":"Now I am the 'talking' image, and I have the jar of pickels now, and I won't give them back!"
+    },
+    {
+        "img":
+        {
+            "img":      "k_kit01_tujyo",
+            "rotate":   0,
+            "talking":  1
+        },
+        "dialogue":""
+    },
+    {
+        "img":
+        {
+            "img":      "k_kit01_tujyo",
+            "rotate":   0,
+            "talking":  1
+        },
+        "item":"k_shingoudan",
+        "dialogue":""
+    },
+    {
+        "img":
+        {
+            "img":      "k_kit01_tujyo",
+            "rotate":   0,
+            "talking":  1
+        },
+        "item":"k_shingoudan",
+        "dialogue":"One moment I'm gonna turn someone into a corpse."
+    },
+    {
+        "dialogue":"<b>*Muffled murdering noises*</b>"
+    },
+    {
+        "dialogue":"<b>*More muffled mudering noises*</b>"
+    },
+    {
+        "dialogue":"<b>*The muffled murdering noises are not muffled anymore*</b>"
+    },
+    {
+        "dialogue":"<b>*The murdering noises stopped*</b>"
+    },
+    {
+        "img":
+        {
+            "img":      "k_kit01_egao",
+            "rotate":   0,
+            "talking":  1
+        },
+        "dialogue":"Sorry for the interuption! I just couldn't let someone get away with my pickes"
+    },
+    {
+        "img":
+        {
+            "img":      "k_kit01_konwaku",
+            "rotate":   0,
+            "talking":  1
+        },
+        "item": "k_bottle_piece",
+        "dialogue":"But I did drop the jar unfortunelty"
+    },
+    {
+        "img":
+        {
+            "img":      "k_kit01_egao",
+            "rotate":   0,
+            "talking":  1
+        },
+        "dialogue":"And on that note, this intoduction into the SCUFF Engine is over! Come back reguarly to see new stories being made to the SCUFF Engine. Or don't, I'm not your mother."
+    },
+    {
+        "img":
+        {
+            "img":      "k_kit01_tujyo",
+            "rotate":   0,
+            "talking":  1
+        },
+        "dialogue":"Oh wait before I forget, at the end of a game, the 'next&rarr;' button puts you automatically back into the main game menu."
     }
 ]

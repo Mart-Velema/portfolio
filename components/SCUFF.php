@@ -63,7 +63,7 @@
             $page++;                        //increment page variable to value of next page
             if(empty($data[$page]))
             {
-                $pageRef = "game.php";      //if next page is empty, redirect to game's homepage
+                $pageRef = "games.php";      //if next page is empty, redirect to game's homepage
             }
             else
             {   
