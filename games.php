@@ -31,6 +31,12 @@
         };
     ?>
     <main>
+        <div class="content">
+            <?php
+                $id = "games";
+                include "components/block-renderer.php";
+            ?>
+        </div>
     </main>
 </body>
 </html>
