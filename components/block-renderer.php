@@ -1,4 +1,10 @@
 <?php
+/*
+* Filename      : block-renderer.php
+* Created       : 21-11-2023
+* Description   : Block "rendering engine" 
+* Programmer    : Mart Velema
+*/
     $json = file_get_contents("data/" . $id . ".json");
     $json = json_decode($json, true);
     foreach($json as $data => $projects)

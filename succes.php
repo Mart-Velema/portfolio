@@ -1,3 +1,11 @@
+<?php
+/*
+* Filename      : succes.php
+* Created       : 21-11-2023
+* Description   : succes page & portal to game page
+* Programmer    : Mart Velema
+*/
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

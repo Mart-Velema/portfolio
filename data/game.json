@@ -10,13 +10,7 @@
         "dialogue": "Hi there! I'm the person responsible for making this website! hope you like it"
     },
     {
-        "imgL": 
-            {
-
-                "rotate":   0,
-                "talking":  0
-            },
-        "imgR": 
+        "img": 
             {
                 "img":      "k_kit01_konwaku",
                 "rotate":   0,
@@ -25,13 +19,7 @@
         "dialogue": "Well... Kinda... Last time I checked I didn't look like this"
     },
     {
-        "imgL": 
-            {
-                "img":      0, 
-                "rotate":   0,
-                "talking":  0
-            },
-        "imgR": 
+        "img": 
             {
                 "img":      "k_kit01_konwaku",
                 "rotate":   0,
@@ -43,43 +31,16 @@
         "empty": "yes"
     },
     {
-        "imgL": 
-            {
-                "img":      0, 
-                "rotate":   0,
-                "talking":  0
-            },
-        "imgR": 
+        "img": 
             {
                 "img":      "k_kit01_konwaku",
                 "rotate":   0,
                 "talking":  0
             },
-        "dialogue": "I did spend like a week on this, but I'll eventually replace them with my own textures"
+        "dialogue": "I did spend like a week on this, but I'll eventually replace them with my own textures, because without these textures, that'll happen."
     },
     {
-        "imgL": 
-        {
-            "img":      0, 
-            "rotate":   0,
-            "talking":  0
-        },
-        "imgR": 
-        {
-            "img":      "k_kit01_konwaku",
-            "rotate":   0,
-            "talking":  0
-        },
-        "dialogue": "'Cause if I don't, that'll happen" 
-    },
-    {
-        "imgL": 
-        {
-            "img":      0, 
-            "rotate":   0,
-            "talking":  0
-        },
-        "imgR": 
+        "img": 
         {
             "img":      "k_kit01_egao",
             "rotate":   0,
@@ -88,13 +49,7 @@
         "dialogue": "But don't worry, I tried my best to make sure that doesn't happen on purpose! <br><br>(but can stil happen accidentally tho)" 
     },
     {
-        "imgL": 
-        {
-            "img":      0, 
-            "rotate":   0,
-            "talking":  0
-        },
-        "imgR": 
+        "img": 
         {
             "img":      "k_kit01_egao",
             "rotate":   0,
@@ -103,19 +58,22 @@
         "dialogue": "But enough about me, lets talk about what this Source2 speck spaghetti monster can do!" 
     },
     {
-        "imgL": 
-        {
-            "img":      0, 
-            "rotate":   0,
-            "talking":  0
-        },
-        "imgR": 
+        "img": 
         {
             "img":      "k_kit01_egao",
             "rotate":   0,
             "talking":  1
         },
         "dialogue": "Firstly, I can GLOW!" 
+    },
+    {
+        "img": 
+        {
+            "img":      "k_kit01_egao",
+            "rotate":   0,
+            "talking":  1
+        },
+        "dialogue": "Well it's a faint glow in single image scnenes like this one" 
     },
     {
         "imgL": 
@@ -130,7 +88,16 @@
             "rotate":   0,
             "talking":  1
         },
-        "dialogue": "Hard to see? Don't worry worry, I'll help you. <br><br> The right me is talking and has a nice glow.<br> Whilst left me is silent, and doesn't glow." 
+        "dialogue": "Hard to see? Don't worry worry, I'll help you. <br><br> The right me is talking and has a nice glow.<br> Whilst left me is silent, and doesn't glow. <br><br> Oh and talking me is also slightly larger to strongly signal that it's me that's talking and not the other person!" 
+    },
+    {
+        "img": 
+        {
+            "img":      "k_kit01_egao",
+            "rotate":   0,
+            "talking":  1
+        },
+        "dialogue": "There is even a small arrow pointing towards the person talking in two image scenes, look out for it in the next scene." 
     },
     {
         "imgL": 
@@ -221,5 +188,41 @@
             "talking":  1
         },
         "dialogue": "Meaw? What am I supposed to make from that?" 
+    },
+    {
+        "img":
+        {
+            "img":      "k_kit01_egao",
+            "rotate":   0,
+            "talking":  0
+        },
+        "dialogue":"There are well over 200 images available in this project."
+    },
+    {
+        "img":
+        {
+            "img":      "k_kit01_konwaku",
+            "rotate":   0,
+            "talking":  0
+        },
+        "dialogue":"Unfortunetly none of them are mine..."
+    },
+    {
+        "img":
+        {
+            "img":      "dev/missing_textures",
+            "rotate":   0,
+            "talking":  1
+        },
+        "dialogue": "I even stole the missing texture texture."
+    },    
+    {
+        "img":
+        {
+            "img":      "k_kit01_konwaku",
+            "rotate":   0,
+            "talking":  0
+        },
+        "dialogue":"That one is stolen from the Source game engine made by Valve."
     }
 ]

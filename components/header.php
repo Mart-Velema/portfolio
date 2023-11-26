@@ -1,3 +1,11 @@
+<?php
+/*
+* Filename      : header.php
+* Created       : 21-11-2023
+* Description   : Header for portfolio website
+* Programmer    : Mart Velema
+*/
+?>
 <header>
     <a href="index.php"><img src="img/fedora.png" alt="Fedora Logo"></a>
     <ul>

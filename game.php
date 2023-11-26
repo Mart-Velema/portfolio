@@ -1,3 +1,11 @@
+<?php
+/*
+* Filename      : game.php
+* Created       : 22-11-2023
+* Description   : game main page
+* Programmer    : Mart Velema
+*/
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -1,3 +1,12 @@
+<?php
+/*
+* Filename      : afstanden.php
+* Assignment    : afstanden berekenen
+* Created       : 21-11-2023
+* Description   : determine distances between two cities with an array
+* Programmer    : Mart Velema
+*/
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

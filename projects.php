@@ -1,3 +1,11 @@
+<?php
+/*
+* Filename      : projects.php
+* Created       : 21-11-2023
+* Description   : homepage for all NHL Stenden projects
+* Programmer    : Mart Velema
+*/
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

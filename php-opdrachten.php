@@ -1,3 +1,11 @@
+<?php
+/*
+* Filename      : php-opdrachten.php
+* Created       : 21-11-2023
+* Description   : homepage for all php assignments
+* Programmer    : Mart Velema
+*/
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

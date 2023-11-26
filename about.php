@@ -1,3 +1,12 @@
+<?php
+/*
+* Filename      : about.php
+* Assignment    : form page for portfolio
+* Created       : 21-11-2023
+* Description   : about page for portfolio
+* Programmer    : Mart Velema
+*/
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

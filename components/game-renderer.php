@@ -1,4 +1,10 @@
 <?php
+/*
+* Filename      : game-renderen.php
+* Created       : 22-11-2023
+* Description   : "Rendering engine" for personal game project
+* Programmer    : Mart Velema
+*/
     $dir = "img/GR-Portrait/";  //directory of the images
     if(empty($_GET['page']))    //check if the $page tab exists inside of the URL
     {
@@ -14,6 +20,7 @@
             echo "<a href=?page=1>go back</a>
             <div class='dev'>";
             $portraits = glob($dir . '*.png');  //make array out of all the images inside of the directory
+            echo count($portraits);
             foreach($portraits as $portrait)    //display each image
             {
                 echo "
@@ -38,16 +45,15 @@
                     "imgL"     => array (
                         "img"       => "dev/missing_textures",
                         "rotate"    => 0,
-                        "talking"   => 0,
-                        "item"      => 0
+                        "talking"   => 0
                     ),
                     "imgR"     => array (
                         "img"       => "dev/missing_textures",
                         "rotate"    => 0,
-                        "talking"   => 0,
-                        "item"      => 0
+                        "talking"   => 0
                     ),
-                    "dialogue"      => "End of JSON file. No valid data entries to be loaded",      /*put a random error message into the "text" key*/
+                    "dialogue"      => "End of JSON file. No valid data entries to be loaded",
+                    "item"          => "dev/missing_textures"
                 );
             };
             foreach($data[$page] as $name => $contents)                 //puts all the data of the .json entry corresponding with the page number into the $contents variable,

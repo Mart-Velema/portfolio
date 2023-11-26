@@ -1,3 +1,12 @@
+<?php
+/*
+* Filename      : index.php
+* Assignment    : homepage for portfolio
+* Created       : 21-11-2023
+* Description   : homepage/ indexpage for portfolio website
+* Programmer    : Mart Velema
+*/
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
