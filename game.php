@@ -16,11 +16,14 @@
     <link href="img/fedora.png" rel="icon">
 </head>
 <body>
+    <?php
+        include "components/header.php";
+    ?>
     <main>
         <div class='main-game'>
             <?php
                 $level = $_GET['level'];
-                include "components/game-renderer.php";
+                include "components/SCUFF.php";
             ?>
         </div>
     </main>
