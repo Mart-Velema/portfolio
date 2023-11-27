@@ -23,7 +23,7 @@
         <div class="content">
             <?php
                 $id = "projects";
-                include "components/renderer.php";
+                include "components/block-renderer.php";
             ?>
         </div>
     </main>

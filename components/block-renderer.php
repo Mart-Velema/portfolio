@@ -9,23 +9,26 @@
     $json = json_decode($json, true);
     foreach($json as $data => $projects)
     {
-        $projects['name'] = str_replace(' ', '_', $projects['name']);
-        if(empty($projects['external']))
-        {
-            $projects['external'] = "target='_self'";
-        };
-        echo    "<div id='" . $projects['name'] ."' class='block'>";
-        $projects['name'] = str_replace('_', ' ', $projects['name']);
-        echo "
-                    <a href='" . $projects['link'] . "'" . $projects['external'] . "><h2>" . $projects['name'] . "</h2></a>
-                    <div class='inner-block'>
-                        <p>" . $projects['text'] . "</p>";
+        $projects['id'] = str_replace(' ', '_', $projects['name']);
         if(isset($projects['img']))
         {
-           echo "<img src='img/" . $projects['img'] . "' alt='" . $projects['img'] . "'>"; 
+        $projects['img'] = "<img src='img/" . $projects['img'] . "' alt='" . $projects['img'] . "'>"; 
         }
-        echo        "</div>
-                </div>";
+        else
+        {
+            $projects['img'] = "";
+        };
+        if(empty($projects['external']))
+        {
+            $projects['external'] = "target=_self'";
+        };
+        echo
+        '<div class="block" id=' . $projects['id'] . '>' . 
+            '<a href=' . $projects['link'] . ' ' . $projects['external'] . '><h2>' . $projects['name'] . '</h2></a>' .
+            '<div class="inner-block">' .
+                '<p>' . $projects['text'] . '</p>' .
+                '' . $projects['img'] . '' .
+            '</div>' .
+        '</div>';
     };
-    // var_dump($id, $json, $projects);
 ?>
