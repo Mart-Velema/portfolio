@@ -5,9 +5,9 @@
         "text": "Introduction to the SCUFF Engine.<br><br>This short demonstration shows most of the capabilities of the SCUFF Engine.<br><br>You'll follow the main character Helen (currently replaced by Kat from the game Gravity-Rush) trough their adventrues with the SCUFF Egine"
     },
     {
-        "name": "Introduciton to the FLOOR Level-Editor",
+        "name": "Introduction to the FLOOR Level-Editor",
         "link": "game.php?level=intro-floor",
-        "text": "Introduciton to hte FLOOR Level-Editor<br><br>This short overview shows most of what the FLOOR level editor is capable of, what FLOOR is and how to use it. Maybe even why the level editor is named FLOOR"
+        "text": "Introduction to hte FLOOR Level-Editor<br><br>This short overview shows most of what the FLOOR level editor is capable of, what FLOOR is and how to use it. Maybe even why the level editor is named FLOOR"
     },
     {
         "name": "Block renderer",

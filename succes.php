@@ -29,7 +29,7 @@
                     echo "<div class='succes'>
                     <p>Excelent</p>
                     <a href='index.php'>Go back to homepage</a>
-                    <a href='game.php?page=0'>...Or don't</a>
+                    <a href='game.php?page=dev'>...Or don't</a>
                 </div>";
                 }
                 else

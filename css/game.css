@@ -1,5 +1,6 @@
 .main-game {
     display: flex;
+    align-items: center;
     grid-column: 1 / 4;
     flex-direction: column;
     background-color: darkslategray;
@@ -29,10 +30,6 @@
     object-fit: scale-down;
     z-index: 2;
     margin-bottom: -1px;
-}
-
-.rotate-1 {
-    transform: scaleX(-1);
 }
 
 .game-talking .item {
@@ -75,11 +72,6 @@
 .game-button {
     display: flex;
     justify-content: flex-end;
-}
-
-.game-talking-1 {
-    scale: 1.1;
-    box-shadow: 0px 0px 5px whitesmoke;
 }
 
 /* CSS for dev-page */

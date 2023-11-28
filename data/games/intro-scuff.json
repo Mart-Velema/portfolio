@@ -193,7 +193,7 @@
         "imgL": 
         {
             "img":      "k_dus01_menashi", 
-            "rotate":   0,
+            "rotate":   1,
             "talking":  0
         },
         "imgR": 
@@ -383,18 +383,13 @@
     {
         "imgL":
         {
-            "img":      "k_100diary",
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_100diary"
         },
         "imgR":
         {
-            "img":      "k_kit01_tujyo",
-            "rotate":   0,
-            "talking":  1
-        },
-        "dialogue":"Each image consists of an array; an array for a left image, and an array for a right image.<br><br>Each array for each image contains data for the filename of the image, wether it should be rotated or not and wether it should be 'talking'<br><br> All of these entries need to be set to either 1 or 0, or else SCUFF will throw errors at you."
-    },    
+            "img":      "k_kit01_tujyo"
+        }
+    },
     {
         "imgL":
         {
@@ -423,7 +418,7 @@
             "rotate":   0,
             "talking":  0
         },
-        "dialogue":"But now it's reverded. the talking tag inside of the array for the left image is set to 1, whilst the same tag in the array for the right image is set to 0"
+        "dialogue":"But now it's reversed. the talking tag inside of the array for the left image is set to 1, whilst the same tag in the array for the right image is set to 0"
     },    
     {
         "imgL":

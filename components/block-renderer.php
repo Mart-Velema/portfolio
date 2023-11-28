@@ -9,10 +9,10 @@
     $json = json_decode($json, true);
     foreach($json as $data => $projects)
     {
-        $projects['id'] = str_replace(' ', '_', $projects['name']);
+        $projects['id'] = str_replace(' ', '-', $projects['name']);
         if(isset($projects['img']))
         {
-        $projects['img'] = "<img src='img/" . $projects['img'] . "' alt='" . $projects['img'] . "'>"; 
+            $projects['img'] = "<img src='img/" . $projects['img'] . "' alt='" . $projects['img'] . "'>"; 
         }
         else
         {
