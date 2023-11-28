@@ -3,27 +3,22 @@
     {
         "img": 
             {
-                "img":      "k_kit01_egao",
-                "rotate":   0,
-                "talking":  0
+                "img":      "k_kit01_egao"
             },
-        "dialogue": "Hi there! I'm the person responsible for making this website! hope you like it"
+        "dialogue": "Hi there! I'm the person responsible for making this website! hope you like it",
+        "dir": "GR-Portrait"
     },
     {
         "img": 
             {
-                "img":      "k_kit01_konwaku",
-                "rotate":   0,
-                "talking":  0
+                "img":      "k_kit01_konwaku"
             },
         "dialogue": "Well... Kinda... Last time I checked I didn't look like this"
     },
     {
         "img": 
             {
-                "img":      "k_kit01_konwaku",
-                "rotate":   0,
-                "talking":  0
+                "img":      "k_kit01_konwaku"
             },
         "dialogue": "I also stole this images as placeholder. <br>Check out Gravity Rush! Great game on the PS Vita"
     },
@@ -33,9 +28,7 @@
     {
         "img": 
             {
-                "img":      "k_kit01_konwaku",
-                "rotate":   0,
-                "talking":  0
+                "img":      "k_kit01_konwaku"
             },
         "dialogue": "I did spend like a week on this, but I'll eventually replace them with my own textures, because without these textures, that'll happen."
     },
@@ -51,9 +44,7 @@
     {
         "img": 
         {
-            "img":      "k_kit01_egao",
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_kit01_egao"
         },
         "dialogue": "But enough about me, lets talk about what this Source2 speck spaghetti monster can do!" 
     },
@@ -61,7 +52,6 @@
         "img": 
         {
             "img":      "k_kit01_egao",
-            "rotate":   0,
             "talking":  1
         },
         "dialogue": "Firstly, I can GLOW!" 
@@ -70,7 +60,6 @@
         "img": 
         {
             "img":      "k_kit01_egao",
-            "rotate":   0,
             "talking":  1
         },
         "dialogue": "Well it's a faint glow in single image scnenes like this one" 
@@ -79,13 +68,11 @@
         "imgL": 
         {
             "img":      "k_kit01_odoroki", 
-            "rotate":   1,
-            "talking":  0
+            "rotate":   1
         },
         "imgR": 
         {
             "img":      "k_kit01_egao",
-            "rotate":   0,
             "talking":  1
         },
         "dialogue": "Hard to see? Don't worry worry, I'll help you. <br><br> The right me is talking and has a nice glow.<br> Whilst left me is silent, and doesn't glow. <br><br> Oh and talking me is also slightly larger to strongly signal that it's me that's talking and not the other person!" 
@@ -94,7 +81,6 @@
         "img": 
         {
             "img":      "k_kit01_egao",
-            "rotate":   0,
             "talking":  1
         },
         "dialogue": "There is even a small arrow pointing towards the person talking in two image scenes, look out for it in the next scene." 
@@ -103,13 +89,11 @@
         "imgL": 
         {
             "img":      "k_kit01_odoroki", 
-            "rotate":   1,
-            "talking":  0
+            "rotate":   1
         },
         "imgR": 
         {
             "img":      "k_kit01_odoroki",
-            "rotate":   0,
             "talking":  1
         },
         "dialogue": "And to add to that, I can be rotated as well!" 
@@ -117,9 +101,7 @@
     {
         "imgL": 
         {
-            "img":      "k_kit01_odoroki", 
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_kit01_odoroki"
         },
         "imgR": 
         {
@@ -132,14 +114,11 @@
     {
         "imgL": 
         {
-            "img":      "k_dus01_meari", 
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_dus01_meari"
         },
         "imgR": 
         {
             "img":      "k_kit01_egao",
-            "rotate":   0,
             "talking":  1
         },
         "dialogue": "But I'm not alone. Here's my favourite companion, Dusty." 
@@ -147,14 +126,11 @@
     {
         "imgL": 
         {
-            "img":      "k_dus01_menashi", 
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_dus01_menashi"
         },
         "imgR": 
         {
             "img":      "k_kit01_tujyo",
-            "rotate":   0,
             "talking":  1
         },
         "dialogue": "What do you say, Dusty? Quite impressive isn't it?" 
@@ -163,28 +139,22 @@
         "imgL": 
         {
             "img":      "k_dus01_meari", 
-            "rotate":   0,
             "talking":  1
         },
         "imgR": 
         {
-            "img":      "k_kit01_odoroki",
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_kit01_odoroki"
         },
         "dialogue": "Meaw..." 
     },
     {
         "imgL": 
         {
-            "img":      "k_dus01_menashi", 
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_dus01_menashi"
         },
         "imgR": 
         {
             "img":      "k_kit01_konwaku",
-            "rotate":   0,
             "talking":  1
         },
         "dialogue": "Meaw? What am I supposed to make from that?" 
@@ -193,13 +163,11 @@
         "imgL": 
         {
             "img":      "k_dus01_menashi", 
-            "rotate":   1,
-            "talking":  0
+            "rotate":   1
         },
         "imgR": 
         {
             "img":      "k_kit01_odoroki",
-            "rotate":   0,
             "talking":  1
         },
         "item":     "k_kushi_nikuari",
@@ -208,14 +176,11 @@
     {
         "imgL": 
         {
-            "img":      "k_dus01_menashi", 
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_dus01_menashi"
         },
         "imgR": 
         {
             "img":      "k_kit01_egao",
-            "rotate":   0,
             "talking":  1
         },
         "item":     "k_kushi_nikuari",
@@ -224,14 +189,11 @@
     {
         "imgL": 
         {
-            "img":      "k_dus01_meari", 
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_dus01_meari"
         },
         "imgR": 
         {
             "img":      "k_kit01_egao",
-            "rotate":   0,
             "talking":  1
         },
         "item":     "k_kushi_nikuari",
@@ -241,14 +203,11 @@
         "imgL": 
         {
             "img":      "k_dus01_menashi", 
-            "rotate":   0,
             "talking":  1
         },
         "imgR": 
         {
-            "img":      "k_kit01_egao",
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_kit01_egao"
         },
         "item":     "k_kushi_nikuari",
         "dialogue": "Meaw!" 
@@ -257,7 +216,6 @@
         "img": 
         {
             "img":      "k_kit01_egao",
-            "rotate":   0,
             "talking":  1
         },
         "item":     "k_kushi_nikuari",
@@ -266,18 +224,14 @@
     {
         "img":
         {
-            "img":      "k_kit01_egao",
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_kit01_egao"
         },
         "dialogue":"There are well over 200 images available in this project."
     },
     {
         "img":
         {
-            "img":      "k_kit01_konwaku",
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_kit01_konwaku"
         },
         "dialogue":"Unfortunetly none of them are mine..."
     },
@@ -285,7 +239,6 @@
         "img":
         {
             "img":      "dev/missing_textures",
-            "rotate":   0,
             "talking":  1
         },
         "dialogue": "I even stole the missing texture texture."
@@ -293,54 +246,42 @@
     {
         "img":
         {
-            "img":      "k_kit01_konwaku",
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_kit01_konwaku"
         },
         "dialogue":"That one is stolen from the Source game engine made by Valve."
     },    
     {
         "img":
         {
-            "img":      "k_kit01_egao",
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_kit01_egao"
         },
         "dialogue":"Their Source engine was a major inspiration for the SCUFF Engine. <br>I'll eventually port it away from PHP into something that'll run on your PC, like a normal game."
     },    
     {
         "img":
         {
-            "img":      "k_kit01_egao",
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_kit01_egao"
         },
         "dialogue":"But enough about what SCUFF can do, lets delve into HOW the SCUFF Engine works."
     },    
     {
         "img":
         {
-            "img":      "k_kit01_tujyo",
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_kit01_tujyo"
         },
         "dialogue":"Lets start off with the absolute basics; how are these dialogues stored?"
     },    
     {
         "img":
         {
-            "img":      "k_kit01_tujyo",
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_kit01_tujyo"
         },
         "dialogue":"In a very old version of SCUFF that has been lost to time, every dialoge, image name and item name was stored into one giant array."
     },    
     {
         "img":
         {
-            "img":      "k_kit01_tujyo",
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_kit01_tujyo"
         },
         "dialogue":"At the time, it was seen like a good idea, since the testing arrays were only tested with about five pages."
     },    
@@ -356,27 +297,21 @@
     {
         "img":
         {
-            "img":      "k_kit01_egao",
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_kit01_egao"
         },
         "dialogue":"So the entire idea of one large array was axed and was replaced by a giant .json file."
     },    
     {
         "img":
         {
-            "img":      "k_kit01_tujyo",
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_kit01_tujyo"
         },
         "dialogue":"This .json file contains all the data to generate all the pages. It does this by having an entry for each page, which gets fetched and decoded depending on what page you're on.<br>Each json entry has a set of arrays and objects."
     },    
     {
         "img":
         {
-            "img":      "k_kit01_tujyo",
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_kit01_tujyo"
         },
         "dialogue":"To start off with, the images"
     },    
@@ -393,14 +328,11 @@
     {
         "imgL":
         {
-            "img":      "k_100diary",
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_100diary"
         },
         "imgR":
         {
             "img":      "k_kit01_egao",
-            "rotate":   0,
             "talking":  1
         },
         "dialogue":"In this scenario, I am the 'talking image', as the talking tag inside of the array for right image is set to 1"
@@ -409,14 +341,11 @@
         "imgL":
         {
             "img":      "k_kit01_odoroki",
-            "rotate":   0,
             "talking":  1
         },
         "imgR":
         {
-            "img":      "k_100diary",
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_100diary"
         },
         "dialogue":"But now it's reversed. the talking tag inside of the array for the left image is set to 1, whilst the same tag in the array for the right image is set to 0"
     },    
@@ -424,13 +353,11 @@
         "imgL":
         {
             "img":      "k_100diary",
-            "rotate":   0,
             "talking":  1
         },
         "imgR":
         {
             "img":      "k_kit01_odoroki",
-            "rotate":   0,
             "talking":  1
         },
         "dialogue":"And now, the talking tag in both arrays is set to 1. When this is the case, it is assumed that the right image is supposed to be talking, because the right image takes priority over the left image<br><br>This does still effortlessly apply the glowing border effect described before to both images, in case that's somethign the scene creator wants."
@@ -438,14 +365,11 @@
     {
         "imgL":
         {
-            "img":      "k_per01_tujyo",
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_per01_tujyo"
         },
         "imgR":
         {
             "img":      "k_kit01_egao",
-            "rotate":   0,
             "talking":  1
         },
         "dialogue":"The talking tag isn't just for pointing the little arrow and applying the silly border, it has one more function.. Buuuuut I'll get to that in just a moment"
@@ -453,14 +377,11 @@
     {
         "imgL":
         {
-            "img":      "k_per01_tujyo",
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_per01_tujyo"
         },
         "imgR":
         {
             "img":      "k_kit01_egao",
-            "rotate":   0,
             "talking":  1
         },
         "dialogue":"The second tag that is important, is the rotate tag."
@@ -468,14 +389,11 @@
     {
         "imgL":
         {
-            "img":      "k_per01_tujyo",
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_per01_tujyo"
         },
         "imgR":
         {
             "img":      "k_kit01_egao",
-            "rotate":   0,
             "talking":  1
         },
         "dialogue":"Some images are unfortunetly mirrored compared to what you want to see on screen. This could be solved several ways. You could try to manually rotate every image in MS Paint, but that'll take ages. To save everyone from that hassle, the rotate tag has been introduced."
@@ -483,14 +401,11 @@
     {
         "imgL":
         {
-            "img":      "k_per01_tujyo",
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_per01_tujyo"
         },
         "imgR":
         {
             "img":      "k_kit01_tujyo",
-            "rotate":   0,
             "talking":  1
         },
         "dialogue":"The rotate tag does exactly what it says: it mirrors the image...<br><br>In all seriousness, inside of the arrays for the images, there is a tag for rotate. If it is set to 1, it'll mirror the image along the vertical axis."
@@ -498,9 +413,7 @@
     {
         "imgL":
         {
-            "img":      "k_per01_tujyo",
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_per01_tujyo"
         },
         "imgR":
         {
@@ -514,13 +427,11 @@
         "imgL":
         {
             "img":      "k_per01_tujyo",
-            "rotate":   1,
-            "talking":  0
+            "rotate":   1
         },
         "imgR":
         {
             "img":      "k_kit01_tujyo",
-            "rotate":   0,
             "talking":  1
         },
         "dialogue":"Now, the left image is rotated"
@@ -529,8 +440,7 @@
         "imgL":
         {
             "img":      "k_per01_tujyo",
-            "rotate":   1,
-            "talking":  0
+            "rotate":   1
         },
         "imgR":
         {
@@ -543,14 +453,11 @@
     {
         "imgL":
         {
-            "img":      "k_per01_tujyo",
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_per01_tujyo"
         },
         "imgR":
         {
             "img":      "k_kit01_tujyo",
-            "rotate":   0,
             "talking":  1
         },
         "item":"k_pickles",
@@ -559,14 +466,11 @@
     {
         "imgL":
         {
-            "img":      "k_per01_tujyo",
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_per01_tujyo"
         },
         "imgR":
         {
             "img":      "k_kit01_tujyo",
-            "rotate":   0,
             "talking":  1
         },
         "item":"k_pickles",
@@ -584,7 +488,6 @@
         "img":
         {
             "img":      "k_kit01_egao",
-            "rotate":   0,
             "talking":  1
         },
         "item":"k_pickles",
@@ -594,7 +497,6 @@
         "img":
         {
             "img":      "k_kit01_egao",
-            "rotate":   0,
             "talking":  1
         },
         "item":"k_kit01_odoroki",
@@ -604,7 +506,6 @@
         "img":
         {
             "img":      "k_kit01_tujyo",
-            "rotate":   0,
             "talking":  1
         },
         "item":"k_pickles",
@@ -614,7 +515,6 @@
         "img":
         {
             "img":      "k_kit01_tujyo",
-            "rotate":   0,
             "talking":  1
         },
         "item":"k_pickles",
@@ -623,14 +523,11 @@
     {
         "imgL":
         {
-            "img":      "k_man26_tujyo",
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_man26_tujyo"
         },
         "imgR":
         {
             "img":      "k_kit01_tujyo",
-            "rotate":   0,
             "talking":  1
         },
         "item":"k_pickles",
@@ -640,14 +537,11 @@
         "imgL":
         {
             "img":      "k_man26_konwaku",
-            "rotate":   0,
             "talking":  1
         },
         "imgR":
         {
-            "img":      "k_kit01_ikari",
-            "rotate":   0,
-            "talking":  0
+            "img":      "k_kit01_ikari"
         },
         "item":"k_pickles",
         "dialogue":"Now I am the 'talking' image, and I have the jar of pickels now, and I won't give them back!"
@@ -656,7 +550,6 @@
         "img":
         {
             "img":      "k_kit01_tujyo",
-            "rotate":   0,
             "talking":  1
         },
         "dialogue":""
@@ -665,7 +558,6 @@
         "img":
         {
             "img":      "k_kit01_tujyo",
-            "rotate":   0,
             "talking":  1
         },
         "item":"k_shingoudan",
@@ -675,7 +567,6 @@
         "img":
         {
             "img":      "k_kit01_tujyo",
-            "rotate":   0,
             "talking":  1
         },
         "item":"k_shingoudan",
@@ -697,7 +588,6 @@
         "img":
         {
             "img":      "k_kit01_egao",
-            "rotate":   0,
             "talking":  1
         },
         "dialogue":"Sorry for the interuption! I just couldn't let someone get away with my pickes"
@@ -706,7 +596,6 @@
         "img":
         {
             "img":      "k_kit01_konwaku",
-            "rotate":   0,
             "talking":  1
         },
         "item": "k_bottle_piece",
@@ -716,7 +605,6 @@
         "img":
         {
             "img":      "k_kit01_egao",
-            "rotate":   0,
             "talking":  1
         },
         "dialogue":"And on that note, this intoduction into the SCUFF Engine is over! Come back reguarly to see new stories being made to the SCUFF Engine. Or don't, I'm not your mother."
@@ -725,7 +613,6 @@
         "img":
         {
             "img":      "k_kit01_tujyo",
-            "rotate":   0,
             "talking":  1
         },
         "dialogue":"Oh wait before I forget, at the end of a game, the 'next&rarr;' button puts you automatically back into the main game menu."

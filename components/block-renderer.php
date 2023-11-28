@@ -5,8 +5,7 @@
 * Description   : Block "rendering engine" 
 * Programmer    : Mart Velema
 */
-    $json = file_get_contents("data/" . $id . ".json");
-    $json = json_decode($json, true);
+    $json = json_decode(file_get_contents("data/" . $id . ".json") , true);
     foreach($json as $data => $projects)
     {
         $projects['id'] = str_replace(' ', '-', $projects['name']);

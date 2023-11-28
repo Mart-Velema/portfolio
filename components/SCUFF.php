@@ -1,11 +1,12 @@
 <?php
 /*
-* Filename      : game-renderen.php
+* Filename      : SCUFF.php
 * Created       : 22-11-2023
-* Description   : "Rendering engine" for personal game project
+* Description   : SCUFF Engine for personal game project
 * Programmer    : Mart Velema
 */
-    $dir = "img/assets/GR-Portrait/";  //directory of the images
+//NOTE: SCUFF asssumes ALL images are in the .png format. Using any other format WILL NOT function.
+    $dir = "img/assets/";  //directory of the images
     if(empty($_GET['page']))    //check if the $page tab exists inside of the URL
     {
         $page = 0;              //If empty, set to 0
@@ -17,18 +18,20 @@
     switch ($page) {
         case 'dev':  
             //dev-interface
+            //to access the dev interface, set the page= in the URL to dev and level= to the directory you want to see
+            $dir = $level;
             echo "<a href=?page=1>go back</a>
             <div class='dev'>";
-            $portraits = glob($dir . '*.png');  //make array out of all the images inside of the directory
+            $portraits = glob('img/assets/' . $dir . '/*.png');     //make array out of all the images inside of the directory
             echo count($portraits);
-            foreach($portraits as $portrait)    //display each image
+            foreach($portraits as $portrait)                        //display each image
             {
                 echo "
                 <div class='image'>
                     <img src='".$portrait."' alt='".$portrait."'>
                     <p>".$portrait."<br></p>";
-                $portrait = str_replace($dir, "", $portrait);   //strip out directory out of portrait name
-                $portrait = str_replace(".png", "", $portrait); //strip out .png out of portrait name
+                $portrait = str_replace("img/assets/" . $dir . "/", "", $portrait);     //strip out directory out of portrait name
+                $portrait = str_replace(".png", "", $portrait);                         //strip out .png out of portrait name
                 echo "
                     <p>". $portrait ."<br><br></p>
                 </div>";
@@ -134,11 +137,13 @@
             //decoding .json into something useable
             $data = json_decode(file_get_contents("data/games/" . $level . ".json"), true); //import .json file and decode it into an array
             $images = "";
+            $dir = $data[0];
+            $dir = $dir['dir']; //setting the directory to the same directory found in the first .json entry
             //decoding array into something that can be used in HTML
             foreach($data[$page] as $name => $contents)
             {
                 ${$name} = $contents;
-                switch($name)
+                switch($name)   
                 {
                     case "imgL":
                     case "imgR":
@@ -157,30 +162,33 @@
                         {
                             ${$name}['img'] = "dev/missing_textures";
                         };
-                        $images .= '<img src="' . $dir . '' . ${$name}['img'] . '.png" alt="' . ${$name}['img'] . '" class="game-image" ' . $style . '"> ';
+                        $images .= '<img src="img/assets/' . $dir . '/' . ${$name}['img'] . '.png" alt="' . ${$name}['img'] . '" class="game-image" ' . $style . '"> ';
                         break;
                 };
             };
-            if(isset($item))
+            if(isset($item))        //checks if item is set
             {
-                $item = '<img src="' . $dir . '' . $item . '.png" alt="' . $item . '" class="item">';
+                $item = '<img src="img/assets/' . $dir . '/' . $item . '.png" alt="' . $item . '" class="item">';
             }
-            else
+            else                    //if not, set to empty
             {
                 $item = "";
             };
-            if(empty($dialogue))
+            if(empty($dialogue))    //checks if dialogue is empty, if so, set to empty HTML can understand
             {
                 $dialogue = "";
             };
-            if(isset($talking))
+            if(isset($talking))     //if the talking tag exists, run this
             {
                 switch($talking)
-                {
+                {                   //set the display and scale property of specific variables, depending on what's in the talking variable
                     case "imgL":
-                    case "img":
                         $arrow = '';
-                        $talking = '"';
+                        $talking = '';
+                        break;
+                    case "img":
+                        $arrow = 'style="display: none;"';
+                        $talking = '';
                         break;
                     case "imgR":
                         $arrow = '';
@@ -192,26 +200,26 @@
                         break;
                 };
             }
-            else
+            else                    //if empty, set to empty in a way HTML understands
             {
                 $talking = "";
                 $arrow = 'style="display: none;"';
             };
             //setting the button for the next page
-            $page++;                        //increment page variable to value of next page
+            $page++;                                                    //increment page variable to value of next page
             if(empty($data[$page]))
             {
-                $pageRef = "games.php";      //if next page is empty, redirect to game's homepage
+                $pageRef = "games.php";                                 //if next page is empty, redirect to game's homepage
             }
             else
             {   
-                $pageData = array (
+                $pageData = array (                                     //array with all data that needs to be set in the URL
                     "page"  => "$page",
                     "level" => "$level"
                 );
-                $pageRef = "?" . http_build_query($pageData) . "";  //set the $pageRef vairaible to include all the data generated by this page
-                $pageData['page'] = $pageData['page'] - 2;
-                $pageRefBack = "?" . http_build_query($pageData) . ""; 
+                $pageRef = "?" . http_build_query($pageData) . "";      //set the pageRef vairaible to include all the data generated by this page
+                $pageData['page'] = $pageData['page'] - 2;              //set the pageData['page'] to be 1 lower than current page
+                $pageRefBack = "?" . http_build_query($pageData) . "";  //do the same as above but now with the pageRefBack
             };
             //going from arrays and variables to actual HTML
             echo
@@ -219,7 +227,7 @@
                 '' . $images . ' ' .
             '</div>' .
             '<div class="game-talking" ' . $talking . '>' .
-                '<img src="' . $dir . 'speech_bubble.png" alt="speech bubble"' . $arrow . '>' .
+                '<img src="img/assets/' . $dir . '/speech_bubble.png" alt="speech bubble" ' . $arrow . '>' .
                 '' . $item . ' ' .
             '</div>' .
             '<div class="game-center">' .
@@ -231,5 +239,4 @@
             '</div>';
             break;
     };
-    
 ?>
