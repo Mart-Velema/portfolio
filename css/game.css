@@ -3,18 +3,18 @@
     align-items: center;
     grid-column: 1 / 4;
     flex-direction: column;
-    background-color: darkslategray;
+    justify-content: center;
     min-height: 100%;
 }
 
 .game {
     display: flex;
     justify-content: space-evenly;
-    width: 100%
+    width: 100%;
 }
 
 .game-image {
-    color: white;
+    background-image: url(/portfolio2/img/assets/GR-Portrait/dev/missing_textures.png);
     font-size: xx-large;
     width: 25%;
     border-radius: 15px;
@@ -33,12 +33,12 @@
 }
 
 .game-talking .item {
+    background-image: url(/portfolio2/img/assets/GR-Portrait/dev/missing_textures.png);
     scale: 1.5;
     margin-left: 30px;
     border: .3px solid black;
     border-radius: 5px;
     transition: 0.2s;
-    background-image: url(/portfolio2/img/assets/GR-Portrait/dev/missing_textures.png);
     min-height: 10px;
     min-width: 10px;
 }
@@ -71,7 +71,7 @@
 
 .game-button {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
 /* CSS for dev-page */
