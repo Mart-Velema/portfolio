@@ -20,7 +20,7 @@
             //dev-interface
             //to access the dev interface, set the page= in the URL to dev and level= to the directory you want to see
             $dir = $level;
-            echo "<a href=?page=1>go back</a>
+            echo "<a href=games.php style='background-color: white; padding: 10px;'>go back</a>
             <div class='dev'>";
             $portraits = glob('img/assets/' . $dir . '/*.png');     //make array out of all the images inside of the directory
             echo count($portraits);
