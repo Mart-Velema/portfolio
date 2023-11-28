@@ -5,13 +5,13 @@
 * Description   : Block "rendering engine" 
 * Programmer    : Mart Velema
 */
-    $json = json_decode(file_get_contents("data/" . $id . ".json") , true);
+    $json = json_decode(file_get_contents('data/' . $id . '.json') , true);
     foreach($json as $data => $projects)
     {
         $projects['id'] = str_replace(' ', '-', $projects['name']);
         if(isset($projects['img']))
         {
-            $projects['img'] = "<img src='img/" . $projects['img'] . "' alt='" . $projects['img'] . "'>"; 
+            $projects['img'] = '<img src="img/' . $projects['img'] . '" alt="' . $projects['img'] . '">'; 
         }
         else
         {
@@ -19,11 +19,11 @@
         };
         if(empty($projects['external']))
         {
-            $projects['external'] = "target=_self'";
+            $projects['external'] = 'target="_self"';
         };
         echo
         '<div class="block" id=' . $projects['id'] . '>' . 
-            '<a href=' . $projects['link'] . ' ' . $projects['external'] . '><h2>' . $projects['name'] . '</h2></a>' .
+            '<a href="' . $projects['link'] . '" ' . $projects['external'] . '><h2>' . $projects['name'] . '</h2></a>' .
             '<div class="inner-block">' .
                 '<p>' . $projects['text'] . '</p>' .
                 '' . $projects['img'] . '' .
