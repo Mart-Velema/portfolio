@@ -1,9 +1,5 @@
 [
     {
-        "name": "Magic number",
-        "img": "fedora"
-    },
-    {
         "name": "Introduction to the SCUFF Engine",
         "link": "game.php?level=intro-scuff",
         "content": "Introduction to the SCUFF Engine.<br><br>This short demonstration shows most of the capabilities of the SCUFF Engine.<br><br>You'll follow the main character Helen (currently replaced by Kat from the game Gravity-Rush) trough their adventrues with the SCUFF Egine"

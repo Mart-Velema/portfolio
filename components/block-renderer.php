@@ -24,7 +24,7 @@
         $id = str_replace(' ', '-', $projects['name']);
         if(isset($projects['link']))
         {
-            $title = '<a href="' . $projects['link'] . '" target="' . $projects['external'] . '">' . $title . '</a>';
+            $title = '<a href="' . $projects['link'] . '" target="_' . $projects['external'] . '">' . $title . '</a>';
         };
         echo
         '<div class="block" id=' . $id . '>' . 
