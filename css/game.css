@@ -3,7 +3,6 @@
     align-items: center;
     grid-column: 1 / 4;
     flex-direction: column;
-    justify-content: center;
     min-height: 100%;
 }
 

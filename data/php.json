@@ -1,5 +1,10 @@
 [
     {
+        "name": "games",
+        "link": "games.php",
+        "text": "Een game pagina gemaakt in mijn SCUFF engine, volledig in PHP, HTML en CSS."
+    },
+    {
         "name": "omrekenen",
         "link": "opdrachten.php",
         "text": "Een PHP pagina waar simplele (om)reken sommen staan"
@@ -14,11 +19,6 @@
         "link": "opdrachten_3.php",
         "img": "fedora.png",
         "text": "Een PHP pagina die je toekomst gaat voorspellen door middel van een paar simpele vragen"
-    },
-    {
-        "name": "games",
-        "link": "games.php",
-        "text": "Een game pagina gemaakt in mijn SCUFF engine, volledig in PHP, HTML en CSS."
     },
     {
         "name": "afstanden berekenen",

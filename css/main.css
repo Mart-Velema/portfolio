@@ -26,15 +26,6 @@ main form {
     background-color: gray;
     border-radius: 5px;
 }
-
-main form label{
-    margin-bottom: 10px;
-}
-
-main form select {
-    margin-bottom: 10px;
-}
-
 main form p {
     margin-top: 10px;
 }
