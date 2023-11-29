@@ -1,0 +1,17 @@
+[
+    {
+        "img": 
+        {
+            "img":      "k_kit01_egao"
+        },
+        "dialogue": "Hi there! This is a short into into the FLOOR editor. I hope this is informative for you!",
+        "dir": "GR-Portrait"
+    },
+    {
+        "img": 
+        {
+            "img":      "k_kit01_egao"
+        },
+        "dialogue": "Lets start with recapping quickly how SCUFF does it's rendering. "
+    }
+]
