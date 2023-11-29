@@ -2,32 +2,32 @@
     {
         "name": "games",
         "link": "games.php",
-        "text": "Een game pagina gemaakt in mijn SCUFF engine, volledig in PHP, HTML en CSS."
+        "content": "Een game pagina gemaakt in mijn SCUFF engine, volledig in PHP, HTML en CSS."
     },
     {
         "name": "omrekenen",
         "link": "opdrachten.php",
-        "text": "Een PHP pagina waar simplele (om)reken sommen staan"
+        "content": "Een PHP pagina waar simplele (om)reken sommen staan"
     },
     {
         "name": "cijferlijst",
         "link": "opdrachten_2.php",
-        "text": "Een PHP pagina waarbij cijfers worden omgezet in text"
+        "content": "Een PHP pagina waarbij cijfers worden omgezet in test"
     },
     {
         "name": "gelukszoekers",
         "link": "opdrachten_3.php",
         "img": "fedora.png",
-        "text": "Een PHP pagina die je toekomst gaat voorspellen door middel van een paar simpele vragen"
+        "content": "Een PHP pagina die je toekomst gaat voorspellen door middel van een paar simpele vragen"
     },
     {
         "name": "afstanden berekenen",
         "link": "afstanden.php",
-        "text": "Een PHP pagina waarbij je de afstanden tussen een paar grote europese steden kunt bepalen"
+        "content": "Een PHP pagina waarbij je de afstanden tussen een paar grote europese steden kunt bepalen"
     },
     {
         "name": "commetaar pagina",
         "link": "commetaar.php",
-        "text": "Een PHP pagina waar je commetaar kunt lezen (wat ik zekersteweten NIET ga lezen)"
+        "content": "Een PHP pagina waar je commetaar kunt lezen (wat ik zekersteweten NIET ga lezen)"
     }
 ]

@@ -14,7 +14,7 @@
         };
         if(isset($projects['img']))
         {
-            $img = '<img src="img/' . $projects['img'] . '" alt="' . $projects['img'] . '">';
+            $img = '<img src="img/' . $projects['img'] . '.png" alt="' . $projects['img'] . '">';
         }
         else
         {
@@ -30,7 +30,7 @@
         '<div class="block" id=' . $id . '>' . 
             '' . $title . '' .
             '<div class="inner-block">' .
-                '<p>' . $projects['text'] . '</p>' .
+                '' . $projects['content'] . '' .
                 '' . $img . '' .
             '</div>' .
         '</div>';
