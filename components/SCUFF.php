@@ -44,6 +44,7 @@
             //decoding .json into something useable
             $data = json_decode(file_get_contents("data/games/" . $level . ".json"), true); //import .json file and decode it into an array
             $images = "";
+            $buttons = "";
             $dir = $data[0];
             $dir = $dir['dir']; //setting the directory to the same directory found in the first .json entry
             //decoding array into something that can be used in HTML
@@ -76,6 +77,24 @@
                         break;
                     case "dialogue":
                         $dialogue = "<p>" . $dialogue . "</p>";
+                        break;
+                    case "options":
+                        foreach($options as $option => $value)
+                        {
+                            ${$option} = $value;
+                            switch(${$option}['action'])
+                            {
+                                case "redirect":
+                                    $buttons .= '<a href="' . ${$option}['link'] . '">' . $option . '</a>';
+                                    break;
+                                case "setValue":
+                                    $pageData[${$option}['valueName']] = ${$option}['value'];
+                                    break;
+                                case "setMarker":
+                                    $pageData['' . ${$option}['markerName'] . 'marker'] = $page;
+                                    break;
+                            };
+                        };
                         break;
                 };
             };
@@ -119,21 +138,15 @@
             if(empty($data[$page]))
             {
                 $pageRef = '<a href="games.php">Next&rarr;</a>';
-                $pageData = 
-                [                                    //array with all data that needs to be set in the URL
-                    "page"  => "$page",
-                    "level" => "$level"
-                ];
+                $pageData['page']  = $page;
+                $pageData['level'] = $level;
                 $pageData['page'] = $pageData['page'] - 2;
                 $pageRefBack = '<a href="?' . http_build_query($pageData) . '">&larr;Previous</a>';
             }
             else
             {   
-                $pageData = 
-                [                                    //array with all data that needs to be set in the URL
-                    "page"  => "$page",
-                    "level" => "$level"
-                ];
+                $pageData['page']  = $page;
+                $pageData['level'] = $level;
                 $pageRef = '<a href="?' . http_build_query($pageData) . '">Next&rarr;</a>';
                 $pageData['page'] = $pageData['page'] - 2;              //set the pageData['page'] to be 1 lower than current page
                 if($pageData['page'] >= 0)                              //checks if the previous page is equal or more than 0
@@ -158,6 +171,7 @@
                 '' . $dialogue . ' ' .
                 '<div class="game-button">' .
                     '' . $pageRefBack . '' .
+                    '' . $buttons . '' .
                     '' . $pageRef . '' .
                 '</div>' .
             '</div>';

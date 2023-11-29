@@ -68,5 +68,34 @@
             "img":      "k_kit02_egao"
         },
         "dialogue": "With this, Hammer is to Source what FLOOR is for SCUFF: an easy and intuitive way to create a 'map' for the game engine"
+    },
+    {
+        "img": 
+        {
+            "img":      "k_kit02_egao"
+        },
+        "dialogue": "You can find the FLOOR editor in the homepage for games",
+        "options":
+        {
+            "go to FLOOR": 
+            {
+                "action": "redirect",
+                "link": "floor.php"
+            },
+            "Set a value":
+            {
+                "action": "setValue",
+                "value": "MagicalKnowledge", 
+                "valueName": "Test"
+            },
+            "set a marker": 
+            {
+                "action": "setMarker",
+                "markerName": "test"
+            }
+        }
+    },
+    {
+        "empty":"yes"
     }
 ]
