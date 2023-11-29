@@ -30,7 +30,7 @@
         '<div class="block" id=' . $id . '>' . 
             '' . $title . '' .
             '<div class="inner-block">' .
-                '' . $projects['content'] . '' .
+                '<p>' . $projects['content'] . '</p>' .
                 '' . $img . '' .
             '</div>' .
         '</div>';
