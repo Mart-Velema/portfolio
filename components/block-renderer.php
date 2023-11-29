@@ -6,27 +6,32 @@
 * Programmer    : Mart Velema
 */
     $json = json_decode(file_get_contents('data/' . $id . '.json') , true);
-    foreach($json as $data => $projects)
+    foreach($json as $name => $projects)
     {
-        $projects['id'] = str_replace(' ', '-', $projects['name']);
+        if(empty($projects['external']))
+        {
+            $projects['external'] = 'self';
+        };
         if(isset($projects['img']))
         {
-            $projects['img'] = '<img src="img/' . $projects['img'] . '" alt="' . $projects['img'] . '">'; 
+            $img = '<img src="img/' . $projects['img'] . '" alt="' . $projects['img'] . '">';
         }
         else
         {
-            $projects['img'] = "";
+            $img = '';
         };
-        if(empty($projects['external']))
+        $title = '<h2>' . $projects['name'] . '</h2>';
+        $id = str_replace(' ', '-', $projects['name']);
+        if(isset($projects['link']))
         {
-            $projects['external'] = 'target="_self"';
+            $title = '<a href="' . $projects['link'] . '" target="' . $projects['external'] . '">' . $title . '</a>';
         };
         echo
-        '<div class="block" id=' . $projects['id'] . '>' . 
-            '<a href="' . $projects['link'] . '" ' . $projects['external'] . '><h2>' . $projects['name'] . '</h2></a>' .
+        '<div class="block" id=' . $id . '>' . 
+            '' . $title . '' .
             '<div class="inner-block">' .
                 '<p>' . $projects['text'] . '</p>' .
-                '' . $projects['img'] . '' .
+                '' . $img . '' .
             '</div>' .
         '</div>';
     };
