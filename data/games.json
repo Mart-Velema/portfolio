@@ -16,7 +16,7 @@
     },
     {
         "name": "FLOOR Level-Editor",
-        "link": "floor.php",
+        "link": "floor.php?scene=2",
         "content": "The actual FLOOR Level-Editor<br><br>This piece of software allows YOU to create YOUR custom stories with SCUFF without needing to know how to program a .json file!"
     }
 ]
