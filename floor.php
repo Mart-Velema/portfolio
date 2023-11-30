@@ -95,7 +95,7 @@
                     case "done":
                         break;
                     case "reset":
-                        $_SESSION['form-data'] = '';
+                        $_SESSION['form-data'] = array();
                         break;
                 };
             };
