@@ -44,7 +44,14 @@
                         '<label for="img">Filename image</label>' .
                         '<input type="text" name="img" id="img">' . 
                         '<label for="img-talking">Talking</label>' .
-                        '<input type="checkbox" name="img-talking" id="talking">';
+                        '<input type="checkbox" name="img-talking" id="talking">' .
+                        '<label for="img-rotate">Rotate</label>' .
+                        '<input type="checkbox" name="img-rotate id="rotate">' .
+                        '<label for="item">Filename item</label>' .
+                        '<input type="text" name="item" id="item">' .
+                        '<label for="dialogue">Dialogue</label>' .
+                        '<textarea name="dialogue" id="dialogue"></textarea>' .
+                        '<button type="submit">Generate</button>';
                         break;
                     case 2:
                         echo

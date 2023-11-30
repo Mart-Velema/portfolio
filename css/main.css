@@ -36,6 +36,12 @@ main form input[type="checkbox"]{
     width: auto;
 }
 
+main form textarea {
+    width: 98%;
+    height: 5rem;
+    resize: none;
+}
+
 main form p {
     margin-top: 10px;
 }
