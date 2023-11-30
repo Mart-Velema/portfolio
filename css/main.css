@@ -65,9 +65,3 @@ main .succes {
     border-radius: 5px;
     height: min-content;
 }
-
-.warning {
-    background-color: white;
-    color: red;
-    grid-column: 2 / 3;
-}

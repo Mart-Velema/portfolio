@@ -21,3 +21,13 @@ body {
     min-height: 100vh;
     justify-content: space-between;
 }
+
+
+.warning {
+    background-color: white;
+    color: red;
+    grid-column: 2 / 3;
+    width: fit-content;
+    height: fit-content;
+    justify-self: center;
+}
