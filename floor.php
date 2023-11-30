@@ -71,7 +71,24 @@
                         }
                         else
                         {
-
+                            $page = count($_SESSION['form-data']);
+                            $_SESSION['form-data'][$page] = 
+                            [
+                                "imL" => 
+                                [
+                                    "img"       => filter_input(INPUT_POST, "imgL"),
+                                    "talking"   => filter_input(INPUT_POST, "imgL-talking"),
+                                    "rotate"    => filter_input(INPUT_POST, "imgL-rotate")
+                                ],
+                                "imgR" => 
+                                [
+                                    "img"       => filter_input(INPUT_POST, "imgR"),
+                                    "talking"   => filter_input(INPUT_POST, "imgR-talking"),
+                                    "rotate"    => filter_input(INPUT_POST, "imgR-rotate")
+                                ],
+                                "item"           => filter_input(INPUT_POST, "item"),
+                                "dialogue"       => filter_input(INPUT_POST, "dialogue")
+                            ];
                         };
                         $_SESSION['form-data'][0]['dir'] = $dir;
                         break;
@@ -131,6 +148,8 @@
             </div>
             <?php
                 //echo '<a href=""></a>';
+                echo "Output console:";
+                var_dump($_SESSION['form-data']);
             ?>
             <p>Welcome to the FLOOR Level-Editor. In here, you can make levels for the SCUFF Engine.<br>To use this engine, you first need to set up the correct directory and scene. You can do so in the menu on the top left side of this page. Set up the mode for single or double image scene, and enter a directory where the imgaes are saved.<br><br>For build-in assets, enter "GR-Portrait"<br><br>Once all the input fields are filled in, press "Generate" to complete a page.<br>Repeat untill you have made all of the pages, select the "done" checkbox to get the .json file that contains all the data for SCUFF to use.</p>
         </form>
