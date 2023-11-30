@@ -18,7 +18,7 @@
 </head>
 <body>
     <?php
-        include "components/header.php"
+        include "components/header.php";
     ?>
     <main>
         <form method="get" style="grid-column: 1 / 2; height:min-content; width: 100%;">
@@ -44,21 +44,22 @@
                 $dir = $_GET['dir'];
                 $scene = $_GET['scene'];
             };
-            if($_SERVER['REQUEST_METHOD'] == "POST")
+            if($_SERVER['REQUEST_METHOD'] == 'POST')
             {
+                if(empty($_SESSION['form-data']))
+                {
+                    $_SESSION['form-data'] = array();
+                };
                 switch($_POST['submit'])
                 {
+                    
                     case "generate":
-                        if(empty($_SESSION['form-data']))
-                        {
-                            $_SESSION['form-data'] = '';
-                        };
                         if($scene == 1)
                         {
                             $page = count($_SESSION['form-data']);
                             $_SESSION['form-data'][$page] = 
                             [
-                                "img" =>
+                                "img" => 
                                 [
                                     "img"       => filter_input(INPUT_POST, "img"),
                                     "talking"   => filter_input(INPUT_POST, "img-talking"),
@@ -67,12 +68,12 @@
                                 "item"           => filter_input(INPUT_POST, "item"),
                                 "dialogue"       => filter_input(INPUT_POST, "dialogue")
                             ];
-                            var_dump($_SESSION['form-data']);
                         }
                         else
                         {
 
                         };
+                        $_SESSION['form-data'][0]['dir'] = $dir;
                         break;
                     case "done":
                         break;
@@ -135,7 +136,7 @@
         </form>
     </main>
     <?php
-        include "components/footer.php"
+        include "components/footer.php";
     ?>
 </body>
 </html>
