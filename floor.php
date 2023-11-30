@@ -15,16 +15,16 @@
         <?php
             if(empty($_GET['scene']))
             {
-                echo '<p style="background-color: white; color: red; grid-column: 2 / 3; height: 2rem;">No scene selected! Please select a scene.</p>';
+                echo '<p class="warning">No scene selected! Please select a scene.</p>';
                 $_GET['scene'] ='';
             };
             if(empty($_GET['directory']))
             {
-                echo '<p style="background-color: white; color: red; grid-column: 2 / 3; height: 2rem;">No working directory selected! Please select directory where images are stored.</p>';
+                echo '<p class="warning">No working directory selected! Please select directory where images are stored.</p>';
                 $_GET['directory'] ='';
             };
         ?>
-        <form method="get" style="grid-column: 1 / 2; height:min-content; width: 80%;">
+        <form method="get" style="grid-column: 1 / 2; height:min-content; width: 100%;">
             <h3>settings</h3>
             <label for="scene">Select scene mode</label>
             <select name="scene" id="scene">
@@ -42,7 +42,9 @@
                     case 1:
                         echo
                         '<label for="img">Filename image</label>' .
-                        '<input type="text" name="img" id="img">';
+                        '<input type="text" name="img" id="img">' . 
+                        '<label for="img-talking">Talking</label>' .
+                        '<input type="checkbox" name="img-talking" id="talking">';
                         break;
                     case 2:
                         echo
@@ -52,7 +54,7 @@
                         '<input type="text" name="imgR" id="imgR">';
                         break;
                     default:
-                        echo '<p style="background-color: white; color: red;">Incorrect scene settings! Please select a correct scene type</p>';
+                        echo '<p class="warning">Incorrect scene settings! Please select a correct scene type</p>';
                         break;
                 };
             ?>

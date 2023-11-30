@@ -19,6 +19,7 @@ main .content {
 main form {
     justify-self: center;
     display: flex;
+    align-items: start;
     flex-direction: column;
     width: 50%;
     grid-column: 2 / 3;
@@ -26,6 +27,15 @@ main form {
     background-color: gray;
     border-radius: 5px;
 }
+
+main form input {
+    width: 98%;
+}
+
+main form input[type="checkbox"]{
+    width: auto;
+}
+
 main form p {
     margin-top: 10px;
 }
@@ -48,4 +58,10 @@ main .succes {
     background-color: gray;
     border-radius: 5px;
     height: min-content;
+}
+
+.warning {
+    background-color: white;
+    color: red;
+    grid-column: 2 / 3;
 }
