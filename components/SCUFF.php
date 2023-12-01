@@ -23,7 +23,6 @@
             echo "<a href=games.php style='background-color: white; padding: 10px;'>go back</a>
             <div class='dev'>";
             $portraits = glob('img/assets/' . $dir . '/*.png');     //make array out of all the images inside of the directory
-            echo count($portraits);
             foreach($portraits as $portrait)                        //display each image
             {
                 echo "
@@ -52,30 +51,30 @@
             {
                 ${$name} = $contents;
                 switch($name)   
-                {
+                {                   //decodes the data from the decoded .json into something that can be used in HTML
                     case "imgL":
                     case "imgR":
                     case "img":
                         $style = 'style="';
                         if(array_key_exists('rotate', ${$name}) && ${$name}['rotate'] == 1)
                         {
-                            $style .= "transform: scaleX(-1); ";
+                            $style .= "transform: scaleX(-1); ";                            //Set the rotate CSS when rotate is set
                         };
                         if(array_key_exists('talking', ${$name}) && ${$name}['talking'] == 1)
                         {
-                            $style .= "scale: 1.1; box-shadow: 0px 0px 5px whitesmoke;";
+                            $style .= "scale: 1.1; box-shadow: 0px 0px 5px whitesmoke;";    //Set the talking CSS when talking is set
                             $talking = $name;
                         };
                         if(!array_key_exists('img', ${$name}) || empty(${$name}['img']))
                         {
-                            ${$name}['img'] = "dev/missing_textures";
+                            ${$name}['img'] = "dev/missing_textures";                       //Set the image to default missing textures when images is not set correctly
                         };
-                        $images .= '<img src="img/assets/' . $dir . '/' . ${$name}['img'] . '.png" alt="' . ${$name}['img'] . '" class="game-image" ' . $style . '"> ';
+                        $images .= '<img src="img/assets/' . $dir . '/' . ${$name}['img'] . '.png" alt="' . ${$name}['img'] . '" class="game-image" ' . $style . '"> '; //Sets the images in series to allow loading into HTML
                         break;
-                    case "item":
+                    case "item":                                                            //Set the image for item
                         $item = '<img src="img/assets/' . $dir . '/' . $item . '.png" alt="' . $item . '" class="item">';
                         break;
-                    case "dialogue":
+                    case "dialogue":                                                        //set the dialogue paragraph
                         $dialogue = "<p>" . $dialogue . "</p>";
                         break;
                     case "options":
@@ -98,11 +97,11 @@
                         break;
                 };
             };
-            if(empty($item))        //checks if item is set
+            if(empty($item))        //checks if item is empty, if so, set to empty so HTML doens't cause an error
             {
                 $item = "";
             };
-            if(empty($dialogue))    //checks if dialogue is empty, if so, set to empty HTML can understand
+            if(empty($dialogue))    //checks if dialogue is empty, if so, set to empty HTML doesn't cause an error
             {
                 $dialogue = "";
             };
@@ -134,9 +133,10 @@
                 $arrow = 'style="display: none;"';
             };
             //setting the button for the next page
-            $page++;                                                    //increment page variable to value of next page
+            $page++; //increment page variable to value of next page
             if(empty($data[$page]))
             {
+                //Make only the previous page button if next entry in json is empty
                 $pageRef = '<a href="games.php">Next&rarr;</a>';
                 $pageData['page']  = $page;
                 $pageData['level'] = $level;
@@ -145,11 +145,13 @@
             }
             else
             {   
+                //Make both the previous and next page button if next json entry is not empty
                 $pageData['page']  = $page;
                 $pageData['level'] = $level;
                 $pageRef = '<a href="?' . http_build_query($pageData) . '">Next&rarr;</a>';
-                $pageData['page'] = $pageData['page'] - 2;              //set the pageData['page'] to be 1 lower than current page
-                if($pageData['page'] >= 0)                              //checks if the previous page is equal or more than 0
+                $pageData['page'] = $pageData['page'] - 2;
+                 //if the previous page is 0 or below, don't make previous page button
+                if($pageData['page'] >= 0)
                 {
                     $pageRefBack = '<a href="?' . http_build_query($pageData) . '">&larr;Previous</a>';
                 }
