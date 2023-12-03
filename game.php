@@ -19,13 +19,11 @@
     <?php
         include "components/header.php";
     ?>
-    <main>
-        <div class='main-game'>
-            <?php
-                $level = $_GET['level'];
-                include "components/SCUFF.php";
-            ?>
-        </div>
+    <main style="padding-top: 0px;">
+        <?php
+            $level = $_GET['level'];
+            include "components/SCUFF.php";
+        ?>
     </main>
 </body>
 </html>

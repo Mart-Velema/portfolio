@@ -6,7 +6,6 @@
 * Programmer    : Mart Velema
 */
 //NOTE: SCUFF asssumes ALL images are in the .png format. Using any other format WILL NOT function.
-    $dir = "img/assets/";  //directory of the images
     if(empty($_GET['page']))    //check if the $page tab exists inside of the URL
     {
         $page = 0;              //If empty, set to 0
@@ -77,6 +76,12 @@
                     case "dialogue":                                                        //set the dialogue paragraph
                         $dialogue = "<p>" . $dialogue . "</p>";
                         break;
+                    case "background":
+                        $background = 'style="background-color:' . $background . '"';
+                        break;
+                    case "backgroundImg":
+                        $background = 'style="background-image: url(/portfolio2/img/assets/' . $dir . '/' . $backgroundImg .'.png)"';
+                        break;
                     case "options":
                         foreach($options as $option => $value)
                         {
@@ -104,6 +109,10 @@
             if(empty($dialogue))    //checks if dialogue is empty, if so, set to empty HTML doesn't cause an error
             {
                 $dialogue = "";
+            };
+            if(empty($background))  //checks if background is empty. if so, set to emtty HTML doesn't cause an error
+            {
+                $background = "";
             };
             if(isset($talking))     //if the talking tag exists, run this
             {
@@ -162,19 +171,21 @@
             };
             //going from arrays and variables to actual HTML
             echo
-            '<div class="game">' .
-                '' . $images . ' ' .
-            '</div>' .
-            '<div class="game-talking" ' . $talking . '>' .
-                '<img src="img/assets/' . $dir . '/speech_bubble.png" alt="speech bubble" ' . $arrow . '>' .
-                '' . $item . ' ' .
-            '</div>' .
-            '<div class="game-center">' .
-                '' . $dialogue . ' ' .
-                '<div class="game-button">' .
-                    '' . $pageRefBack . '' .
-                    '' . $buttons . '' .
-                    '' . $pageRef . '' .
+            '<div class="main-game" ' . $background . '>' . 
+                '<div class="game">' .
+                    '' . $images . ' ' .
+                '</div>' .
+                '<div class="game-talking" ' . $talking . '>' .
+                    '<img src="img/assets/' . $dir . '/speech_bubble.png" alt="speech bubble" ' . $arrow . '>' .
+                    '' . $item . ' ' .
+                '</div>' .
+                '<div class="game-center">' .
+                    '' . $dialogue . ' ' .
+                    '<div class="game-button">' .
+                        '' . $pageRefBack . '' .
+                        '' . $buttons . '' .
+                        '' . $pageRef . '' .
+                    '</div>' .
                 '</div>' .
             '</div>';
             break;

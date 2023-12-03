@@ -146,7 +146,7 @@
                 <button type="submit" name="submit" value="done">Done</button>
                 <button type="submit" name="submit" value="reset">Reset</button>
             </div>
-            <div style="color:white; background-color:black; width:98%;">
+            <div style="color:white; background-color:black; width:99%;">
             <?php
                 echo '<a style="background-color: white;" href="game.php?page=dev&level=' . $dir . '">' . $dir .'</a>';
                 echo "Output console:";

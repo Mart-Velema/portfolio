@@ -6,6 +6,7 @@
                 "img":      "k_kit01_egao"
             },
         "dialogue": "Hi there! I'm the person responsible for making this website! hope you like it",
+        "backgroundImg": "k_lisa_ship", 
         "dir": "GR-Portrait"
     },
     {
@@ -13,7 +14,8 @@
             {
                 "img":      "k_kit01_konwaku"
             },
-        "dialogue": "Well... Kinda... Last time I checked I didn't look like this"
+        "dialogue": "Well... Kinda... Last time I checked I didn't look like this",
+        "backgroundImg": "k_seifu_ship"
     },
     {
         "img": 
@@ -23,7 +25,7 @@
         "dialogue": "I also stole this images as placeholder. <br>Check out Gravity Rush! Great game on the PS Vita"
     },
     {
-        "empty": "yes"
+        "background": "black"
     },
     {
         "img": 
