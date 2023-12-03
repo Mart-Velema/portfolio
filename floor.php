@@ -140,7 +140,11 @@
             <label for="item">Filename item</label>
             <input type="text" name="item" id="item">
             <label for="dialogue">Dialogue</label>
-            <textarea name="dialogue" id="dialogue"></textarea>
+            <textarea name="dialogue" id="dialogue" placeholder="Put here your dialogue"></textarea>
+            <label for="backgroundCheck">Is background image?</label>
+            <input type="checkbox" name="backgroundCheck" id="backgroundCheck" value="1">
+            <label for="background">Background value</label>
+            <input type="text" name="background" id="background">
             <div>
                 <button type="submit" name="submit" value="generate">Generate</button>
                 <button type="submit" name="submit" value="done">Done</button>
