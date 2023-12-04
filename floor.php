@@ -152,9 +152,13 @@
             </div>
             <div style="color:white; background-color:black; width:99%;">
             <?php
-                echo '<a style="background-color: white;" href="game.php?page=dev&level=' . $dir . '">' . $dir .'</a>';
-                echo "Output console:";
-                var_dump($_SESSION['form-data']);
+                echo '<p><a style="background-color: white;" href="game.php?page=dev&level=' . $dir . '">' . $dir .'</a>';
+                echo "Output console:</p>";
+                for ($i=0; $i < count($_SESSION['form-data']); $i++) 
+                { 
+                    var_export($_SESSION['form-data'][$i]);
+                    echo "<br><br>";
+                };
             ?>
             </div>
             <p>Welcome to the FLOOR Level-Editor. In here, you can make levels for the SCUFF Engine.<br>To use this engine, you first need to set up the correct directory and scene. You can do so in the menu on the top left side of this page. Set up the mode for single or double image scene, and enter a directory where the imgaes are saved.<br><br>For build-in assets, enter "GR-Portrait"<br><br>Once all the input fields are filled in, press "Generate" to complete a page.<br>Repeat untill you have made all of the pages, select the "done" checkbox to get the .json file that contains all the data for SCUFF to use.</p>

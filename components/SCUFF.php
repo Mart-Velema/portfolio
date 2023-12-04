@@ -159,7 +159,7 @@
                 $pageData['level'] = $level;
                 $pageRef = '<a href="?' . http_build_query($pageData) . '">Next&rarr;</a>';
                 $pageData['page'] = $pageData['page'] - 2;
-                 //if the previous page is 0 or below, don't make previous page button
+                //if the previous page is 0 or below, don't make previous page button
                 if($pageData['page'] >= 0)
                 {
                     $pageRefBack = '<a href="?' . http_build_query($pageData) . '">&larr;Previous</a>';
