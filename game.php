@@ -27,9 +27,10 @@
         else
         {
             $_GET['nonav'] = 0;
+            include "components/header.php";
         };
     ?>
-    <main style="padding-top: 0px; background-image: none;">
+    <main style="padding-top: 0px">
         <?php
             $nonav = $_GET['nonav'];
             $level = $_GET['level'];

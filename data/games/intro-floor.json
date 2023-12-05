@@ -74,29 +74,6 @@
         {
             "img":      "k_kit02_egao"
         },
-        "item": "k_kit02_egao",
-        "dialogue": "You can find the FLOOR editor in the homepage for games",
-        "options":
-        {
-            "go to FLOOR": 
-            {
-                "action": "redirect",
-                "link": "floor.php"
-            },
-            "Set a value":
-            {
-                "action": "setValue",
-                "value": "MagicalKnowledge", 
-                "valueName": "Test"
-            },
-            "set a marker": 
-            {
-                "action": "setMarker",
-                "markerName": "test"
-            }
-        }
-    },
-    {
-        "empty":"yes"
+        "dialogue": "You can find the FLOOR editor in the homepage for games"
     }
 ]

@@ -82,37 +82,26 @@
                     case "backgroundImg":
                         $background = 'style="background-image: url(/portfolio2/img/assets/' . $dir . '/' . $backgroundImg .'.png)"';
                         break;
-                    case "options":
-                        foreach($options as $option => $value)
-                        {
-                            ${$option} = $value;
-                            switch(${$option}['action'])
-                            {
-                                case "redirect":
-                                    $buttons .= '<a href="' . ${$option}['link'] . '">' . $option . '</a>';
-                                    break;
-                                case "setValue":
-                                    $pageData[${$option}['valueName']] = ${$option}['value'];
-                                    break;
-                                case "setMarker":
-                                    $pageData['' . ${$option}['markerName'] . 'marker'] = $page;
-                                    break;
-                            };
-                        };
+                    case "action":
+                        $buttons = '';
                         break;
                 };
             };
             if(empty($item))        //checks if item is empty, if so, set to empty so HTML doens't cause an error
             {
-                $item = "";
+                $item = '';
             };
             if(empty($dialogue))    //checks if dialogue is empty, if so, set to empty HTML doesn't cause an error
             {
-                $dialogue = "";
+                $dialogue = '';
             };
             if(empty($background))  //checks if background is empty. if so, set to emtty HTML doesn't cause an error
             {
-                $background = "";
+                $background = 'style="background-color:darkslategray"';
+            };
+            if(empty($buttons))     //checks if buttons are empty, if so, set to empty HTML doesn't cause an error
+            {
+                $buttons = '';
             };
             if(isset($talking))     //if the talking tag exists, run this
             {
