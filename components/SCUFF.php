@@ -81,13 +81,19 @@
                         $buttons = '';
                         foreach(${$name} as $option => $action)
                         {
+                            ${$option} = $action;
                             switch($option)
                             {
+                                case "redirect":
+                                    $buttons .= '<a href="' . $action . '">' . $option . '</a>';
+                                    break;
                                 case "setMarker":
-                                    if($option = 0)
+                                    $_GET['marker'] = $action;
+                                    if(${$option} == 0)
                                     {
-                                        echo "Hello, World!";
+                                        $_GET['marker'] = $_GET['page'];
                                     };
+                                    break;
                             };
                         };
                         break;

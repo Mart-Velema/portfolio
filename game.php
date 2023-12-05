@@ -30,7 +30,7 @@
             include "components/header.php";
         };
     ?>
-    <main style="padding-top: 0px">
+    <main style="padding-top: 0px; background-image: none;">
         <?php
             include "components/SCUFF.php";
         ?>
