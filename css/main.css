@@ -27,8 +27,10 @@ main form {
     width: 50%;
     grid-column: 2 / 3;
     padding: 10px;
-    background-color: var(--secondary-colour);
-    border-radius: 5px;
+    background-color: var(--third-colour);
+    border-radius: 15px;
+    box-shadow: 0px 1px 5px black;
+    height: min-content;
 }
 
 main form input {
