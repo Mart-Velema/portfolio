@@ -4,7 +4,7 @@
     grid-column: 1 / 4;
     flex-direction: column;
     min-height: 95vh;
-    padding-top: 5vh;
+    padding-top: calc(5vh + 50px);
 }
 
 .game {
@@ -77,6 +77,10 @@
 .game-button {
     display: flex;
     justify-content: space-around;
+}
+
+.game-nonav {
+    grid-column: 3 / 4;
 }
 
 /* CSS for dev-page */

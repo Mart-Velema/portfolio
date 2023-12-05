@@ -149,6 +149,7 @@
                 $pageRef = '<a href="games.php">Next&rarr;</a>';
                 $pageData['page']  = $page;
                 $pageData['level'] = $level;
+                $pageData['nonav'] = $nonav;
                 $pageData['page'] = $pageData['page'] - 2;
                 $pageRefBack = '<a href="?' . http_build_query($pageData) . '">&larr;Previous</a>';
             }
@@ -157,6 +158,7 @@
                 //Make both the previous and next page button if next json entry is not empty
                 $pageData['page']  = $page;
                 $pageData['level'] = $level;
+                $pageData['nonav'] = $nonav;
                 $pageRef = '<a href="?' . http_build_query($pageData) . '">Next&rarr;</a>';
                 $pageData['page'] = $pageData['page'] - 2;
                 //if the previous page is 0 or below, don't make previous page button

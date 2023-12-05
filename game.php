@@ -17,13 +17,27 @@
 </head>
 <body>
     <?php
-        include "components/header.php";
+        if(isset($_GET['nonav']))   //check if the nonav variable exists inside of the URL
+        {
+            if($_GET['nonav'] == 0) //check if hte nonav variable is 0, if so, add the navbar
+            {
+                include "components/header.php";
+            };
+        }
+        else
+        {
+            $_GET['nonav'] = 0;
+        };
     ?>
     <main style="padding-top: 0px; background-image: none;">
         <?php
+            $nonav = $_GET['nonav'];
             $level = $_GET['level'];
             include "components/SCUFF.php";
         ?>
     </main>
+    <?php
+        include "components/footer.php";
+    ?>
 </body>
 </html>
