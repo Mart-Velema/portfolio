@@ -83,8 +83,11 @@
                         {
                             switch($option)
                             {
-                                // case "setMarker":
-                                //     if($option)
+                                case "setMarker":
+                                    if($option = 0)
+                                    {
+                                        echo "Hello, World!";
+                                    };
                             };
                         };
                         break;
@@ -144,7 +147,7 @@
             else
             {   
                 //Make both the previous and next page button if next json entry is not empty
-                $pageRef = '<a href=""' . http_build_query($_GET) . '">Next&rarr;</a>';
+                $pageRef = '<a href="?' . http_build_query($_GET) . '">Next&rarr;</a>';
                 $pageRefBack = '';
                 $_GET['page'] = $_GET['page'] - 2;
                 if(isset($data[$_GET['page']]))
