@@ -24,7 +24,7 @@
         <form action="#" method="post">
             <h2>Celcius en Farhenheit</h2>
             <label for="graden">Graden</label>
-            <input type="text" name="graden" id="graden" placeholder="graden">
+            <input type="number" name="graden" id="graden" placeholder="graden">
             <label for="gradentype">Naar</label>
             <select name="gradentype" id="gradentype">
                 <option value="F">Farhenheit</option>

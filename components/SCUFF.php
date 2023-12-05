@@ -171,7 +171,7 @@
             };
             //going from arrays and variables to actual HTML
             echo
-            '<div class="main-game" ' . $background . '>' . 
+            '<div id="main-game" class="main-game" ' . $background . '>' . 
                 '<div class="game">' .
                     '' . $images . ' ' .
                 '</div>' .

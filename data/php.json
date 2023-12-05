@@ -17,7 +17,7 @@
     {
         "name": "gelukszoekers",
         "link": "opdrachten_3.php",
-        "img": "fedora.png",
+        "img": "fedora",
         "content": "Een PHP pagina die je toekomst gaat voorspellen door middel van een paar simpele vragen"
     },
     {
@@ -29,5 +29,10 @@
         "name": "commetaar pagina",
         "link": "commetaar.php",
         "content": "Een PHP pagina waar je commetaar kunt lezen (wat ik zekersteweten NIET ga lezen)"
+    },
+    {
+        "name": "file upload",
+        "link": "file-upload.php",
+        "content": "Een PHP pagina waarbij je een bestand kunt uploaden."
     }
 ]
