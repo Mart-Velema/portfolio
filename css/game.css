@@ -5,6 +5,8 @@
     flex-direction: column;
     min-height: 95vh;
     padding-top: calc(5vh + 50px);
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 .game {
@@ -90,6 +92,7 @@
     justify-content: space-between;
     flex-wrap: wrap;
     grid-column: 1 / 4;
+    background-color: var(--primary-colour);
 }
 
 .dev img {

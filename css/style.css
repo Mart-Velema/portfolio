@@ -35,3 +35,11 @@ body {
     height: fit-content;
     justify-self: center;
 }
+
+.xdebug-var-dump {
+    margin-top: calc(5vh + 50px);
+    grid-column: 2 / 3;
+    color: black;
+    background-color: orange;
+    z-index: 1000;
+}

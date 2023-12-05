@@ -32,8 +32,6 @@
     ?>
     <main style="padding-top: 0px">
         <?php
-            $nonav = $_GET['nonav'];
-            $level = $_GET['level'];
             include "components/SCUFF.php";
         ?>
     </main>

@@ -74,6 +74,10 @@
         {
             "img":      "k_kit02_egao"
         },
-        "dialogue": "You can find the FLOOR editor in the homepage for games"
+        "dialogue": "You can find the FLOOR editor in the homepage for games",
+        "action":
+        {
+            "setMarker": 0
+        }
     }
 ]
