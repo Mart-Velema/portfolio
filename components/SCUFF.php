@@ -71,10 +71,10 @@
                         $dialogue = "<p>" . $dialogue . "</p>";
                         break;
                     case "background":
-                        $background = 'style="background-color:' . $background . '"';
+                        $background = 'style="background-color:' . $background . '"';       //set the backgorund colour
                         break;
                     case "backgroundImg":
-                        $background = 'style="background-image: url(/portfolio2/img/assets/' . $dir . '/' . $backgroundImg .'.png)"';
+                        $background = 'style="background-image: url(/portfolio2/img/assets/' . $dir . '/' . $backgroundImg .'.png)"';   //set the background image
                         break;
                     case "action":
                         foreach(${$name} as $option => $action)
@@ -84,27 +84,26 @@
                             switch($option)
                             {
                                 case "redirect":
-                                    $buttons .= '<a href="' . $action . '">' . $option . '</a>';
+                                    $buttons .= '<a href="' . $action . '">' . $option . '</a>';    //make redirect button
                                     break;
                                 case "setMarker":
-                                    $_GET['marker'] = $action;
+                                    $_GET['marker'] = $action;                                      //sets a marker to jump back to later
                                     if(${$option} == 0)
                                     {
-                                        $_GET['marker'] = $_GET['page'];
+                                        $_GET['marker'] = $_GET['page'];                            //if the marker is 0, use current page
                                     };
                                     break;
                                 case "option":
-                                    $actionSet = true;
                                     $actionSubstring = substr($action, 0, 5);
-                                    $action = str_replace($actionSubstring, '', $action);
+                                    $action = str_replace($actionSubstring, '', $action);           //filtering action type
                                     switch($actionSubstring)
-                                    {
+                                    {                                                               //decoding action type
                                         case "give_":
                                             break;
                                         case "take_":
                                             break;
                                         case "jump_":
-                                            empty($action) ? $action = $_GET['marker'] : true;
+                                            empty($action) ? $action = $_GET['marker'] : true;      //if jump has no page number, go to marker
                                             $jump = $_GET;
                                             $jump['page'] = $action;
                                             break;
@@ -157,10 +156,9 @@
             else
             {   
                 //Make both the previous and next page button if next json entry is not empty
-                $pageRef = (isset($actionSet) && $action) ? '' : '<a href="?' . http_build_query($_GET) . '">Next&rarr;</a>';
-                $pageRef = (isset($jump)) ? '<a href="?' . http_build_query($jump) . '">Go back</a>' : '';
+                $pageRef = isset($jump) ? '<a href="?' . http_build_query($jump) . '">Go back</a>' : '<a href="?' . http_build_query($_GET) . '">Next&rarr;</a>';   //If jump is set, make button to go to jump page, if not, use default next button
                 $_GET['page'] = $_GET['page'] - 2;
-                $pageRefBack = isset($data[$_GET['page']]) ? '<a href="?' . http_build_query($_GET) . '">&larr;Previous</a>' : '';
+                $pageRefBack = isset($data[$_GET['page']]) ? '<a href="?' . http_build_query($_GET) . '">&larr;Previous</a>' : '';  //Setting back button if previous page exists
             };
             //going from arrays and variables to actual HTML
             echo
