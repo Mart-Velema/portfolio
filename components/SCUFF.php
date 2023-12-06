@@ -104,6 +104,9 @@
                                         case "take_":
                                             break;
                                         case "jump_":
+                                            empty($action) ? $action = $_GET['marker'] : true;
+                                            $jump = $_GET;
+                                            $jump['page'] = $action;
                                             break;
                                     };
                                     break;
@@ -154,14 +157,10 @@
             else
             {   
                 //Make both the previous and next page button if next json entry is not empty
-                var_dump($actionSet);
-                $pageRef = $actionSet ? '' : '<a href="?' . http_build_query($_GET) . '">Next&rarr;</a>';
-                $pageRefBack = '';
+                $pageRef = (isset($actionSet) && $action) ? '' : '<a href="?' . http_build_query($_GET) . '">Next&rarr;</a>';
+                $pageRef = (isset($jump)) ? '<a href="?' . http_build_query($jump) . '">Go back</a>' : '';
                 $_GET['page'] = $_GET['page'] - 2;
-                if(isset($data[$_GET['page']]))
-                {
-                    $pageRefBack = '<a href="?' . http_build_query($_GET) . '">&larr;Previous</a>';
-                };
+                $pageRefBack = isset($data[$_GET['page']]) ? '<a href="?' . http_build_query($_GET) . '">&larr;Previous</a>' : '';
             };
             //going from arrays and variables to actual HTML
             echo
