@@ -37,9 +37,9 @@
         "dialogue":"Test dev page 3",
         "action":
         {
-            "option1": "Hello, WOlrd1",
-            "option2": "Hello, WOlrd2",
-            "option3": "Hello, World3"
+            "option1": "take_Hello, WOlrd1",
+            "option2": "give_Hello, World2",
+            "option3": "jump_Hello, World3"
         }
     },
     {

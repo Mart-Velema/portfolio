@@ -38,8 +38,7 @@
             $data = json_decode(file_get_contents("data/games/" . $_GET['level'] . ".json"), true); //import .json file and decode it into an array
             $images = "";
             $buttons = "";
-            $dir = $data[0];
-            $dir = $dir['dir']; //setting the directory to the same directory found in the first .json entry
+            $dir = $data[0]['dir']; //setting the directory to the same directory found in the first .json entry
             //decoding array into something that can be used in HTML
             foreach($data[$_GET['page']] as $name => $contents)
             {
@@ -95,7 +94,18 @@
                                     };
                                     break;
                                 case "option":
-                                    echo $action;
+                                    $actionSet = true;
+                                    $actionSubstring = substr($action, 0, 5);
+                                    $action = str_replace($actionSubstring, '', $action);
+                                    switch($actionSubstring)
+                                    {
+                                        case "give_":
+                                            break;
+                                        case "take_":
+                                            break;
+                                        case "jump_":
+                                            break;
+                                    };
                                     break;
                             };
                         };
@@ -144,7 +154,8 @@
             else
             {   
                 //Make both the previous and next page button if next json entry is not empty
-                $pageRef = '<a href="?' . http_build_query($_GET) . '">Next&rarr;</a>';
+                var_dump($actionSet);
+                $pageRef = $actionSet ? '' : '<a href="?' . http_build_query($_GET) . '">Next&rarr;</a>';
                 $pageRefBack = '';
                 $_GET['page'] = $_GET['page'] - 2;
                 if(isset($data[$_GET['page']]))
