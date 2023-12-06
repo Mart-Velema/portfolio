@@ -3,7 +3,7 @@
     align-items: center;
     grid-column: 1 / 4;
     flex-direction: column;
-    min-height: 95vh;
+    min-height: calc(95vh - 50px);
     padding-top: calc(5vh + 50px);
     background-attachment: fixed;
     background-size: cover;

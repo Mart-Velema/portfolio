@@ -78,10 +78,10 @@
                         $background = 'style="background-image: url(/portfolio2/img/assets/' . $dir . '/' . $backgroundImg .'.png)"';
                         break;
                     case "action":
-                        $buttons = '';
                         foreach(${$name} as $option => $action)
                         {
                             ${$option} = $action;
+                            $option = str_replace(range(0, 9), '', $option);
                             switch($option)
                             {
                                 case "redirect":
@@ -94,27 +94,18 @@
                                         $_GET['marker'] = $_GET['page'];
                                     };
                                     break;
+                                case "option":
+                                    echo $action;
+                                    break;
                             };
                         };
                         break;
                 };
             };
-            if(empty($item))        //checks if item is empty, if so, set to empty so HTML doens't cause an error
-            {
-                $item = '';
-            };
-            if(empty($dialogue))    //checks if dialogue is empty, if so, set to empty HTML doesn't cause an error
-            {
-                $dialogue = '';
-            };
-            if(empty($background))  //checks if background is empty. if so, set to emtty HTML doesn't cause an error
-            {
-                $background = 'style="background-color:darkslategray"';
-            };
-            if(empty($buttons))     //checks if buttons are empty, if so, set to empty HTML doesn't cause an error
-            {
-                $buttons = '';
-            };
+            empty($item) ? $item = '' : true;                                                       //checks if item is empty, if so, set to empty so HTML doens't cause an error
+            empty($dialogue) ? $dialogue = '' : true;                                               //checks if dialogue is empty, if so, set to empty HTML doesn't cause an error
+            empty($background) ? $background = 'style="background-color:darkslategray"' : true;     //checks if background is empty. if so, set to emtty HTML doesn't cause an error
+            empty($buttons) ? $buttons = '' : true;                                                 //checks if buttons are empty, if so, set to empty HTML doesn't cause an error
             if(isset($talking))     //if the talking tag exists, run this
             {
                 switch($talking)
