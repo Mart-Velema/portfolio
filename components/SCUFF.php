@@ -10,6 +10,14 @@
     {
         $_GET['page'] = 0;
     };
+    $images = '';
+    $buttons = '';
+    $item = '';
+    $dialogue = '';
+    $background = 'style="background-color:darkslategray"';
+    $buttons = '';
+    $options = '';
+    $next = 'Next';
     switch ($_GET['page']) {
         case 'dev':  
             //dev-interface
@@ -36,8 +44,6 @@
         default:
             //decoding .json into something useable
             $data = json_decode(file_get_contents("data/games/" . $_GET['level'] . ".json"), true); //import .json file and decode it into an array
-            $images = "";
-            $buttons = "";
             $dir = $data[0]['dir']; //setting the directory to the same directory found in the first .json entry
             //decoding array into something that can be used in HTML
             foreach($data[$_GET['page']] as $name => $contents)
@@ -67,9 +73,6 @@
                     case "item":                                                            //Set the image for item
                         $item = '<img src="img/assets/' . $dir . '/' . $item . '.png" alt="' . $item . '" class="item">';
                         break;
-                    case "dialogue":                                                        //set the dialogue paragraph
-                        $dialogue = "<p>" . $dialogue . "</p>";
-                        break;
                     case "background":
                         $background = 'style="background-color:' . $background . '"';       //set the backgorund colour
                         break;
@@ -77,6 +80,7 @@
                         $background = 'style="background-image: url(/portfolio2/img/assets/' . $dir . '/' . $backgroundImg .'.png)"';   //set the background image
                         break;
                     case "action":
+                        $options = '';
                         foreach(${$name} as $option => $action)
                         {
                             ${$option} = $action;
@@ -99,11 +103,13 @@
                                     switch($actionSubstring)
                                     {                                                               //decoding action type
                                         case "give_":
+                                            $options .= '<button type="submit" value="' . $action . '" name="give">' . $action . '</button> ';
                                             break;
                                         case "take_":
+                                            $options .= '<button type="submit" value="' . $action . '" name="take">' . $action . '</button> ';
                                             break;
                                         case "jump_":
-                                            empty($action) ? $action = $_GET['marker'] : true;      //if jump has no page number, go to marker
+                                            empty($action) ? $action = $_GET['marker'] : '';      //if jump has no page number, go to marker
                                             $jump = $_GET;
                                             $jump['page'] = $action;
                                             break;
@@ -114,10 +120,6 @@
                         break;
                 };
             };
-            empty($item) ? $item = '' : true;                                                       //checks if item is empty, if so, set to empty so HTML doens't cause an error
-            empty($dialogue) ? $dialogue = '' : true;                                               //checks if dialogue is empty, if so, set to empty HTML doesn't cause an error
-            empty($background) ? $background = 'style="background-color:darkslategray"' : true;     //checks if background is empty. if so, set to emtty HTML doesn't cause an error
-            empty($buttons) ? $buttons = '' : true;                                                 //checks if buttons are empty, if so, set to empty HTML doesn't cause an error
             if(isset($talking))     //if the talking tag exists, run this
             {
                 switch($talking)
@@ -151,16 +153,18 @@
             {
                 $_GET['page'] = $_GET['page'] - 2;
                 $pageRefBack = '<a href="?' . http_build_query($_GET) . '">&larr;Previous</a>';
-                $pageRef = '<a href="games.php">Next&rarr;</a>';
+                $pageRef = '<a href="games.php">' . $next . '&rarr;</a>';
             }
             else
             {   
                 //Make both the previous and next page button if next json entry is not empty
-                $pageRef = isset($jump) ? '<a href="?' . http_build_query($jump) . '">Go back</a>' : '<a href="?' . http_build_query($_GET) . '">Next&rarr;</a>';   //If jump is set, make button to go to jump page, if not, use default next button
+                $pageRef = isset($jump) ? '<a href="?' . http_build_query($jump) . '">' . $next . '</a>' : '<a href="?' . http_build_query($_GET) . '">' . $next . '&rarr;</a>';   //If jump is set, make button to go to jump page, if not, use default next button
+                empty($buttons) ? '' : $pageRef = '';
                 $_GET['page'] = $_GET['page'] - 2;
                 $pageRefBack = isset($data[$_GET['page']]) ? '<a href="?' . http_build_query($_GET) . '">&larr;Previous</a>' : '';  //Setting back button if previous page exists
             };
             //going from arrays and variables to actual HTML
+            $_GET['page'] = $_GET['page'] + 2;
             echo
             '<div id="main-game" class="main-game" ' . $background . '>' . 
                 '<div class="game">' .
@@ -171,12 +175,13 @@
                     '' . $item . ' ' .
                 '</div>' .
                 '<div class="game-center">' .
-                    '' . $dialogue . ' ' .
-                    '<div class="game-button">' .
+                    '<p>' . $dialogue . '</p>' .
+                    '<form method="post" action="?' . http_build_query($_GET) . '" class="game-button">' .
                         '' . $pageRefBack . '' .
+                        '' . $options . '' .
                         '' . $buttons . '' .
                         '' . $pageRef . '' .
-                    '</div>' .
+                    '</form>' .
                 '</div>' .
             '</div>';
             break;

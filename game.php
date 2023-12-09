@@ -2,9 +2,16 @@
 /*
 * Filename      : game.php
 * Created       : 26-11-2023
-* Description   : PHP frontpage for games
+* Description   : PHP page for enabling SCUFF to work
 * Programmer    : Mart Velema
 */
+
+if($_SERVER['REQUEST_METHOD'] == "POST")
+{
+    $action = filter_input(INPUT_POST, 'give');
+    echo $action;
+};
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

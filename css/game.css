@@ -74,11 +74,31 @@
     border-radius: 3px;
     padding: 2px;
     color: var(--secondary-colour);
+    transition: 0.2s;
 }
 
 .game-button {
     display: flex;
     justify-content: space-around;
+    flex-direction: row;
+    width: 100%;
+    background-color: wheat;
+    border: none;
+    box-shadow: none;
+    padding: 0px;
+}
+
+.game-button button {
+    font-size: x-large;
+    transition: 0.2s;
+}
+
+.game-button button:hover {
+    scale: 1.2;
+}
+
+.game-center a:hover {
+    scale: 1.2;
 }
 
 .game-nonav {

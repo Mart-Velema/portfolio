@@ -9,7 +9,8 @@
         {
             "setMarker": 2
         },
-        "dir": "GR-Portrait"
+        "dir": "GR-Portrait",
+        "next": ""
     },
     {
         "img":
