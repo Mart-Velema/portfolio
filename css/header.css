@@ -4,7 +4,7 @@ header {
     align-items: center;
     height: 50px;
     width: 100vw;
-    background-color: var(--secondary-colour);
+    background-color: var(--primary-colour);
     z-index: 100;
     box-shadow: 0px 1px 3px black;
     position: fixed;
@@ -31,4 +31,12 @@ header li {
 header li a {
     color: white;
     text-decoration: none;
+    transition: 0.2s;
+    border-radius: 10px;
+    border: 0px solid var(--secondary-colour);
+}
+
+header li a:hover {
+    background-color: var(--secondary-colour);
+    border: 10px solid var(--secondary-colour);
 }

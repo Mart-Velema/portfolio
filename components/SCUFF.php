@@ -42,7 +42,7 @@
         default:
             //decoding .json into something useable
             $data = json_decode(file_get_contents("data/games/" . $_GET['level'] . ".json"), true); //import .json file and decode it into an array
-            $dir = $data[0]['dir']; //setting the directory to the same directory found in the first .json entry
+            $dir = $data[0]['dir'];                                                                 //setting the directory to the same directory found in the first .json entry
             //decoding array into something that can be used in HTML
             foreach($data[$_GET['page']] as $name => $contents)
             {

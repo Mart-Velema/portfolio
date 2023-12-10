@@ -13,9 +13,8 @@
     margin: 0px;
     text-decoration: none;
     font-family: Arial, Helvetica, sans-serif;
-    --primary-colour: #2f4f4f;
-    --secondary-colour: #270722;
-    --third-colour: #4f1938;
+    --primary-colour: #270722;
+    --secondary-colour: #4f1938;
     color: #E2E8CE;
 }
 

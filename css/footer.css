@@ -4,5 +4,5 @@ footer {
     justify-content: space-around;
     height: 50px;
     width: 100vw;
-    background-color: var(--secondary-colour);
+    background-color: var(--primary-colour);
 }
