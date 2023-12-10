@@ -35,26 +35,19 @@
         <?php
             if(empty($_GET))
             {
-                echo '<p class="warning">Data for directory and scene is unset! please set this requierd data before continiuing</p>';
-                $dir = '';
-                $scene = '';
-            }
-            else
-            {
-                $dir = $_GET['dir'];
-                $scene = $_GET['scene'];
+                echo '<p class="warning">Data for directory is unset! please set this requierd data before continiuing</p>';
+                $_GET['scene'] = NULL;
             };
             if($_SERVER['REQUEST_METHOD'] == 'POST')
             {
                 if(empty($_SESSION['form-data']))
                 {
-                    $_SESSION['form-data'] = array();
+                    $_SESSION['form-data'] = NULL;
                 };
                 switch($_POST['submit'])
                 {
-                    
                     case "generate":
-                        if($scene == 1)
+                        if($_GET['scene'] == 1)
                         {
                             $page = count($_SESSION['form-data']);
                             $_SESSION['form-data'][$page] = 
@@ -90,23 +83,17 @@
                                 "dialogue"       => filter_input(INPUT_POST, "dialogue")
                             ];
                         };
-                        $_SESSION['form-data'][0]['dir'] = $dir;
+                        $_SESSION['form-data'][0]['dir'] = $_GET['dir'];
                         break;
                     case "done":
                         break;
                     case "reset":
-                        $_SESSION['form-data'] = array();
+                        $_SESSION['form-data'] = NULL;
                         break;
                 };
             };
-            $pageData =
-            [
-                "scene" => $scene,
-                "dir"   => $dir
-            ];
-            $pageData = http_build_query($pageData);
-            echo '<form action="floor.php?' . $pageData . '" method="post">';
-                switch($scene)
+            echo '<form action="floor.php?' . http_build_query($_GET) . '" method="post">';
+                switch($_GET['scene'])
                 {
                     case 1:
                         echo
@@ -146,22 +133,38 @@
             <label for="background">Background value</label>
             <input type="text" name="background" id="background">
             <div>
-                <button type="submit" name="submit" value="generate">Generate</button>
-                <button type="submit" name="submit" value="done">Done</button>
-                <button type="submit" name="submit" value="reset">Reset</button>
+                <?php
+                    if(isset($_GET['dir']))
+                    {
+                        echo 
+                        '<button type="submit" name="submit" value="generate">Generate</button>' .
+                        '<button type="submit" name="submit" value="done">Done</button>' .
+                        '<button type="submit" name="submit" value="reset">Reset</button>';
+                    };
+                ?>
             </div>
             <div style="color:white; background-color:black; width:99%;">
-            <?php
-                echo '<p><a style="background-color: white;" href="game.php?page=dev&level=' . $dir . '">' . $dir .'</a>';
-                echo "Output console:</p>";
-                for ($i=0; $i < count($_SESSION['form-data']); $i++) 
-                { 
-                    var_export($_SESSION['form-data'][$i]);
-                    echo "<br><br>";
-                };
-            ?>
+                <?php
+                    if(isset($_SESSION['form-data']))
+                    {
+                        echo 
+                        '<p><a style="background-color: white;" href="game.php?page=dev&level=' . $_GET['dir'] . '">' . $_GET['dir'] .'</a>' .
+                        'Output console:</p>';
+                        for ($i=0; $i < count($_SESSION['form-data']); $i++) 
+                        { 
+                            var_export($_SESSION['form-data'][$i]);
+                            echo "<br><br>";
+                        };
+                    };
+                ?>
             </div>
-            <p>Welcome to the FLOOR Level-Editor. In here, you can make levels for the SCUFF Engine.<br>To use this engine, you first need to set up the correct directory and scene. You can do so in the menu on the top left side of this page. Set up the mode for single or double image scene, and enter a directory where the imgaes are saved.<br><br>For build-in assets, enter "GR-Portrait"<br><br>Once all the input fields are filled in, press "Generate" to complete a page.<br>Repeat untill you have made all of the pages, select the "done" checkbox to get the .json file that contains all the data for SCUFF to use.</p>
+            <p>
+            Welcome to the FLOOR Level-Editor. In here, you can make levels for the SCUFF Engine.<br>
+            To use this engine, you first need to set up the correct directory and scene. You can do so in the menu on the top left side of this page. Set up the mode for single or double image scene, and enter a directory where the imgaes are saved.<br><br>
+            For build-in assets, enter "GR-Portrait"<br><br>
+            Once all the input fields are filled in, press "Generate" to complete a page.<br>
+            Repeat untill you have made all of the pages, select the "done" checkbox to get the .json file that contains all the data for SCUFF to use.
+            </p>
         </form>
     </main>
     <?php
