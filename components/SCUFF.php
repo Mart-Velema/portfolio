@@ -11,11 +11,9 @@
         $_GET['page'] = 0;
     };
     $images = '';
-    $buttons = '';
     $item = '';
     $dialogue = '';
     $background = 'style="background-color:darkslategray"';
-    $buttons = '';
     $options = '';
     $next = 'Next';
     switch ($_GET['page']) {
@@ -88,7 +86,7 @@
                             switch($option)
                             {
                                 case "redirect":
-                                    $buttons .= '<a href="' . $action . '">' . $option . '</a>';    //make redirect button
+                                    $options .= '<a href="' . $action . '">' . str_replace('.php', '', $action) . '</a>';    //make redirect button
                                     break;
                                 case "setMarker":
                                     $_GET['marker'] = $action;                                      //sets a marker to jump back to later
@@ -103,10 +101,10 @@
                                     switch($actionSubstring)
                                     {                                                               //decoding action type
                                         case "give_":
-                                            $options .= '<button type="submit" value="' . $action . '" name="give">' . $action . '</button> ';
+                                            $options .= '<button type="submit" value="' . $action . '" name="give">take: ' . $action . '</button> ';
                                             break;
                                         case "take_":
-                                            $options .= '<button type="submit" value="' . $action . '" name="take">' . $action . '</button> ';
+                                            $options .= '<button type="submit" value="' . $action . '" name="take">give: ' . $action . '</button> ';
                                             break;
                                         case "jump_":
                                             empty($action) ? $action = $_GET['marker'] : '';      //if jump has no page number, go to marker
@@ -153,13 +151,13 @@
             {
                 $_GET['page'] = $_GET['page'] - 2;
                 $pageRefBack = '<a href="?' . http_build_query($_GET) . '">&larr;Previous</a>';
-                $pageRef = '<a href="games.php">' . $next . '&rarr;</a>';
+                $pageRef = '<a href="games.php">Homepage</a>';
             }
             else
             {   
                 //Make both the previous and next page button if next json entry is not empty
                 $pageRef = isset($jump) ? '<a href="?' . http_build_query($jump) . '">' . $next . '</a>' : '<a href="?' . http_build_query($_GET) . '">' . $next . '&rarr;</a>';   //If jump is set, make button to go to jump page, if not, use default next button
-                empty($buttons) ? '' : $pageRef = '';
+                empty($options) ? '' : $pageRef = '';
                 $_GET['page'] = $_GET['page'] - 2;
                 $pageRefBack = isset($data[$_GET['page']]) ? '<a href="?' . http_build_query($_GET) . '">&larr;Previous</a>' : '';  //Setting back button if previous page exists
             };
@@ -179,7 +177,6 @@
                     '<form method="post" action="?' . http_build_query($_GET) . '" class="game-button">' .
                         '' . $pageRefBack . '' .
                         '' . $options . '' .
-                        '' . $buttons . '' .
                         '' . $pageRef . '' .
                     '</form>' .
                 '</div>' .

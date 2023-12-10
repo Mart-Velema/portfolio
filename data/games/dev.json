@@ -24,11 +24,7 @@
         {
             "img": "k_100diary"
         },
-        "dialogue":"Test dev page 2",
-        "action":
-        {
-            "redirect": "floor.php"
-        }
+        "dialogue":"Test dev page 2"
     },
     {
         "img":
@@ -38,8 +34,8 @@
         "dialogue":"Test dev page 3",
         "action":
         {
-            "option1": "take_Hello, WOlrd1",
-            "option2": "give_Hello, World2",
+            "option1": "take_Hello-World2",
+            "option2": "give_Hello-World2",
             "option3": "jump_1"
         }
     },
@@ -48,6 +44,10 @@
         {
             "img": "k_100diary"
         },
-        "dialogue":"Test dev page 4"
+        "dialogue":"Test dev page 4",
+        "action":
+        {
+            "redirect": "floor.php"
+        }
     }
 ]

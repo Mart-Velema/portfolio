@@ -9,9 +9,19 @@
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
     $action = filter_input(INPUT_POST, 'give');
-    echo $action;
+    if(isset($action))
+    {
+        setcookie($action, 1, time() + (60 * 60 * 24 * 365));
+        $action = '';
+    };
+    $action = filter_input(INPUT_POST, 'take');
+    if(isset($action))
+    {
+        setcookie($action, 1, time() - (60 * 60 * 24 * 365 + 10));
+        $action = '';
+    };
+    $_SERVER['REQUEST_METHOD'] = NULL;
 };
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
