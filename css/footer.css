@@ -5,4 +5,5 @@ footer {
     height: 50px;
     width: 100vw;
     background-color: var(--primary-colour);
+    color: #E2E8CE;
 }

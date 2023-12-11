@@ -37,18 +37,6 @@ main form input {
     width: 98%;
 }
 
-input {
-    color: black;
-}
-
-select {
-    color:black
-}
-
-button {
-    color: black;
-}
-
 main form input[type="checkbox"]{
     width: auto;
 }

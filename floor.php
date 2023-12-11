@@ -6,6 +6,7 @@
     * Programmer    : Mart Velema
     */
     session_start();
+    $log = microtime(true);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -163,7 +164,11 @@
             To use this engine, you first need to set up the correct directory and scene. You can do so in the menu on the top left side of this page. Set up the mode for single or double image scene, and enter a directory where the imgaes are saved.<br><br>
             For build-in assets, enter "GR-Portrait"<br><br>
             Once all the input fields are filled in, press "Generate" to complete a page.<br>
-            Repeat untill you have made all of the pages, select the "done" checkbox to get the .json file that contains all the data for SCUFF to use.
+            Repeat untill you have made all of the pages, select the "done" checkbox to get the .json file that contains all the data for SCUFF to use.<br><br>
+            <?php
+                $log = 1000 * (microtime(true) - $log);
+                echo 'loadtime: ' . $log . ' ms';
+            ?>
             </p>
         </form>
     </main>

@@ -6,6 +6,7 @@
 * Programmer    : Mart Velema
 */
 
+$log = microtime(true);
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
     $action = filter_input(INPUT_POST, 'give');
@@ -50,6 +51,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     <main style="padding-top: 0px; background-image: none;">
         <?php
             include "components/SCUFF.php";
+            $log = 1000 * (microtime(true) - $log);
+            // echo '' . $log . ' ms';
         ?>
     </main>
 </body>

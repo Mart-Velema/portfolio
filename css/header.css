@@ -29,7 +29,7 @@ header li {
 }
 
 header li a {
-    color: white;
+    color: #E2E8CE;
     text-decoration: none;
     transition: 0.2s;
     border-radius: 10px;
