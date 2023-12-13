@@ -16,31 +16,51 @@
             <label for="bestand">selecteer bestand</label>
             <input type="file" name="bestand" id="bestand">
             <button type="submit">Upload!</button>
-        </form>
         <?php
-            var_dump($_FILES);
+            // var_dump($_FILES);
             if($_SERVER["REQUEST_METHOD"] == "POST")
             {
                 if ($_FILES["bestand"]["error"] == 0)
                 {
-                    if($_FILES["bestand"]["size"] <= 3*1024*1024)
+                    if(preg_match("/[A-Z]/", $_FILES['bestand']['name']))
                     {
-                        $fileInfo = finfo_file(FILEINFO_MIME_TYPE);
-                        $acceptedFileTypes = ["image/png", "image/jpeg", "image/jpg", "image/gif"];
-                        $uploadedFileType = finfo_file($fileInfo, $_FILES["bestand"]["tmp_name"]);
-                        if(in_array($uploadedFileType, $acceptedFileTypes))
+                        if($_FILES["bestand"]["size"] <= 3*1024*1024)
                         {
-                            echo "werkt hier nog :)";
+                            $fileInfo = finfo_open(FILEINFO_MIME_TYPE);
+                            $acceptedFileTypes = ["image/png", "image/jpeg", "image/jpg", "image/gif"];
+                            $uploadedFileType = finfo_file($fileInfo, $_FILES["bestand"]["tmp_name"]);
+                            if(in_array($uploadedFileType, $acceptedFileTypes))
+                            {
+                                if(!file_exists('upload/' . $_FILES['bestand']['name'] . ''))
+                                {
+                                    if(move_uploaded_file($_FILES['bestand']['tmp_name'], 'upload/' . $_FILES['bestand']['name'] . ''))
+                                    {
+                                        echo "Succesfully uploaded file!";
+                                    }
+                                    else
+                                    {
+                                        echo "Failed to upload file, please try again or contact administrator";
+                                    };
+                                }
+                                else
+                                {
+                                    echo "Filename is already in use";
+                                };
+                            }
+                            else
+                            {
+                                echo "File isn't a png, jpeg, jpg or gif";
+                            };
                         }
                         else
                         {
-                            echo "File isn't a png, jpeg, jpg or gif";
-                        };
+                            echo "File too large";
+                        }
                     }
                     else
                     {
-                        echo "file too large";
-                    }
+                        echo "Filename needs to contain at least one capital letter";
+                    };
                 }
                 else
                 {
@@ -48,6 +68,7 @@
                 };
             }
         ?>
+        </form>
     </main>
     <?php
         include "components/footer.php";
