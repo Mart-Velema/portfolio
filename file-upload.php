@@ -66,7 +66,19 @@
                 {
                     echo "Something went wrong...";
                 };
-            }
+            };
+            $dir = 'upload';
+            $dirOpen = opendir($dir);
+            while ($curFile = readdir($dirOpen))
+            {
+                if(!empty($curFile))
+                {
+                    // var_dump($curFile);
+                    echo $curFile . "<br />";
+                    echo "<img src='". $dir . "/" .$curFile . "' alt='uploaded images' class='image'><br><br>";
+                };
+            };
+            closedir($dirOpen);
         ?>
         </form>
     </main>
