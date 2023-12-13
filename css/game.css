@@ -89,11 +89,7 @@
     transition: 0.2s;
 }
 
-.game-button button:hover {
-    scale: 1.2;
-}
-
-.game-center a:hover {
+.game-button button:hover, .game-center a:hover {
     scale: 1.2;
 }
 
