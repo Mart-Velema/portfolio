@@ -13,7 +13,7 @@
 .block h2 {
     margin-bottom: 10px;
     transition: 0.5s;
-    color: #E2E8CE;
+    color: var(--text-colour);
 }
 
 .block h2:hover {
@@ -30,7 +30,7 @@
     border-radius: 5px;
     padding: 3px;
     font-size: large;
-    color: #E2E8CE;
+    color: var(--text-colour);
 }
 
 .inner-block img {

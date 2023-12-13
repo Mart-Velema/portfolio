@@ -29,11 +29,11 @@ header li {
 }
 
 header li a {
-    color: #E2E8CE;
     text-decoration: none;
     transition: 0.2s;
     border-radius: 10px;
     border: 0px solid var(--secondary-colour);
+    color: var(--text-colour);
 }
 
 header li a:hover {

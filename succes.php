@@ -23,31 +23,22 @@
         <?php
             if($_SERVER["REQUEST_METHOD"] == "POST")
             {
-                $passw = filter_input(INPUT_POST, "niewsbrief");
-                if($passw === "GR2R")
+                $email = filter_input(INPUT_POST, "niewsbrief");
+                if(!filter_var($email, FILTER_VALIDATE_EMAIL))
                 {
-                    echo "<div class='succes'>
-                    <p>Excelent</p>
-                    <a href='index.php'>Go back to homepage</a>
-                    <a href='game.php?page=dev'>...Or don't</a>
-                </div>";
+                    echo 
+                    '<div class="succes">' .
+                    '<p>Invalid e-mail!</p>' .
+                    '<a href="index.php">Go back to homepage</a>' .
+                    '</div>';
                 }
                 else
                 {
-                    if(!filter_var($passw, FILTER_VALIDATE_EMAIL))
-                    {
-                        echo "<div class='succes'>
-                        <p>Invalid e-mail!</p>
-                        <a href='index.php'>Go back to homepage</a>
-                    </div>";
-                    }
-                    else
-                    {
-                        echo "        <div class='succes'>
-                        <p>You will recieve montly an email at <b>" . $passw . "</b></p>
-                        <a href='index.php'>Go back to homepage</a>
-                    </div>";
-                    };
+                    echo 
+                    '<div class="succes">' .
+                    '<p>You will recieve montly an email at <b>' . $email . '</b></p>' .
+                    '<a href="index.php">Go back to homepage</a>' .
+                    '</div>';
                 };
             };
         ?>
