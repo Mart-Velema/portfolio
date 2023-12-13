@@ -71,7 +71,7 @@
             $dirOpen = opendir($dir);
             while ($curFile = readdir($dirOpen))
             {
-                if(!empty($curFile))
+                if($curFile != "." && $curFile != "..")
                 {
                     // var_dump($curFile);
                     echo $curFile . "<br />";

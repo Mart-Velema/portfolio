@@ -12,20 +12,9 @@
         {
             $projects['external'] = 'self';
         };
-        if(isset($projects['img']))
-        {
-            $img = '<img src="img/' . $projects['img'] . '.png" alt="' . $projects['img'] . '">';
-        }
-        else
-        {
-            $img = '';
-        };
-        $title = '<h2>' . $projects['name'] . '</h2>';
+        $img = array_key_exists('img', $projects) ? '<img src="img/' . $projects['img'] . '.png" alt="' . $projects['img'] . '">' : '';
         $id = str_replace(' ', '-', $projects['name']);
-        if(isset($projects['link']))
-        {
-            $title = '<a href="' . $projects['link'] . '" target="_' . $projects['external'] . '">' . $title . '</a>';
-        };
+        $title = isset($projects['link']) ? '<a href="' . $projects['link'] . '" target="_' . $projects['external'] . '"><h2>' . $projects['name']. '</h2></a>' : '<h2>' . $projects['name'] . '</h2>';
         echo
         '<div class="block" id=' . $id . '>' . 
             '' . $title . '' .
