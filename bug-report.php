@@ -6,23 +6,26 @@
 * comment   : Bug reporter
 * Programmer    : Mart Velema
 */
-
+//set data for database
 $servername = 'mysql';
 $dbname = 'bugReporter';
 $username = 'root';
 $password = 'qwerty';
-
 try
 {
+    //setting up DB Handler with PDO
     $dbHandler = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     echo 'Connection succesful';
 }
 catch(Exception $ex)
 {
+    //error handling
     echo $ex;
-    echo '<br>failed to connect';
+    echo '<br>failed to connect, please contact system administrator';
 };
+//Setting up stmt with the data of the DB Handler with the querry to add something to the database
 $stmt = $dbHandler->prepare('INSERT INTO bugReports (product, `version`, browser, OS, frequency, comment) VALUES(:product, :version, :browser, :OS, :frequency, :comment)');
+//Form handling
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     $product        = filter_input(INPUT_POST, 'product');
@@ -31,15 +34,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     $OS             = filter_input(INPUT_POST, 'OS');
     $frequency      = filter_input(INPUT_POST, 'frequency');
     $comment        = filter_input(INPUT_POST, 'comment');
+    //Convert variables to SQL values
     $stmt->bindParam(':product', $product);
     $stmt->bindParam(':version', $version);
     $stmt->bindParam(':browser', $browser);
     $stmt->bindParam(':OS', $OS);
     $stmt->bindParam(':frequency', $frequency);
     $stmt->bindParam(':comment', $comment);
+    //run the SQL querry
     $stmt->execute();
 };
+//select all the entries from the table bugReports and put it into the stmt variable
 $stmt = $dbHandler->query('SELECT * FROM bugReports');
+//convert the stmt variable into an associative array into the bugs variable
 $bugs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
@@ -78,6 +85,7 @@ $bugs = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <textarea name="comment" id="comment" maxlength="2048" placeholder="Describe issue in more detail"></textarea>
             <button type="submit">Submit bug</button>
             <?php
+                //error handling in case submitting failed
                 if(isset($stmt))
                 {
                     if($stmt->execute())
@@ -107,6 +115,7 @@ $bugs = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <th>comment</th>
                 </tr>
                 <?php
+                    //creating table out of the bugs associative array
                     foreach ($bugs as $id => $bug) 
                     {
                         ${$id} = $bug;
@@ -120,7 +129,7 @@ $bugs = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         '<td>' .$bug['frequency'] . '</td>'.
                         '<td>' .$bug['comment'] . '</td>'.
                         '</tr>';
-                    }
+                    };
                 ?>
             </table>
         </div>
