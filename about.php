@@ -28,8 +28,6 @@
             <input type="text" name="achternaam" id="achternaam" placeholder="achternaam">
             <label for="email">Email</label>
             <input type="email" name="email" id="email" required placeholder="email*">
-            <label for="wachtwoord">Wachtwoord</label>
-            <input type="password" name="wachtwoord" id="wachtwoord">
             <label for="onderwerp">Onderwerp</label>
             <select name="onderwerp" id="onderwerp">
                 <option value="opmerking">Opmerking</option>
@@ -39,8 +37,8 @@
             <label for="bericht">Bericht</label>
             <textarea name="bericht" id="bericht" rows="10" placeholder="bericht"></textarea>
             <div class="radio">
-                <label for="niewsbrief">niewsbrief?</label>
-                <input type="checkbox" name="niewsbrief" id="nieuwsbrief">
+                <label for="nieuwsbrief">nieuwsbrief?</label>
+                <input type="checkbox" name="nieuwsbrief" id="nieuwsbrief">
             </div>
             <button type="submit">Submit</button>
             <?php
@@ -52,10 +50,10 @@
                     $passwd     = filter_input(INPUT_POST, "wachtwoord");
                     $subject    = filter_input(INPUT_POST, "onderwerp");
                     $message    = filter_input(INPUT_POST, "bericht");
-                    $newsletter = filter_input(INPUT_POST, "niewsbrief");
+                    $newsletter = filter_input(INPUT_POST, "nieuwsbrief");
                     if($newsletter === "on")
                     {
-                        $newsletter = "<br><br>U ontvangt een niewsbrief van ons";
+                        $newsletter = "<br><br>U ontvangt een nieuwsbrief van ons";
                     };
                     echo "<p>Beste <b>" . $name ." " . $lastname ."</b>, <br><br> Uw bericht over <b>" . $subject . "</b> is aangekomen bij ons. Voor eventueel antwoord, wordt u bericht op <b>" . $mail . "</b>. Hieronder staat nogmaals uw bericht<br><br>" . $message ."" . $newsletter . "</p>";
                     // var_dump($name, $lastname, $mail, $passwd, $subject, $message, $newsletter);

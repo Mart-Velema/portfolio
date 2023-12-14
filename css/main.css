@@ -54,6 +54,11 @@ main form p {
     margin-top: 10px;
 }
 
+main form a, main form a:visited {
+    color: var(--text-colour);
+    text-decoration: underline;
+}
+
 main .radio {
     display: flex;
     width: 20%;

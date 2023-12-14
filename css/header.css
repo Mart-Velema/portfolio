@@ -22,6 +22,8 @@ header ul {
     grid-column: 2 / 3;
     width: 100%;
     justify-content: space-around;
+    justify-self: center;
+    margin-left: -5%;
 }
 
 header li {
@@ -39,4 +41,10 @@ header li a {
 header li a:hover {
     background-color: var(--secondary-colour);
     border: 10px solid var(--secondary-colour);
+}
+
+header .login{
+    color: var(--text-colour);
+    grid-column: 3 / 4;
+    justify-self: center;
 }

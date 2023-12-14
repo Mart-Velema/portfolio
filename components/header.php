@@ -14,4 +14,10 @@
         <li><a href="about.php">About</a></li>
         <li><a href="projects.php">Projecten</a></li>
     </ul>
+    <div class="login">
+        <?php
+
+        ?>
+        <a class="login" href="login.php">Login</a>
+    </div>
 </header>

@@ -16,7 +16,7 @@ try
 {
     //setting up DB Handler with PDO
     $dbHandler = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    echo 'Connection succesful';
+    $log = 'connection succesful';
 }
 catch(Exception $ex)
 {
@@ -71,6 +71,7 @@ $bugs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <?php
         include "components/header.php";
+        // echo $log;
     ?>
     <main>
         <form action="#" method="post">

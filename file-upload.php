@@ -71,7 +71,7 @@
             $dirOpen = opendir($dir);
             while ($curFile = readdir($dirOpen))
             {
-                if($curFile != "." && $curFile != "..")
+                if($curFile != "." && $curFile != ".." && $curFile != 'pfp')
                 {
                     // var_dump($curFile);
                     echo $curFile . "<br />";
