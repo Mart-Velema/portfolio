@@ -32,7 +32,12 @@ main form {
     box-shadow: 0px 1px 5px black;
     height: min-content;
     color: var(--text-colour);
+}
+
+main form img {
     object-fit: scale-down;
+    width: 100%;
+    height: min-content;
 }
 
 main form input {

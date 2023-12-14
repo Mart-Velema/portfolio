@@ -74,8 +74,8 @@
                 if($curFile != "." && $curFile != ".." && $curFile != 'pfp')
                 {
                     // var_dump($curFile);
-                    echo $curFile . "<br />";
-                    echo "<img src='". $dir . "/" .$curFile . "' alt='uploaded images' class='image'><br><br>";
+                    echo $curFile . "<br>";
+                    echo "<img src='". $dir . "/" .$curFile . "' alt='" . $curFile . "'><br><br>";
                 };
             };
             closedir($dirOpen);
