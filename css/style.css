@@ -27,7 +27,6 @@ body {
 
 
 .warning {
-    margin-top: 100px;
     background-color: white;
     color: red;
     grid-column: 2 / 3;

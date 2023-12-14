@@ -17,7 +17,6 @@
     {
         "name": "gelukszoekers",
         "link": "opdrachten_3.php",
-        "img": "fedora",
         "content": "Een PHP pagina die je toekomst gaat voorspellen door middel van een paar simpele vragen"
     },
     {
@@ -34,5 +33,10 @@
         "name": "file upload",
         "link": "file-upload.php",
         "content": "Een PHP pagina waarbij je een bestand kunt uploaden."
+    },
+    {
+        "name":"Bug reporter",
+        "link": "bug-report.php",
+        "content": "Een PHP pagina waarbij je een bug kan melden en opzien"
     }
 ]

@@ -11,6 +11,7 @@ $servername = 'mysql';
 $dbname = 'bugReporter';
 $username = 'root';
 $password = 'qwerty';
+$submit='';
 try
 {
     //setting up DB Handler with PDO
@@ -24,7 +25,9 @@ catch(Exception $ex)
     echo '<br>failed to connect, please contact system administrator';
 };
 //Setting up stmt with the data of the DB Handler with the querry to add something to the database
-$stmt = $dbHandler->prepare('INSERT INTO bugReports (product, `version`, browser, OS, frequency, comment) VALUES(:product, :version, :browser, :OS, :frequency, :comment)');
+$stmt = isset($_GET['bug']) ? 
+$dbHandler->prepare('UPDATE bugReports SET product=:product, `version`=:version, browser=:browser, OS=:OS, frequency=:frequency, comment=:comment WHERE id=' . $_GET['bug'] . ''):
+$dbHandler->prepare('INSERT INTO bugReports (product, `version`, browser, OS, frequency, comment) VALUES(:product, :version, :browser, :OS, :frequency, :comment)');
 //Form handling
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
@@ -34,15 +37,22 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     $OS             = filter_input(INPUT_POST, 'OS');
     $frequency      = filter_input(INPUT_POST, 'frequency');
     $comment        = filter_input(INPUT_POST, 'comment');
-    //Convert variables to SQL values
-    $stmt->bindParam(':product', $product);
-    $stmt->bindParam(':version', $version);
-    $stmt->bindParam(':browser', $browser);
-    $stmt->bindParam(':OS', $OS);
-    $stmt->bindParam(':frequency', $frequency);
-    $stmt->bindParam(':comment', $comment);
-    //run the SQL querry
-    $stmt->execute();
+    if(isset($product, $version, $browser, $OS, $frequency, $comment))
+    {
+        //Convert variables to SQL values
+        $stmt->bindParam(':product', $product);
+        $stmt->bindParam(':version', $version);
+        $stmt->bindParam(':browser', $browser);
+        $stmt->bindParam(':OS', $OS);
+        $stmt->bindParam(':frequency', $frequency);
+        $stmt->bindParam(':comment', $comment);
+        //run the SQL querry
+        $stmt->execute();
+    }
+    else
+    {
+        $submit = FALSE;
+    }
 };
 //select all the entries from the table bugReports and put it into the stmt variable
 $stmt = $dbHandler->query('SELECT * FROM bugReports');
@@ -64,6 +74,12 @@ $bugs = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
     <main>
         <form action="#" method="post">
+            <h3>
+                <?php
+                    $title = isset($_GET['bug']) ? 'Update bug with id ' . $_GET['bug'] . '' : 'Submit new bug';
+                    echo $title;
+                ?>
+            </h3>
             <label for="product">Product</label>
             <select name="product" id="product">
                 <option value="SCUFF">SCUFF</option>
@@ -86,20 +102,34 @@ $bugs = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <button type="submit">Submit bug</button>
             <?php
                 //error handling in case submitting failed
-                if(isset($stmt))
+                if($_SERVER['REQUEST_METHOD'] == 'POST')
                 {
-                    if($stmt->execute())
+                    if($submit)
                     {
-                        echo 'Succesfully submitted bugreport';
+                        if(isset($stmt))
+                        {
+                            if($stmt->execute())
+                            {
+                                echo 'Succesfully submitted bugreport';
+                            }
+                            else
+                            {
+                                echo '<p class="warning">Failed to submit bug, please try again</p>';
+                            };
+                        }
+                        else
+                        {
+                            echo '<p class="warning">Failed to connect to bugeport database, try again later</p>';
+                        };
                     }
                     else
                     {
-                        echo '<p class="error">Failed to submit bug, please try again</p>';
+                        echo '<p class="warning">Error: One or more field was not filled in correctly!</p>';
                     };
                 }
                 else
                 {
-                    echo '<p class="error">Failed to connect to bugeport database, try again later</p>';
+                    echo 'All fields are required to succefully submit a bug';
                 };
             ?>
         </form>
@@ -113,6 +143,7 @@ $bugs = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <th>OS</th>
                     <th>frequency</th>
                     <th>comment</th>
+                    <th>edit</th>
                 </tr>
                 <?php
                     //creating table out of the bugs associative array
@@ -128,6 +159,7 @@ $bugs = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         '<td>' .$bug['OS'] . '</td>'.
                         '<td>' .$bug['frequency'] . '</td>'.
                         '<td>' .$bug['comment'] . '</td>'.
+                        '<td><a href="?bug=' . $bug['id'] . '">Edit</a></td>' .
                         '</tr>';
                     };
                 ?>
