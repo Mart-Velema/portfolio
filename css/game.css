@@ -64,13 +64,13 @@
     z-index: 1;
 }
 
-.game-center a {
+.game-center a, .game-center a:visited {
     background-color: whitesmoke;
     border: 1px solid black;
     border-radius: 3px;
     padding: 2px;
-    color: var(--secondary-colour);
     transition: 0.2s;
+    color: black;
 }
 
 .game-button {

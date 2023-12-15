@@ -129,6 +129,7 @@
                     {   //error handling in case empty 
                         $images = '<img src="img/assets/dev/missing_textures.png">';
                         $dialogue = 'ERROR: Missing JSON entry, redirecting to fallback page';
+                        $background = 'style="background-image: url(/portfolio2/img/assets/dev/missing_textures.png)"';
                     };
                     if(isset($talking))     //if the talking tag exists, run this
                     {
@@ -196,12 +197,12 @@
                 }
                 else
                 {
-                    echo '<p class="warning">Level json file does not exist!</p>';
+                    echo '<a href="games.php" class="warning"><br><br><br><br><br>Json level file does not exist! Click to go back</a>';
                 };
             }
             else
             {
-                echo '<p class="warning">Level not set</p>';
+                echo '<a href="games.php" class="warning"><br><br><br><br><br>Level not set, click to go back</a>';
             };
             break;
         };
