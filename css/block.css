@@ -26,7 +26,7 @@
     justify-content: space-between;
     background-color: var(--secondary-colour);
     height: 100%;
-    box-shadow: 0px 0px 10px black;
+    box-shadow: 0px 0px 10px black inset;
     border-radius: 5px;
     padding: 3px;
     font-size: large;

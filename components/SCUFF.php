@@ -92,31 +92,40 @@
                                         switch($option)
                                         {
                                             case "redirect":
-                                                $options .= '<a href="' . $action . '">' . str_replace('.php', '', $action) . '</a>';    //make redirect button
+                                                if(isset($action))
+                                                {
+                                                    $options .= '<a href="' . $action . '">' . str_replace('.php', '', $action) . '</a>';    //make redirect button
+                                                };
                                                 break;
                                             case "setMarker":
-                                                $_GET['marker'] = $action;                                      //sets a marker to jump back to later
-                                                if(${$option} == 0)
+                                                if(isset($action))
                                                 {
-                                                    $_GET['marker'] = $_GET['page'];                            //if the marker is 0, use current page
+                                                    $_GET['marker'] = $action;                                      //sets a marker to jump back to later
+                                                    if(${$option} == 0)
+                                                    {
+                                                        $_GET['marker'] = $_GET['page'];                            //if the marker is 0, use current page
+                                                    };
                                                 };
                                                 break;
                                             case "option":
-                                                $actionSubstring = substr($action, 0, 5);
-                                                $action = str_replace($actionSubstring, '', $action);           //filtering action type
-                                                switch($actionSubstring)
-                                                {                                                               //decoding action type
-                                                    case "give_":
-                                                        $options .= '<button type="submit" value="' . $action . '" name="give">take: ' . $action . '</button> ';
-                                                        break;
-                                                    case "take_":
-                                                        $options .= '<button type="submit" value="' . $action . '" name="take">give: ' . $action . '</button> ';
-                                                        break;
-                                                    case "jump_":
-                                                        empty($action) ? $action = $_GET['marker'] : '';      //if jump has no page number, go to marker
-                                                        $jump = $_GET;
-                                                        $jump['page'] = $action;
-                                                        break;
+                                                if(isset($action))
+                                                {
+                                                    $actionSubstring = substr($action, 0, 5);
+                                                    $action = str_replace($actionSubstring, '', $action);           //filtering action type
+                                                    switch($actionSubstring)
+                                                    {                                                               //decoding action type
+                                                        case "give_":
+                                                            $options .= '<button type="submit" value="' . $action . '" name="give">take: ' . $action . '</button> ';
+                                                            break;
+                                                        case "take_":
+                                                            $options .= '<button type="submit" value="' . $action . '" name="take">give: ' . $action . '</button> ';
+                                                            break;
+                                                        case "jump_":
+                                                            empty($action) ? $action = $_GET['marker'] : '';      //if jump has no page number, go to marker
+                                                            $jump = $_GET;
+                                                            $jump['page'] = $action;
+                                                            break;
+                                                    };
                                                 };
                                                 break;
                                         };

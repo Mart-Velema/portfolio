@@ -1,12 +1,11 @@
 <?php
+$logTime = microtime(true);
 /*
 * Filename      : game.php
 * Created       : 26-11-2023
 * Description   : PHP page for enabling SCUFF to work
 * Programmer    : Mart Velema
 */
-
-$log = microtime(true);
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
     $action = filter_input(INPUT_POST, 'give');
@@ -51,7 +50,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     <main style="padding-top: 0px; background-image: none;">
         <?php
             include "components/SCUFF.php";
-            $log = (microtime(true) - $log);
+            $logTime = (microtime(true) - $log);
             // echo '' . $log . ' &micro;s';
         ?>
     </main>

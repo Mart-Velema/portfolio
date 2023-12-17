@@ -24,12 +24,21 @@
         {
             "img": "k_100diary"
         },
-        "dialogue":"Test dev page 2"
+        "dialogue":"Test dev page 2",
+        "action":
+        {
+            "redirect": null,
+            "setMarker": null,
+            "option1": null,
+            "option2": null,
+            "option3": null
+        }
     },
     {
         "img":
         {
-            "img": "k_100diary"
+            "img": "k_100diary",
+            "rotate": "NULL"
         },
         "dialogue":"Test dev page 3",
         "action":

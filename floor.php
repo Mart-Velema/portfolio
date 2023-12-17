@@ -1,4 +1,5 @@
 <?php
+    $logTime = microtime(true);
     /*
     * Filename      : floor.php
     * Created       : 28-11-2023
@@ -6,7 +7,6 @@
     * Programmer    : Mart Velema
     */
     session_start();
-    $log = microtime(true);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,16 +41,12 @@
             };
             if($_SERVER['REQUEST_METHOD'] == 'POST')
             {
-                if(empty($_SESSION['form-data']))
-                {
-                    $_SESSION['form-data'] = NULL;
-                };
                 switch($_POST['submit'])
                 {
                     case "generate":
                         if($_GET['scene'] == 1)
                         {
-                            $page = count($_SESSION['form-data']);
+                            $page = empty($_SESSION['form-data']) ? 0 : count($_SESSION['form-data']);
                             $_SESSION['form-data'][$page] = 
                             [
                                 "img" => 
@@ -87,6 +83,10 @@
                         $_SESSION['form-data'][0]['dir'] = $_GET['dir'];
                         break;
                     case "done":
+                        $json = json_encode($_SESSION['form-data'], JSON_PRETTY_PRINT);
+                        $file = fopen('upload/game.json', 'w');
+                        fwrite($file, $json);
+                        fclose($file);
                         break;
                     case "reset":
                         $_SESSION['form-data'] = NULL;
@@ -94,6 +94,10 @@
                 };
             };
             echo '<form action="floor.php?' . http_build_query($_GET) . '" method="post">';
+            if($_POST['submit'] === 'done')
+            {
+                echo '<a href="upload/game.json" download>Download your completed game here!</a>';
+            };
                 switch($_GET['scene'])
                 {
                     case 1:
@@ -129,10 +133,6 @@
             <input type="text" name="item" id="item">
             <label for="dialogue">Dialogue</label>
             <textarea name="dialogue" id="dialogue" placeholder="Put here your dialogue"></textarea>
-            <label for="backgroundCheck">Is background image?</label>
-            <input type="checkbox" name="backgroundCheck" id="backgroundCheck" value="1">
-            <label for="background">Background value</label>
-            <input type="text" name="background" id="background">
             <div>
                 <?php
                     if(isset($_GET['dir']))
@@ -146,10 +146,10 @@
             </div>
             <div style="color:white; background-color:black; width:99%;">
                 <?php
+                    echo '<p><a href="game.php?page=dev&level=' . $_GET['dir'] . '" target="_blank">Images:' . $_GET['dir'] .'</a>';
                     if(isset($_SESSION['form-data']))
                     {
-                        echo 
-                        '<p><a style="background-color: white;" href="game.php?page=dev&level=' . $_GET['dir'] . '">' . $_GET['dir'] .'</a>' .
+                        echo
                         'Output console:</p>';
                         for ($i=0; $i < count($_SESSION['form-data']); $i++) 
                         { 
@@ -166,7 +166,7 @@
             Once all the input fields are filled in, press "Generate" to complete a page.<br>
             Repeat untill you have made all of the pages, select the "done" checkbox to get the .json file that contains all the data for SCUFF to use.<br><br>
             <?php
-                $log = (microtime(true) - $log);
+                $logTime = (microtime(true) - $log);
                 echo 'loadtime: ' . $log . ' &micro;s';
             ?>
             </p>
