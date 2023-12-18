@@ -47,6 +47,12 @@
                 switch($_POST['submit'])
                 {
                     case "generate":
+                        $option1 = filter_input(INPUT_POST, "option1");
+                        $option1 = !empty($option1) ? filter_input(INPUT_POST, "option1action") . $option1 : NULL;
+                        $option2 = filter_input(INPUT_POST, "option2");
+                        $option2 = !empty($option2) ? filter_input(INPUT_POST, "option2action") . $option2 : NULL;
+                        $option3 = filter_input(INPUT_POST, "option3");
+                        $option3 = !empty($option3) ? filter_input(INPUT_POST, "option3action") . $option3 : NULL;
                         if($_GET['scene'] == 1)
                         {
                             $page = empty($_SESSION['form-data']) ? 0 : count($_SESSION['form-data']);
@@ -59,12 +65,19 @@
                                     "rotate"    => filter_input(INPUT_POST, "img-rotate")
                                 ],
                                 "item"           => str_replace('.png', '', filter_input(INPUT_POST, "item")),
-                                "dialogue"       => filter_input(INPUT_POST, "dialogue")
+                                "dialogue"       => filter_input(INPUT_POST, "dialogue"),
+                                "action" =>
+                                [
+                                    "setMarker" => filter_input(INPUT_POST, "setMarker"),
+                                    "option1" => $option1,
+                                    "option2" => $option2,
+                                    "option3" => $option3
+                                ]
                             ];
                         }
                         else
                         {
-                            $page = count($_SESSION['form-data']);
+                            $page = empty($_SESSION['form-data']) ? 0 : count($_SESSION['form-data']);
                             $_SESSION['form-data'][$page] = 
                             [
                                 "imL" => 
@@ -80,7 +93,14 @@
                                     "rotate"    => filter_input(INPUT_POST, "imgR-rotate")
                                 ],
                                 "item"           => str_replace('.png', '', filter_input(INPUT_POST, "item")),
-                                "dialogue"       => filter_input(INPUT_POST, "dialogue")
+                                "dialogue"       => filter_input(INPUT_POST, "dialogue"),
+                                "action" =>
+                                [
+                                    "setMarker" => filter_input(INPUT_POST, "setMarker"),
+                                    "option1" => $option1,
+                                    "option2" => $option2,
+                                    "option3" => $option3
+                                ]
                             ];
                         };
                         $_SESSION['form-data'][0]['dir'] = $_GET['dir'];
@@ -92,7 +112,7 @@
                         fclose($file);
                         break;
                     case "reset":
-                        $_SESSION['form-data'] = NULL;
+                        unset($_SESSION['form-data']);
                         break;
                 };
             };
@@ -139,7 +159,7 @@
             <h3>Actions</h3>
             <label for="setMarker">Marker (Set to 0 to mark current page)</label>
             <input type="text" name="setMarker" id="setMarker" placeholder="marker">
-            <label for="otpion1">Option 1</label>
+            <label for="option1">Option 1</label>
             <select name="option1action" id="option1action">
                 <option value="give_">give</option>
                 <option value="take_">take</option>

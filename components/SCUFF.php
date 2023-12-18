@@ -123,7 +123,7 @@
                                                             $options .= '<button type="submit" value="' . $action . '" name="take">give: ' . $action . '</button> ';
                                                             break;
                                                         case "jump_":
-                                                            empty($action) ? $action = $_GET['marker'] : '';      //if jump has no page number, go to marker
+                                                            $action == 0 ? $action = $_GET['marker'] : '';      //if jump has no page number, go to marker
                                                             $jump = $_GET;
                                                             $jump['page'] = $action;
                                                             $next = 'jump';

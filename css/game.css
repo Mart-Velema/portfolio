@@ -110,6 +110,7 @@
 .dev img {
     width: 100%;
     object-fit: scale-down;
+    transition: .2s;
 }
 
 .dev .image {
@@ -118,9 +119,8 @@
     border-color: black;
     background-color: beige;
     margin: 20px;
-    transition: .2s;
 }
 
-.dev .image:hover{
-    width: 450px;
+.dev img:hover{
+    scale: 2;
 }
