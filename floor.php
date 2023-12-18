@@ -1,5 +1,5 @@
 <?php
-    $logTime = microtime(true);
+    $logTime = microtime(true); //start time logging
     /*
     * Filename      : floor.php
     * Created       : 28-11-2023
@@ -38,15 +38,17 @@
         </form> -->
         <?php
             if(empty($_GET))
-            {
+            {   //error handling for unset dir
                 echo '<p class="warning">Data for directory is unset! please set this requierd data before continiuing</p>';
                 $_GET['scene'] = NULL;
             };
             if($_SERVER['REQUEST_METHOD'] == 'POST')
             {
                 switch($_POST['submit'])
-                {
+                {   //switch to decode what action to preform
                     case "generate":
+                        //putting all the form data into the session to proccess later on
+                        //decoding options
                         $option1 = filter_input(INPUT_POST, "option1");
                         $option1 = !empty($option1) ? filter_input(INPUT_POST, "option1action") . $option1 : NULL;
                         $option2 = filter_input(INPUT_POST, "option2");
@@ -54,7 +56,7 @@
                         $option3 = filter_input(INPUT_POST, "option3");
                         $option3 = !empty($option3) ? filter_input(INPUT_POST, "option3action") . $option3 : NULL;
                         if($_GET['scene'] == 1)
-                        {
+                        {   //encoding for single-image scenes
                             $page = empty($_SESSION['form-data']) ? 0 : count($_SESSION['form-data']);
                             $_SESSION['form-data'][$page] = 
                             [
@@ -76,7 +78,7 @@
                             ];
                         }
                         else
-                        {
+                        {   //encoidng for double-image scenes
                             $page = empty($_SESSION['form-data']) ? 0 : count($_SESSION['form-data']);
                             $_SESSION['form-data'][$page] = 
                             [
@@ -106,12 +108,14 @@
                         $_SESSION['form-data'][0]['dir'] = $_GET['dir'];
                         break;
                     case "done":
+                        //putting the entire form-data from the session into a .json to download
                         $json = json_encode($_SESSION['form-data'], JSON_PRETTY_PRINT);
                         $file = fopen('upload/game.json', 'w');
                         fwrite($file, $json);
                         fclose($file);
                         break;
                     case "reset":
+                        //reset the session
                         unset($_SESSION['form-data']);
                         break;
                 };
@@ -119,11 +123,13 @@
             echo '<form action="floor.php?' . http_build_query($_GET) . '" method="post">';
             if(array_key_exists('submit', $_POST) && $_POST['submit'] === 'done')
             {
+                //download link for .json :)
                 echo '<a href="upload/game.json" download>Download your completed game here!</a>';
             };
                 switch($_GET['scene'])
                 {
                     case 1:
+                        //form for single-image scenes
                         echo
                         '<label for="img">Filename image</label>' .
                         '<input type="text" name="img" id="img" placeholder="image filename">' . 
@@ -133,6 +139,7 @@
                         '<input type="checkbox" name="img-rotate" id="img-rotate" value="1">';
                         break;
                     case 2:
+                        //form for double-image scenes
                         echo
                         '<label for="imgL">Filename left image</label>' .
                         '<input type="text" name="imgL" id="imgL" placeholder="left image filename">' .
@@ -148,10 +155,12 @@
                         '<input type="checkbox" name="imgR-rotate" id="imgR-rotate" value="1">';
                         break;
                     default:
+                        //print warning in case unset dir
                         echo '<p class="warning">Incorrect scene settings! Please select a correct scene type</p>';
                         break;
                 };
             ?>
+            <!--Form that's equal for both single and double scenes!-->
             <label for="item">Filename item</label>
             <input type="text" name="item" id="item" placeholder="item name">
             <label for="dialogue">Dialogue</label>
@@ -184,6 +193,7 @@
                 <?php
                     if(isset($_GET['dir']))
                     {
+                        //buttons that will only show up once dir is set correctly
                         echo 
                         '<button type="submit" name="submit" value="generate">Generate</button>' .
                         '<button type="submit" name="submit" value="done">Done</button>' .
@@ -193,9 +203,10 @@
             </div>
             <div style="color:white; background-color:black; width:99%;">
                 <?php
-                    echo '<p><a href="game.php?page=dev&level=' . $_GET['dir'] . '" target="_blank">Images:' . $_GET['dir'] .'</a>';
+                    echo '<p><a href="game.php?page=dev&level=' . $_GET['dir'] . '" target="_blank">Images:' . $_GET['dir'] .'</a>';    //dev page where all the images of said dir are put in a grid
                     if(isset($_SESSION['form-data']))
                     {
+                        //output console
                         echo
                         'Output console:</p>';
                         for ($i=0; $i < count($_SESSION['form-data']); $i++) 
@@ -213,6 +224,7 @@
             Once all the input fields are filled in, press "Generate" to complete a page.<br>
             Repeat untill you have made all of the pages, select the "done" checkbox to get the .json file that contains all the data for SCUFF to use.<br><br>
             <?php
+                //stop logging time and output recorded time
                 $logTime = (microtime(true) - $logTime);
                 echo 'loadtime: ' . $logTime . ' &micro;s';
             ?>
