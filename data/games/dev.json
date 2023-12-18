@@ -32,7 +32,8 @@
             "option1": null,
             "option2": null,
             "option3": null
-        }
+        },
+        "background": "000"
     },
     {
         "img":
@@ -44,8 +45,7 @@
         "action":
         {
             "option1": "take_Hello-World2",
-            "option2": "give_Hello-World2",
-            "option3": "jump_1"
+            "option2": "give_Hello-World2"
         }
     },
     {
@@ -56,7 +56,8 @@
         "dialogue":"Test dev page 4",
         "action":
         {
-            "redirect": "floor.php"
+            "redirect": "floor.php",
+            "option3": "jump_"
         }
     }
 ]

@@ -6,7 +6,7 @@
                 "img":      "k_kit01_egao"
             },
         "dialogue": "Hi there! I'm the person responsible for making this website! hope you like it",
-        "backgroundImg": "k_lisa_ship", 
+        "background": "k_lisa_ship", 
         "dir": "GR-Portrait"
     },
     {
@@ -15,7 +15,7 @@
                 "img":      "k_kit01_konwaku"
             },
         "dialogue": "Well... Kinda... Last time I checked I didn't look like this",
-        "backgroundImg": "k_seifu_ship"
+        "background": "k_seifu_ship"
     },
     {
         "img": 

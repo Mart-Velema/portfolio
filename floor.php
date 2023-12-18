@@ -22,7 +22,7 @@
         include "components/header.php";
     ?>
     <main>
-        <form method="get" style="grid-column: 1 / 2; height:min-content; width: 100%;">
+        <form method="get" style="grid-column: 1 / 2; width: 100%; margin-bottom: 10px;" >
             <h3>settings</h3>
             <label for="scene">Select scene mode</label>
             <select name="scene" id="scene">
@@ -33,6 +33,9 @@
             <input type="text" name="dir" id="dir" required>
             <button type="submit">Set</button>
         </form>
+        <!-- <form method="get" style="grid-column: 1 / 2; width: 100%;">
+            
+        </form> -->
         <?php
             if(empty($_GET))
             {
@@ -51,11 +54,11 @@
                             [
                                 "img" => 
                                 [
-                                    "img"       => filter_input(INPUT_POST, "img"),
+                                    "img"       => str_replace('.png', '', filter_input(INPUT_POST, "img")),
                                     "talking"   => filter_input(INPUT_POST, "img-talking"),
                                     "rotate"    => filter_input(INPUT_POST, "img-rotate")
                                 ],
-                                "item"           => filter_input(INPUT_POST, "item"),
+                                "item"           => str_replace('.png', '', filter_input(INPUT_POST, "item")),
                                 "dialogue"       => filter_input(INPUT_POST, "dialogue")
                             ];
                         }
@@ -66,17 +69,17 @@
                             [
                                 "imL" => 
                                 [
-                                    "img"       => filter_input(INPUT_POST, "imgL"),
+                                    "img"       => str_replace('.png', '', filter_input(INPUT_POST, "imgL")),
                                     "talking"   => filter_input(INPUT_POST, "imgL-talking"),
                                     "rotate"    => filter_input(INPUT_POST, "imgL-rotate")
                                 ],
                                 "imgR" => 
                                 [
-                                    "img"       => filter_input(INPUT_POST, "imgR"),
+                                    "img"       => str_replace('.png', '', filter_input(INPUT_POST, "imgR")),
                                     "talking"   => filter_input(INPUT_POST, "imgR-talking"),
                                     "rotate"    => filter_input(INPUT_POST, "imgR-rotate")
                                 ],
-                                "item"           => filter_input(INPUT_POST, "item"),
+                                "item"           => str_replace('.png', '', filter_input(INPUT_POST, "item")),
                                 "dialogue"       => filter_input(INPUT_POST, "dialogue")
                             ];
                         };
@@ -94,7 +97,7 @@
                 };
             };
             echo '<form action="floor.php?' . http_build_query($_GET) . '" method="post">';
-            if($_POST['submit'] === 'done')
+            if(array_key_exists('submit', $_POST) && $_POST['submit'] === 'done')
             {
                 echo '<a href="upload/game.json" download>Download your completed game here!</a>';
             };
@@ -103,7 +106,7 @@
                     case 1:
                         echo
                         '<label for="img">Filename image</label>' .
-                        '<input type="text" name="img" id="img">' . 
+                        '<input type="text" name="img" id="img" placeholder="image filename">' . 
                         '<label for="img-talking">Talking</label>' .
                         '<input type="checkbox" name="img-talking" id="img-talking" value="1">' .
                         '<label for="img-rotate">Rotate</label>' .
@@ -112,13 +115,13 @@
                     case 2:
                         echo
                         '<label for="imgL">Filename left image</label>' .
-                        '<input type="text" name="imgL" id="imgL">' .
+                        '<input type="text" name="imgL" id="imgL" placeholder="left image filename">' .
                         '<label for="imgL-talking">Talking</label>' .
                         '<input type="checkbox" name="imgL-talking" id="imgL-talking" value="1">' .
                         '<label for="imgL-rotate">Rotate</label>' .
                         '<input type="checkbox" name="imgL-rotate" id="imgL-rotate" value="1">' .
                         '<label for="imgR">Filename right image</label>' .
-                        '<input type="text" name="imgR" id="imgR">' .
+                        '<input type="text" name="imgR" id="imgR" placeholder="right image filename">' .
                         '<label for="imgR-talking">Talking</label>' .
                         '<input type="checkbox" name="imgR-talking" id="imgR-talking" value="1">' .
                         '<label for="imgR-rotate">Rotate</label>' .
@@ -130,9 +133,33 @@
                 };
             ?>
             <label for="item">Filename item</label>
-            <input type="text" name="item" id="item">
+            <input type="text" name="item" id="item" placeholder="item name">
             <label for="dialogue">Dialogue</label>
             <textarea name="dialogue" id="dialogue" placeholder="Put here your dialogue"></textarea>
+            <h3>Actions</h3>
+            <label for="setMarker">Marker (Set to 0 to mark current page)</label>
+            <input type="text" name="setMarker" id="setMarker" placeholder="marker">
+            <label for="otpion1">Option 1</label>
+            <select name="option1action" id="option1action">
+                <option value="give_">give</option>
+                <option value="take_">take</option>
+                <option value="jump_">jump</option>
+            </select>
+            <input type="text" name="option1" id="option1" placeholder="1st option">
+            <label for="option1">Option 2</label>
+            <select name="option2action" id="option2action">
+                <option value="give_">give</option>
+                <option value="take_">take</option>
+                <option value="jump_">jump</option>
+            </select>
+            <input type="text" name="option2" id="option2" placeholder="2nd option">
+            <label for="option3">Option 3</label>
+            <select name="option3action" id="option3action">
+                <option value="give_">give</option>
+                <option value="take_">take</option>
+                <option value="jump_">jump</option>
+            </select>
+            <input type="text" name="option3" id="option3" placeholder="3rd option">
             <div>
                 <?php
                     if(isset($_GET['dir']))
@@ -166,8 +193,8 @@
             Once all the input fields are filled in, press "Generate" to complete a page.<br>
             Repeat untill you have made all of the pages, select the "done" checkbox to get the .json file that contains all the data for SCUFF to use.<br><br>
             <?php
-                $logTime = (microtime(true) - $log);
-                echo 'loadtime: ' . $log . ' &micro;s';
+                $logTime = (microtime(true) - $logTime);
+                echo 'loadtime: ' . $logTime . ' &micro;s';
             ?>
             </p>
         </form>

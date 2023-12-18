@@ -78,13 +78,15 @@
                                     $item = '<img src="img/assets/' . $dir . '/' . $item . '.png" alt="' . $item . '" class="item">';
                                     break;
                                 case "background":
-                                    $background = 'style="background-color:' . $background . '"';       //set the backgorund colour
-                                    break;
-                                case "backgroundImg":
-                                    $background = 'style="background-image: url(/portfolio2/img/assets/' . $dir . '/' . $backgroundImg .'.png)"';   //set the background image
+                                    if(isset($background))
+                                    {
+                                        $pattern = '/^#?([a-f0-9]{6}|[a-f0-9]{3})$/i';      //check if value is hex
+                                        $background = str_replace('#', '', $background);    //remove # from string
+                                        $background = preg_match($pattern, $background) ? 'style="background-color:#' . $background . ';"' : 'style="background-image: url(/portfolio2/img/assets/' . $dir . '/' . $background .'.png);"'; 
+                                        //Set the backgrond to either image or fixed colour depending on if value is hex
+                                    };
                                     break;
                                 case "action":
-                                    $options = '';
                                     foreach(${$name} as $option => $action)
                                     {
                                         ${$option} = $action;
@@ -124,6 +126,7 @@
                                                             empty($action) ? $action = $_GET['marker'] : '';      //if jump has no page number, go to marker
                                                             $jump = $_GET;
                                                             $jump['page'] = $action;
+                                                            $next = 'jump';
                                                             break;
                                                     };
                                                 };
@@ -173,7 +176,7 @@
                     {
                         $_GET['page'] = $_GET['page'] - 2;
                         $pageRefBack = '<a href="?' . http_build_query($_GET) . '">&larr;Previous</a>';
-                        $pageRef = '<a href="games.php">Homepage</a>';
+                        $pageRef = isset($jump) ? '<a href="?' . http_build_query($jump) . '">' . $next . '</a>' : '<a href="games.php">Homepage</a>';
                     }
                     else
                     {   
@@ -188,18 +191,18 @@
                     echo
                     '<div id="main-game" class="main-game" ' . $background . '>' . 
                         '<div class="game">' .
-                            '' . $images . ' ' .
+                            $images .
                         '</div>' .
                         '<div class="game-talking" ' . $talking . '>' .
-                            '<img src="img/assets/' . $dir . '/speech_bubble.png" alt="speech bubble" ' . $arrow . '>' .
-                            '' . $item . ' ' .
+                            '<img src="img/assets/dev/speech_bubble.png" alt="speech bubble" ' . $arrow . '>' .
+                            $item .
                         '</div>' .
                         '<div class="game-center">' .
                             '<p>' . $dialogue . '</p>' .
                             '<form method="post" action="?' . http_build_query($_GET) . '" class="game-button">' .
-                                '' . $pageRefBack . '' .
-                                '' . $options . '' .
-                                '' . $pageRef . '' .
+                                $pageRefBack .
+                                $options .
+                                $pageRef .
                             '</form>' .
                         '</div>' .
                     '</div>';
