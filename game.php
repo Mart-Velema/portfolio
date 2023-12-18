@@ -50,8 +50,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     <main style="padding-top: 0px; background-image: none;">
         <?php
             include "components/SCUFF.php";
-            $logTime = (microtime(true) - $log);
-            // echo '' . $log . ' &micro;s';
+            $logTime = (microtime(true) - $logTime);
+            // echo '' . $logTime . ' &micro;s';
         ?>
     </main>
 </body>

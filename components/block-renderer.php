@@ -20,10 +20,10 @@
                 $id = str_replace(' ', '-', $projects['name']);
                 echo
                 '<div class="block" id=' . $id . '>' . 
-                    '' . $title . '' .
+                    $title .
                     '<div class="inner-block">' .
                         '<p>' . $projects['content'] . '</p>' .
-                        '' . $img . '' .
+                        $img .
                     '</div>' .
                 '</div>';
             };

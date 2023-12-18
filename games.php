@@ -21,6 +21,18 @@
     ?>
     <main>
         <div class="content">
+            <div class="block" id="custom-game">
+                <h2>Custom game</h2>
+                <div class="inner-block">
+                    <form action="" method="post">
+                        <label for="gamefile">
+                            Have a custom game made by you or by a friend? Well you're in luck! Drop the file in here to play that awesome custom game<br>
+                            Click to upload game file!
+                        </label>
+                        <input type="file" name="gamefile" id="gamefile">
+                    </form>
+                </div>
+            </div>
             <?php
                 $id = "games";
                 include "components/block-renderer.php";

@@ -33,6 +33,28 @@
     color: var(--text-colour);
 }
 
+.inner-block form {
+    all: unset;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.inner-block form label {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    transition: 0.2s;
+}
+
+.inner-block form label:hover {
+    color: #8B728E;
+}
+
+.inner-block form input {
+    display: none;
+}
+
 .inner-block img {
     align-self: self-end;
     object-fit: scale-down;
