@@ -45,11 +45,11 @@
                         {
                             case($gradenUit === "F"):
                                 $gradenIn = $gradenIn *(9/5)+32;
-                                echo "" . $gradenIn . "F";
+                                echo $gradenIn . 'F';
                                 break;
                             case($gradenIn === "C"):
                                 $gradenIn = ($gradenIn - 32) * 5/9; 
-                                echo "" . $gradenIn . "C";
+                                echo $gradenIn . 'C';
                                 break;
                         };
                     }
@@ -78,11 +78,11 @@
                         {
                             case($afstandUit === "Km"):
                                 $afstandIn = $afstandIn * 0.6214;
-                                echo "" . $afstandIn . "Mijl";
+                                echo $afstandIn . 'Mijl';
                                 break;
                             case($afstandUit === "Mi"):
                                 $afstandIn = $afstandIn / 0.6214;
-                                echo "" . $afstandIn . " Km";
+                                echo $afstandIn . 'Km';
                                 break;
                         };
                     } 
@@ -102,7 +102,7 @@
                     else
                     {
                         $omtrek = ($omtrek * 2) * pi();
-                        echo "De omtrek is $omtrek";
+                        echo 'De omtrek is ' . $omtrek;
                     };
                 }
             ?>

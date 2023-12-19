@@ -75,7 +75,7 @@
                                 case($kleur === "blauw"):
                                     $geluk = $geluk + 6;
                                     break;
-                                case($kleur !== "paars" && $kleur !== "rood"  && $kleur !== "blauw"  ):
+                                default:
                                     $geluk = $geluk = 0;
                                     break;
                             };
@@ -91,7 +91,7 @@
                             case($dier ==="cat"):
                                 $geluk = $geluk + 3;
                                 break;
-                            case($dier !=="cavia" && $dier !=="hond" && $dier !=="cat"):
+                            default:
                                 $geluk = $geluk + 1;
                                 break;
                             };
@@ -110,7 +110,7 @@
                                 case($geluk >=31 && $geluk <= 40):
                                     echo"<p>Your next MvM tour will yield a Golden Frying Pan</p>";
                                     break;
-                                case($geluk >=41):
+                                default:
                                     echo"<p>Medic will Über you and make you topscore</p>";
                                     break;
                             };

@@ -61,7 +61,7 @@
                     foreach($distances as $x => $city)
                     {
                         echo "<option value='$x'>$x</option>";
-                    }
+                    };
                 ?>
             </select>
             <label for="end">End location</label>
@@ -70,7 +70,7 @@
                     foreach($distances as $x => $city)
                     {
                         echo "<option value='$x'>$x</option>";
-                    }
+                    };
                 ?>
             </select>
             <button type="submit">Submit</button>
@@ -79,9 +79,8 @@
                 {
                     $start  = filter_input(INPUT_POST, "start");
                     $end    = filter_input(INPUT_POST, "end");
-                    $km = $distances[$start];
-                    $km = $km[$end];
-                    echo "<p>The distance between <b>$start</b> and <b>$end</b> is <b>$km</b> km</p>";
+                    $km = $distances[$start][$end];
+                    echo '<p>The distance between <b>' . $start . '</b> and <b>' . $end . '</b> is <b>' . $km . '</b> km</p>';
                 };
             ?>
         </form>

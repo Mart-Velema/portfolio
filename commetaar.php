@@ -57,7 +57,7 @@
                     {
                         $mailen =  "Alle gebruikers worden niet op de hoogte gebracht";
                     }
-                    echo "<p>Beste <b>$naam</b>,<br><br>Je gaat commentaar plaatsen als <b>$beroep</b> met hetvolgende e-mailadres: <b>$email</b>. Het commentaar is als volgt: <br><br>$commetaar.<br><br>$mailen.</p>";
+                    echo '<p>Beste <b>' .$naam . '</b>,<br><br>Je gaat commentaar plaatsen als <b>' . $beroep . '</b> met hetvolgende e-mailadres: <b>' . $email . '</b>. Het commentaar is als volgt: <br><br>' . $commetaar . '.<br><br>' . $mailen . '.</p>';
                 };
             ?>
         </form>

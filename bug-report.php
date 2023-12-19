@@ -3,7 +3,7 @@
 * Filename      : bug-report.php
 * Assignment    : Bug reporter
 * Created       : 13-12-2023
-* comment   : Bug reporter
+* comment       : Bug reporter
 * Programmer    : Mart Velema
 */
 //set data for database
