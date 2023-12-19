@@ -36,96 +36,96 @@
         <!-- <form method="get" style="grid-column: 1 / 2; width: 100%;">
             
         </form> -->
-        <?php
-            if(empty($_GET))
-            {   //error handling for unset dir
-                echo '<p class="warning">Data for directory is unset! please set this requierd data before continiuing</p>';
-                $_GET['scene'] = NULL;
-            };
-            if($_SERVER['REQUEST_METHOD'] == 'POST')
-            {
-                switch($_POST['submit'])
-                {   //switch to decode what action to preform
-                    case "generate":
-                        //putting all the form data into the session to proccess later on
-                        //decoding options
-                        $option1 = filter_input(INPUT_POST, "option1");
-                        $option1 = !empty($option1) ? filter_input(INPUT_POST, "option1action") . $option1 : NULL;
-                        $option2 = filter_input(INPUT_POST, "option2");
-                        $option2 = !empty($option2) ? filter_input(INPUT_POST, "option2action") . $option2 : NULL;
-                        $option3 = filter_input(INPUT_POST, "option3");
-                        $option3 = !empty($option3) ? filter_input(INPUT_POST, "option3action") . $option3 : NULL;
-                        if($_GET['scene'] == 1)
-                        {   //encoding for single-image scenes
-                            $page = empty($_SESSION['form-data']) ? 0 : count($_SESSION['form-data']);
-                            $_SESSION['form-data'][$page] = 
-                            [
-                                "img" => 
-                                [
-                                    "img"       => str_replace('.png', '', filter_input(INPUT_POST, "img")),
-                                    "talking"   => filter_input(INPUT_POST, "img-talking"),
-                                    "rotate"    => filter_input(INPUT_POST, "img-rotate")
-                                ],
-                                "item"           => str_replace('.png', '', filter_input(INPUT_POST, "item")),
-                                "dialogue"       => filter_input(INPUT_POST, "dialogue"),
-                                "action" =>
-                                [
-                                    "setMarker" => filter_input(INPUT_POST, "setMarker"),
-                                    "option1" => $option1,
-                                    "option2" => $option2,
-                                    "option3" => $option3
-                                ]
-                            ];
-                        }
-                        else
-                        {   //encoidng for double-image scenes
-                            $page = empty($_SESSION['form-data']) ? 0 : count($_SESSION['form-data']);
-                            $_SESSION['form-data'][$page] = 
-                            [
-                                "imL" => 
-                                [
-                                    "img"       => str_replace('.png', '', filter_input(INPUT_POST, "imgL")),
-                                    "talking"   => filter_input(INPUT_POST, "imgL-talking"),
-                                    "rotate"    => filter_input(INPUT_POST, "imgL-rotate")
-                                ],
-                                "imgR" => 
-                                [
-                                    "img"       => str_replace('.png', '', filter_input(INPUT_POST, "imgR")),
-                                    "talking"   => filter_input(INPUT_POST, "imgR-talking"),
-                                    "rotate"    => filter_input(INPUT_POST, "imgR-rotate")
-                                ],
-                                "item"           => str_replace('.png', '', filter_input(INPUT_POST, "item")),
-                                "dialogue"       => filter_input(INPUT_POST, "dialogue"),
-                                "action" =>
-                                [
-                                    "setMarker" => filter_input(INPUT_POST, "setMarker"),
-                                    "option1" => $option1,
-                                    "option2" => $option2,
-                                    "option3" => $option3
-                                ]
-                            ];
-                        };
-                        $_SESSION['form-data'][0]['dir'] = $_GET['dir'];
-                        break;
-                    case "done":
-                        //putting the entire form-data from the session into a .json to download
-                        $json = json_encode($_SESSION['form-data'], JSON_PRETTY_PRINT);
-                        $file = fopen('upload/game.json', 'w');
-                        fwrite($file, $json);
-                        fclose($file);
-                        break;
-                    case "reset":
-                        //reset the session
-                        unset($_SESSION['form-data']);
-                        break;
+            <?php
+                if(empty($_GET))
+                {   //error handling for unset dir
+                    echo '<p class="warning">Data for directory is unset! please set this requierd data before continiuing</p>';
+                    $_GET['scene'] = NULL;
                 };
-            };
-            echo '<form action="floor.php?' . http_build_query($_GET) . '" method="post">';
-            if(array_key_exists('submit', $_POST) && $_POST['submit'] === 'done')
-            {
-                //download link for .json :)
-                echo '<a href="upload/game.json" download>Download your completed game here!</a>';
-            };
+                if($_SERVER['REQUEST_METHOD'] == 'POST')
+                {
+                    switch($_POST['submit'])
+                    {   //switch to decode what action to preform
+                        case "generate":
+                            //putting all the form data into the session to proccess later on
+                            //decoding options
+                            $option1 = filter_input(INPUT_POST, "option1");
+                            $option1 = !empty($option1) ? filter_input(INPUT_POST, "option1action") . $option1 : NULL;
+                            $option2 = filter_input(INPUT_POST, "option2");
+                            $option2 = !empty($option2) ? filter_input(INPUT_POST, "option2action") . $option2 : NULL;
+                            $option3 = filter_input(INPUT_POST, "option3");
+                            $option3 = !empty($option3) ? filter_input(INPUT_POST, "option3action") . $option3 : NULL;
+                            if($_GET['scene'] == 1)
+                            {   //encoding for single-image scenes
+                                $page = empty($_SESSION['form-data']) ? 0 : count($_SESSION['form-data']);
+                                $_SESSION['form-data'][$page] = 
+                                [
+                                    "img" => 
+                                    [
+                                        "img"       => str_replace('.png', '', filter_input(INPUT_POST, "img")),
+                                        "talking"   => filter_input(INPUT_POST, "img-talking"),
+                                        "rotate"    => filter_input(INPUT_POST, "img-rotate")
+                                    ],
+                                    "item"           => str_replace('.png', '', filter_input(INPUT_POST, "item")),
+                                    "dialogue"       => filter_input(INPUT_POST, "dialogue"),
+                                    "action" =>
+                                    [
+                                        "setMarker" => filter_input(INPUT_POST, "setMarker"),
+                                        "option1" => $option1,
+                                        "option2" => $option2,
+                                        "option3" => $option3
+                                    ]
+                                ];
+                            }
+                            else
+                            {   //encoidng for double-image scenes
+                                $page = empty($_SESSION['form-data']) ? 0 : count($_SESSION['form-data']);
+                                $_SESSION['form-data'][$page] = 
+                                [
+                                    "imL" => 
+                                    [
+                                        "img"       => str_replace('.png', '', filter_input(INPUT_POST, "imgL")),
+                                        "talking"   => filter_input(INPUT_POST, "imgL-talking"),
+                                        "rotate"    => filter_input(INPUT_POST, "imgL-rotate")
+                                    ],
+                                    "imgR" => 
+                                    [
+                                        "img"       => str_replace('.png', '', filter_input(INPUT_POST, "imgR")),
+                                        "talking"   => filter_input(INPUT_POST, "imgR-talking"),
+                                        "rotate"    => filter_input(INPUT_POST, "imgR-rotate")
+                                    ],
+                                    "item"           => str_replace('.png', '', filter_input(INPUT_POST, "item")),
+                                    "dialogue"       => filter_input(INPUT_POST, "dialogue"),
+                                    "action" =>
+                                    [
+                                        "setMarker" => filter_input(INPUT_POST, "setMarker"),
+                                        "option1" => $option1,
+                                        "option2" => $option2,
+                                        "option3" => $option3
+                                    ]
+                                ];
+                            };
+                            $_SESSION['form-data'][0]['dir'] = $_GET['dir'];
+                            break;
+                        case "done":
+                            //putting the entire form-data from the session into a .json to download
+                            $json = json_encode($_SESSION['form-data'], JSON_PRETTY_PRINT);
+                            $file = fopen('upload/game.json', 'w');
+                            fwrite($file, $json);
+                            fclose($file);
+                            break;
+                        case "reset":
+                            //reset the session
+                            unset($_SESSION['form-data']);
+                            break;
+                    };
+                };
+                echo '<form action="floor.php?' . http_build_query($_GET) . '" method="post">';
+                if(array_key_exists('submit', $_POST) && $_POST['submit'] === 'done')
+                {
+                    //download link for .json :)
+                    echo '<a href="upload/game.json" download>Download your completed game here!</a>';
+                };
                 switch($_GET['scene'])
                 {
                     case 1:
