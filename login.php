@@ -8,12 +8,10 @@
 */
 if(!isset($_GET['newaccount']))
 {
-    $_GET['newaccount'] = TRUE;
+    $_GET['newaccount'] = FALSE;
 };
-$servername = 'mysql';
+include 'components/sql-login.php';
 $dbname = 'accounts';
-$username = 'root';
-$password = 'qwerty';
 
 $warning = '';
 try
@@ -28,7 +26,7 @@ catch(Exception $ex)
 };
 $stmt = $_GET['newaccount'] ? 
 $dbHandler->prepare('INSERT INTO account (accountname, email, `password`, pfp) VALUES(:name, :email, :passwd, :pfp)') : 
-$dbHandler->prepare('');
+$dbHandler->prepare('SELECT * FROM account WHERE accountname = :name && `password` = :passwd');
 if($_SERVER["REQUEST_METHOD"] == "POST")
 {
     if(isset($_GET['newaccount']))
@@ -107,7 +105,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         else
         {
             $warning = 'One or more fields is not filled in correctly';
-        }
+        };
+    }
+    else
+    {
+
     };
 };
 ?>
@@ -145,8 +147,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             else
             {
                 echo
-                '<label for="email">email</label>' .
-                '<input type="email" name="email" id="email" placeholder="example@email.com">' .
+                '<label for="name">Name</label>' .
+                '<input type="text" name="name" id="name" placeholder="name">' .
                 '<label for="password">password</label>' .
                 '<input type="password" name="password" id="password">';
                 $_GET['newaccount'] = TRUE;

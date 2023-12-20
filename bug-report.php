@@ -7,10 +7,8 @@
 * Programmer    : Mart Velema
 */
 //set data for database
-$servername = 'mysql';
+include 'components/sql-login.php';
 $dbname = 'bugReporter';
-$username = 'root';
-$password = 'qwerty';
 $submit='';
 try
 {
@@ -48,6 +46,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         $stmt->bindParam(':comment', $comment);
         //run the SQL querry
         $stmt->execute();
+        $submit = TRUE;
     }
     else
     {
@@ -58,6 +57,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 $stmt = $dbHandler->query('SELECT * FROM bugReports');
 //convert the stmt variable into an associative array into the bugs variable
 $bugs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+if(isset($_GET))
+{
+    $stmt = $dbHandler->query('SELECT * FROM bugReports WHERE id=' . $_GET['bug'] . '');
+    $currentBugs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    foreach($currentBugs as $entry => $value)
+    {
+        ${$entry} = $value;
+    };
+};
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,38 +78,38 @@ $bugs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
     <?php
-        include "components/header.php";
-        // echo $log;
+        // include "components/header.php";
     ?>
     <main>
         <form action="#" method="post">
             <h3>
                 <?php
-                    $title = isset($_GET['bug']) ? 'Update bug with id ' . $_GET['bug'] . '' : 'Submit new bug';
+                    $title = isset($_GET['bug']) ? 'Update bug with id #' . $_GET['bug'] . '' : 'Submit new bug';
                     echo $title;
                 ?>
             </h3>
-            <label for="product">Product</label>
-            <select name="product" id="product">
-                <option value="SCUFF">SCUFF</option>
-                <option value="FLOOR">FLOOR</option>
-                <option value="other" selected>OTHER</option>
-            </select>
-            <label for="version">Version</label>
-            <input type="text" name="version" id="version">
-            <label for="browser">Browser</label>
-            <input type="text" name="browser" id="browser">
-            <label for="OS">Operating system/ OS</label>
-            <input type="text" name="OS" id="OS">
-            <label for="frequency">Frequency</label>
-            <select name="frequency" id="frequency">
-                <option value="once" selected>Once/ Random</option>
-                <option value="consistent">Consistent</option>
-            </select>
-            <label for="comment">comment</label>
-            <textarea name="comment" id="comment" maxlength="2048" placeholder="Describe issue in more detail"></textarea>
-            <button type="submit">Submit bug</button>
             <?php
+                echo
+                '<label for="product">Product</label>' .
+                '<select name="product" id="product" >' .
+                    '<option value="SCUFF">SCUFF</option>' .
+                    '<option value="FLOOR">FLOOR</option>' .
+                    '<option value="other" selected>OTHER</option>' .
+                '</select>' .
+                '<label for="version">Version</label>' .
+                '<input type="text" name="version" id="version" placeholder="' . ${$entry}['version'] . '">' .
+                '<label for="browser">Browser</label>' .
+                '<input type="text" name="browser" id="browser" placeholder="' . ${$entry}['browser'] . '">' .
+                '<label for="OS">Operating system/ OS</label>' .
+                '<input type="text" name="OS" id="OS" placeholder=' . ${$entry}['OS'] . '>' .
+                '<label for="frequency">Frequency</label>' .
+                '<select name="frequency" id="frequency">' .
+                    '<option value="once" selected>Once/ Random</option>' .
+                    '<option value="consistent">Consistent</option>' .
+                '</select>' .
+                '<label for="comment">comment</label>' .
+                '<textarea name="comment" id="comment" maxlength="2048" placeholder="Describe issue in more detail">' . ${$entry}['comment'] . '</textarea>' .
+                '<button type="submit">Submit bug</button>';
                 //error handling in case submitting failed
                 if($_SERVER['REQUEST_METHOD'] == 'POST')
                 {

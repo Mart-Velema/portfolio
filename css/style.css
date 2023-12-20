@@ -1,8 +1,8 @@
-@import "header.css";
-@import "footer.css";
-@import "main.css";
-@import "block.css";
-@import "game.css";
+@import "header.css";   /* Importing css for the header*/
+@import "footer.css";   /* Importing css for the footer*/
+@import "main.css";     /* Importing css for the main page*/
+@import "block.css";    /* Importing css for the block-renderer*/
+@import "game.css";     /* Importing css for games*/
 
 @font-face {
     font-family: gr2-font;

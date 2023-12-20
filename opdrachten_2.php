@@ -24,7 +24,7 @@
         <form action="#" method="post">
             <label for="cijfer">Cijfer</label>
             <input type="text" name="cijfer" id="cijfer">
-            <input type="submit">
+            <button type="submit">Submit</button>
             <?php
                 if($_SERVER["REQUEST_METHOD"] == "POST")
                 {
