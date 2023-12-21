@@ -57,14 +57,20 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 $stmt = $dbHandler->query('SELECT * FROM bugReports');
 //convert the stmt variable into an associative array into the bugs variable
 $bugs = $stmt->fetchAll(PDO::FETCH_ASSOC);
-if(isset($_GET))
+if(isset($_GET['bug']))
 {
     $stmt = $dbHandler->query('SELECT * FROM bugReports WHERE id=' . $_GET['bug'] . '');
     $currentBugs = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    foreach($currentBugs as $entry => $value)
-    {
-        ${$entry} = $value;
-    };
+    $content = $currentBugs[0];
+}
+else
+{
+    $content = [
+        "version"   => "Version",
+        "browser"   => "Browser",
+        "OS"        => "OS",
+        "comment"   => "Comment"
+    ];
 };
 ?>
 <!DOCTYPE html>
@@ -78,7 +84,7 @@ if(isset($_GET))
 </head>
 <body>
     <?php
-        // include "components/header.php";
+        include "components/header.php";
     ?>
     <main>
         <form action="#" method="post">
@@ -97,18 +103,18 @@ if(isset($_GET))
                     '<option value="other" selected>OTHER</option>' .
                 '</select>' .
                 '<label for="version">Version</label>' .
-                '<input type="text" name="version" id="version" placeholder="' . ${$entry}['version'] . '">' .
+                '<input type="text" name="version" id="version" placeholder="' . $content['version'] . '">' .
                 '<label for="browser">Browser</label>' .
-                '<input type="text" name="browser" id="browser" placeholder="' . ${$entry}['browser'] . '">' .
+                '<input type="text" name="browser" id="browser" placeholder="' . $content['browser'] . '">' .
                 '<label for="OS">Operating system/ OS</label>' .
-                '<input type="text" name="OS" id="OS" placeholder=' . ${$entry}['OS'] . '>' .
+                '<input type="text" name="OS" id="OS" placeholder=' . $content['OS'] . '>' .
                 '<label for="frequency">Frequency</label>' .
                 '<select name="frequency" id="frequency">' .
                     '<option value="once" selected>Once/ Random</option>' .
                     '<option value="consistent">Consistent</option>' .
                 '</select>' .
                 '<label for="comment">comment</label>' .
-                '<textarea name="comment" id="comment" maxlength="2048" placeholder="Describe issue in more detail">' . ${$entry}['comment'] . '</textarea>' .
+                '<textarea name="comment" id="comment" maxlength="2048" placeholder="Describe issue in more detail">' . $content['comment'] . '</textarea>' .
                 '<button type="submit">Submit bug</button>';
                 //error handling in case submitting failed
                 if($_SERVER['REQUEST_METHOD'] == 'POST')
