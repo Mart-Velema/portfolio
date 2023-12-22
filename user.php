@@ -70,6 +70,21 @@ $user['level'] = 1;
         include "components/header.php"
     ?>
     <main>
+        <?php
+            if(($_GET['edit'] ?? FALSE))
+            {
+                echo
+                '<form action="?' . http_build_query($_GET) . '" method="post" class="settings">' .
+                    '<label for="primary">Primary colour</label>' .
+                    '<input type="color" name="primary" id="primary">' .
+                    '<label for="secondary">Secondary colour</label>' .
+                    '<input type="color" name="secondary" id="secondary">' .
+                    '<label for="text">Text colour</label>' .
+                    '<input type="color" name="text" id="text">' .
+                    '<button type="submit">Check it out!</button>' .
+                '</form>';
+            };
+        ?>
         <div class="account">
             <div class="banner">
                 <?php
@@ -85,7 +100,15 @@ $user['level'] = 1;
                 <div class="about">
                     <?php
                         echo 
-                        '<p class="level">Level: #' . $user['level'] . '</p>';
+                        '<p class="level">Level: #' . $user['level'] . '</p>' . 
+                        '<p class="level">This is where your bages will be displayed for everyone to envy about</p>';
+                        if(array_key_exists('user', $_SESSION))
+                        {
+                            if($_SESSION['user']['accountname'] == $user['accountname'])
+                            {
+                                echo '<a href="user.php?user=' . $user['accountname'] . '&edit=1" class="level" style="opacity: 0.9;">Edit profile</a>';
+                            };
+                        };
                     ?>
                 </div>
             </div>

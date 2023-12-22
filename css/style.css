@@ -42,3 +42,9 @@ body {
     background-color: orange;
     z-index: 1000;
 }
+
+.settings {
+    grid-column: 1 / 2; 
+    width: 100%; 
+    margin-bottom: 10px;
+}

@@ -70,21 +70,6 @@ main .radio {
     justify-content: space-between;
 }
 
-main .succes {
-    justify-self: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 50%;
-    grid-column: 2 / 3;
-    padding: 10px;
-    background-color: var(--primary-colour);
-    border-radius: 5px;
-    height: min-content;
-    color: var(--text-colour);
-}
-
 main table, th, td {
     border: 1px solid black;
     background-color: var(--secondary-colour);
@@ -99,6 +84,7 @@ main table {
 
 .account {
     display: flex;
+    row-gap: 50px;
     justify-self: center;
     flex-direction: column;
     background-color: var(--account-primary);
@@ -106,33 +92,43 @@ main table {
     grid-column: 2 / 3;
 }
 
+.account .list {
+    display: flex;
+    background-color: var(--account-secondary);
+    min-height: 50%;
+}
+
 .account .banner {
     display: flex;
-    height: 200px;
+    height: 220px;
     gap: 30px;
 }
 
 .account .banner .bio{
-    width: 50%;
-    margin-top: 10px;
     display: flex;
     flex-direction: column;
     align-items: start;
+    width: 50%;
+    gap: 20px;
+    margin-top: 10px;
     color: var(--account-text);
 }
 
 .account .banner .about {
+    display: flex;
+    flex-direction: column;
     margin-right: 20px;
     margin-top: 10px;
     width: 25%;
+    gap: 20px;
 }
 
 .account .banner .about .level {
     width: 100%;
     color: var(--account-text);
     background-color: var(--account-secondary);
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     border-radius: 5px;
 }
 

@@ -22,7 +22,7 @@ include 'components/sql-login.php';
         include "components/header.php";
     ?>
     <main>
-        <form method="get" style="grid-column: 1 / 2; width: 100%; margin-bottom: 10px;" >
+        <form method="get" class="settings">
             <h3>settings</h3>
             <label for="scene">Select scene mode</label>
             <select name="scene" id="scene">
