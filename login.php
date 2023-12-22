@@ -24,12 +24,19 @@ catch(Exception $ex)
     echo $ex;
     $warning = "Unable to connect to database";
 };
-$stmt = $_GET['newaccount'] ? 
-$dbHandler->prepare('INSERT INTO account (accountname, email, `password`, pfp) VALUES(:name, :email, :passwd, :pfp)') : 
-$dbHandler->prepare('SELECT * FROM account WHERE accountname = :name && `password` = :passwd');
+try
+{
+    $stmt = $_GET['newaccount'] ? 
+    $dbHandler->prepare('INSERT INTO account (accountname, email, `password`, pfp) VALUES(:name, :email, :passwd, :pfp)') : 
+    $dbHandler->prepare('SELECT * FROM account WHERE accountname = :name');
+}
+catch (PDOException $e)
+{
+    echo $e->getMessage();
+};
 if($_SERVER["REQUEST_METHOD"] == "POST")
 {
-    if(isset($_GET['newaccount']))
+    if($_GET['newaccount'])
     { 
         $name   = filter_input(INPUT_POST, 'name');
         $email  = filter_input(INPUT_POST, 'email');
@@ -109,7 +116,30 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     }
     else
     {
-
+        $name   = filter_input(INPUT_POST, "name");
+        $passwd = filter_input(INPUT_POST, "password");
+        if(isset($name, $passwd))
+        {
+            $stmt->bindParam(':name', $name);
+            $stmt->execute();
+            $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $user = $user[0];
+            if(password_verify($passwd, $user['password']))
+            {
+                unset($user['password']);
+                $_SESSION['user'] = $user;
+                $warning = 'Logged in succesfully! Redirecting in 3 seconds...';
+                header('refresh:3 url=index.php');
+            }
+            else
+            {
+                $warning = 'Invalid password!';
+            };
+        }
+        else
+        {
+            $warning = 'One or more fields is not filled in correctly';
+        };
     };
 };
 ?>

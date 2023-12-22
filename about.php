@@ -6,6 +6,7 @@
 * Description   : about page for portfolio
 * Programmer    : Mart Velema
 */
+include 'components/sql-login.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

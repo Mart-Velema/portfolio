@@ -5,6 +5,7 @@
 * Description   : homepage for games
 * Programmer    : Mart Velema
 */
+include 'components/sql-login.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

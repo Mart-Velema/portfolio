@@ -6,6 +6,7 @@ $logTime = microtime(true);
 * Description   : PHP page for enabling SCUFF to work
 * Programmer    : Mart Velema
 */
+include 'components/sql-login.php';
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
     $action = filter_input(INPUT_POST, 'give');
