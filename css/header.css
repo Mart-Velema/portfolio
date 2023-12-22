@@ -47,6 +47,7 @@ header .login{
     display: flex;
     align-items: center;
     grid-column: 3 / 4;
+    gap: 10px;
 }
 
 header .login a{

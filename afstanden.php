@@ -6,6 +6,7 @@
 * Description   : determine distances between two cities with an array
 * Programmer    : Mart Velema
 */
+include 'components/sql-login.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

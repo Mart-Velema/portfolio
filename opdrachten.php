@@ -6,6 +6,7 @@
 * Description   : assignments for webdev
 * Programmer    : Mart Velema
 */
+include 'components/sql-login.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

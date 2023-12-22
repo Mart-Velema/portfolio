@@ -1,12 +1,12 @@
 <?php
-    $logTime = microtime(true); //start time logging
-    /*
-    * Filename      : floor.php
-    * Created       : 28-11-2023
-    * Description   : FLOOR level editor for SCUFF
-    * Programmer    : Mart Velema
-    */
-    session_start();
+$logTime = microtime(true); //start time logging
+/*
+* Filename      : floor.php
+* Created       : 28-11-2023
+* Description   : FLOOR level editor for SCUFF
+* Programmer    : Mart Velema
+*/
+include 'components/sql-login.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

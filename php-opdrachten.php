@@ -5,6 +5,7 @@
 * Description   : homepage for all php assignments
 * Programmer    : Mart Velema
 */
+include 'components/sql-login.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

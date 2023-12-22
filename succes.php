@@ -5,6 +5,7 @@
 * Description   : succes page & portal to game page
 * Programmer    : Mart Velema
 */
+include 'components/sql-login.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

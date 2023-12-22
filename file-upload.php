@@ -1,3 +1,13 @@
+<?php
+/*
+* Filename      : file-upload.php
+* Assignment    : File upload
+* Created       : 6-12-2023
+* Description   : File upload page
+* Programmer    : Mart Velema
+*/
+include 'components/sql-login.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
