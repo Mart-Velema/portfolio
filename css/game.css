@@ -64,15 +64,6 @@
     z-index: 1;
 }
 
-.game-center a, .game-center a:visited {
-    background-color: whitesmoke;
-    border: 1px solid black;
-    border-radius: 3px;
-    padding: 2px;
-    transition: 0.2s;
-    color: black;
-}
-
 .game-button {
     display: flex;
     justify-content: space-around;
@@ -122,5 +113,5 @@
 }
 
 .dev img:hover{
-    scale: 2;
+    scale: 1.2;
 }

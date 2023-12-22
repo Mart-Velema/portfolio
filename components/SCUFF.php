@@ -175,16 +175,16 @@
                     if(empty($data[$_GET['page']]))
                     {
                         $_GET['page'] = $_GET['page'] - 2;
-                        $pageRefBack = '<a href="?' . http_build_query($_GET) . '">&larr;Previous</a>';
-                        $pageRef = isset($jump) ? '<a href="?' . http_build_query($jump) . '">' . $next . '</a>' : '<a href="games.php">Homepage</a>';
+                        $pageRefBack = '<a href="?' . http_build_query($_GET) . '"><button>&larr;Previous</button></a>';
+                        $pageRef = isset($jump) ? '<a href="?' . http_build_query($jump) . '"><button>' . $next . '</button></a>' : '<a href="games.php"><button>Homepage</button></a>';
                     }
                     else
                     {   
                         //Make both the previous and next page button if next json entry is not empty
-                        $pageRef = isset($jump) ? '<a href="?' . http_build_query($jump) . '">' . $next . '</a>' : '<a href="?' . http_build_query($_GET) . '">' . $next . '&rarr;</a>';   //If jump is set, make button to go to jump page, if not, use default next button
+                        $pageRef = isset($jump) ? '<a href="?' . http_build_query($jump) . '">' . $next . '</a>' : '<a href="?' . http_build_query($_GET) . '"><button>' . $next . '&rarr;</button></a>';   //If jump is set, make button to go to jump page, if not, use default next button
                         empty($options) ? '' : $pageRef = '';
                         $_GET['page'] = $_GET['page'] - 2;
-                        $pageRefBack = isset($data[$_GET['page']]) ? '<a href="?' . http_build_query($_GET) . '">&larr;Previous</a>' : '';  //Setting back button if previous page exists
+                        $pageRefBack = isset($data[$_GET['page']]) ? '<a href="?' . http_build_query($_GET) . '"><button>&larr;Previous</button></a>' : '';  //Setting back button if previous page exists
                     };
                     //going from arrays and variables to actual HTML
                     $_GET['page'] = $_GET['page'] + 2;

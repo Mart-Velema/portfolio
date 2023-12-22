@@ -22,9 +22,9 @@
     <main>
         <div class="content">
             <div class="block" id="custom-game">
-                <h2>Custom game</h2>
+                <label for="gamefile"><h2>Custom game</h2></label>
                 <div class="inner-block">
-                    <form action="" method="post">
+                    <form action="game.php" method="post" enctype="multipart/form-data" id="gameform">
                         <label for="gamefile">
                             Have a custom game made by you or by a friend? Well you're in luck! Drop the file in here to play that awesome custom game<br>
                             Click to upload game file!
@@ -42,5 +42,11 @@
     <?php
         include "components/footer.php";
     ?>
+    <script>
+        document.getElementById('gamefile').onchange = function()
+        {
+            document.getElementById('gameform').submit();   
+        };
+    </script>
 </body>
 </html>
