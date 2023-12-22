@@ -15,6 +15,17 @@
         <li><a href="projects.php">Projecten</a></li>
     </ul>
     <div class="login">
-        <a class="login" href="login.php">Login</a>
+        <?php
+            if(isset($_SESSION['user']))
+            {
+                echo 
+                '<img src="upload/pfp/' . $_SESSION['user']['pfp'] . '" alt="' . $_SESSION['user']['pfp'] . '">' . 
+                '<a href="login.php">' . $_SESSION['user']['accountname'] . '</a>';
+            }
+            else
+            {
+                echo '<a href="login.php">login</a>';
+            };
+        ?>
     </div>
 </header>

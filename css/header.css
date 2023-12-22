@@ -44,7 +44,11 @@ header li a:hover {
 }
 
 header .login{
-    color: var(--text-colour);
+    display: flex;
+    align-items: center;
     grid-column: 3 / 4;
-    justify-self: center;
+}
+
+header .login a{
+    color: var(--text-colour);
 }
