@@ -12,7 +12,6 @@ if(!isset($_GET['newaccount']))
 };
 include 'components/sql-login.php';
 $dbname = 'accounts';
-
 $warning = '';
 try
 {
@@ -22,17 +21,17 @@ try
 catch(Exception $ex)
 {
     echo $ex;
-    $warning = "Unable to connect to database";
+    $warning .= "Unable to connect to database";
 };
 try
 {
     $stmt = $_GET['newaccount'] ? 
-    $dbHandler->prepare('INSERT INTO account (accountname, email, `password`, pfp) VALUES(:name, :email, :passwd, :pfp)') : 
+    $dbHandler->prepare('INSERT INTO account (accountname, email, `password`, pfp, bio, `level`, color, `secondary`, `text`) VALUES(:name, :email, :passwd, :pfp, :bio, :level, :color, :secondary, :text)') : 
     $dbHandler->prepare('SELECT * FROM account WHERE accountname = :name');
 }
-catch (PDOException $e)
+catch (PDOException $ex)
 {
-    echo $e->getMessage();
+    echo $ex->getMessage();
 };
 if($_SERVER["REQUEST_METHOD"] == "POST")
 {
@@ -54,13 +53,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         {
             if($check == 0)
             {
-                $stmt->bindParam(':name', $name);
-                $stmt->bindParam(':email', $email);
-                $stmt->bindParam(':passwd', $passwd);
-                $stmt->bindParam(':pfp', $pfp);
-                $stmt->execute();
+                try
+                {
+                    $stmt->bindParam(':name', $name);
+                    $stmt->bindParam(':email', $email);
+                    $stmt->bindParam(':passwd', $passwd);
+                    $stmt->bindParam(':pfp', $pfp);
+                    $stmt->bindValue(':bio', 'Hello, World!');
+                    $stmt->bindValue(':level', 1);
+                    $stmt->bindValue(':color', 'var(--primary-colour)');
+                    $stmt->bindValue(':secondary', 'var(--secondary-colour)');
+                    $stmt->bindValue(':text', 'var(--text-colour)');
+                    $stmt->execute();
+                    $warning .= 'Succesfully made account!';
+                    header('refresh:3 url=login.php?newaccount=0');
+                }
+                catch(PDOException $ex)
+                {
+                    echo $ex->getMessage();
+                };
                 //upload pfp
-                $warning = 'Succesfully made account!';
                 if($pfp !== 'dev/missing_textures.png')
                 {
                     if($_FILES["pfp"]["error"] == 0)
@@ -80,38 +92,38 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                                     }
                                     else
                                     {
-                                        $warning = "Failed to upload file, please try again or contact administrator";
+                                        $warning .= "Failed to upload file, please try again or contact administrator";
                                     };
                                 }
                                 else
                                 {
-                                    $warning = "Filename is already in use";
+                                    $warning .= "Filename is already in use";
                                 };
                             }
                             else
                             {
-                                $warning = "File isn't a png, jpeg, jpg or gif";
+                                $warning .= "File isn't a png, jpeg, jpg or gif";
                             };
                         }
                         else
                         {
-                            $warning = "File needs to be below 10mb";
+                            $warning .= "File needs to be below 10mb";
                         };
                     }
                     else
                     {
-                        $warning = "Something went wrong...";
+                        $warning .= "Something went wrong...";
                     };
                 };
             }
             else
             {
-                $warning = 'Username is already in use';
+                $warning .= 'Username is already in use';
             };
         }
         else
         {
-            $warning = 'One or more fields is not filled in correctly';
+            $warning .= 'One or more fields is not filled in correctly';
         };
     }
     else
@@ -123,21 +135,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             $stmt->bindParam(':name', $name);
             $stmt->execute();
             $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            $user = $user[0];
-            if(password_verify($passwd, $user['password']))
+            if(!empty($user))
             {
-                $_SESSION['user'] = $user;
-                $warning = 'Logged in succesfully! Redirecting in 3 seconds...';
-                header('refresh:3 url=user.php?user=' . $user['accountname'] . '');
+                $user = $user[0];
+                if(password_verify($passwd, $user['password']))
+                {
+                    $_SESSION['user'] = $user;
+                    $warning = 'Logged in succesfully! Redirecting in 3 seconds...';
+                    header('refresh:3 url=user.php?user=' . $user['accountname'] . '');
+                }
+                else
+                {
+                    $warning .= 'Invalid password!';
+                };
             }
             else
             {
-                $warning = 'Invalid password!';
+                $warning .= 'User does not exist!';
             };
         }
         else
         {
-            $warning = 'One or more fields is not filled in correctly';
+            $warning .= 'One or more fields is not filled in correctly';
         };
     };
 };
@@ -153,7 +172,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 </head>
 <body>
     <?php
-        include "components/header.php";
+        // include "components/header.php";
     ?>
     <main>
         <form action="#" method="post" enctype="multipart/form-data">

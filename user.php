@@ -47,18 +47,20 @@ if(empty($user))
 else
 {
     $user = $user[0];
-    $bios = [
-        'This user exists',
-        'This person definetly uses the internet',
-        'This is the average SCUFF enjoyer',
-        'This is the average Source Enthusiast',
-        'This is the average Unreal consumer'
-    ];
-    $user['bio'] = $bios[array_rand($bios)];
-    $user['level'] = 1;
-    $user['primary'] = 'red';
-    $user['secondary'] = 'green';
-    $user['text'] = 'blue';
+    if($user['level'] == 0)
+    {
+        $user['bio'] = 'Hello, World!';
+        $user['primary'] = 'red';
+        $user['secondary'] = 'green';
+        $user['text'] = 'blue';
+    };
+};
+if($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+    $user['primary']    = filter_input(INPUT_POST, 'primary');
+    $user['secondary']  = filter_input(INPUT_POST, 'secondary');
+    $user['text']       = filter_input(INPUT_POST, 'text');
+    $user['bio']        = filter_input(INPUT_POST, 'bio');
 };
 ?>
 <!DOCTYPE html>
@@ -73,7 +75,7 @@ else
         * {
         <?php
             echo
-            '--account-primary: ' . $user['primary'] . ';' .
+            '--account-primary: ' . $user['color'] . ';' .
             '--account-secondary:' . $user['secondary'] . ';' .
             '--account-text: ' . $user['text'] . ';';
         ?>
@@ -82,7 +84,7 @@ else
 </head>
 <body>
     <?php
-        include "components/header.php"
+        include "components/header.php";
     ?>
     <main>
         <?php
@@ -98,6 +100,8 @@ else
                         '<input type="color" name="secondary" id="secondary">' .
                         '<label for="text">Text colour</label>' .
                         '<input type="color" name="text" id="text">' .
+                        '<label for="bio">Biopgrahpy</label>' .
+                        '<textarea name="bio" maxlenght="512">' . $user['bio'] . '</textarea>' .
                         '<button type="submit">Check it out!</button>' .
                     '</form>';
                 }
@@ -123,7 +127,7 @@ else
                     <?php
                         echo 
                         '<p class="level">Level: #' . $user['level'] . '</p>' . 
-                        '<p class="level">This is where your bages will be displayed for everyone to envy about</p>';
+                        '<p class="level">This is where your bages will be displayed</p>';
                         if(($_SESSION['user']['accountname'] ?? NULL) == $user['accountname'])
                         {
                             echo '<a href="user.php?user=' . $user['accountname'] . '&edit=1" class="level" style="opacity: 0.9;">Edit profile</a>';
@@ -137,7 +141,7 @@ else
         </div>
     </main>
     <?php
-        include "components/footer.php"
+        include "components/footer.php";
     ?>
 </body>
 </html>
