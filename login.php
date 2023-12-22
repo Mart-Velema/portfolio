@@ -126,10 +126,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             $user = $user[0];
             if(password_verify($passwd, $user['password']))
             {
-                unset($user['password']);
                 $_SESSION['user'] = $user;
                 $warning = 'Logged in succesfully! Redirecting in 3 seconds...';
-                header('refresh:3 url=index.php');
+                header('refresh:3 url=user.php?user=' . $user['accountname'] . '');
             }
             else
             {

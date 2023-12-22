@@ -8,21 +8,40 @@
 */
 include "components/sql-login.php";
 $dbname = 'accounts';
+$log = '';
 try
 {
     $dbHandler = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $log = 'succesfully connected to database';
+    $log .= 'succesfully connected to database.';
 }
 catch(Exception $Ex)
 {
     echo $Ex;
-    $log = 'unable to connect to database';
+    $log .= 'unable to connect to database.';
 };
 $stmt = $dbHandler->prepare("SELECT * FROM account WHERE accountname=:name");
-$stmt->bindParam(':name', $_GET['user']);
-$stmt->execute();
-$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+try
+{
+    $stmt->bindParam(':name', $_GET['user']);
+    $stmt->execute();
+    $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $log .= 'succesfully fetched user data.';
+}
+catch(Exception $Ex)
+{
+    echo $Ex;
+    $log .= 'Unable to find username.';
+};
 $user = $user[0];
+$bios = [
+    'This user exists',
+    'This person definetly uses the internet',
+    'This is the average SCUFF enjoyer',
+    'This is the average Source Enthusiast',
+    'This is the average Unreal consumer'
+];
+$user['bio'] = $bios[array_rand($bios)];
+$user['level'] = 1;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,11 +54,13 @@ $user = $user[0];
     <style>
         * {
         <?php
-            $accountBackground  = 'black';
-            $accountPfp         = 'purple';
+            $accountPrimary     = 'red';
+            $accountSecondary   = 'green';
+            $accountText        = 'blue';
             echo
-            '--account-background: black;' .
-            '--account-pfp: purple;';
+            '--account-primary: ' . $accountPrimary . ';' .
+            '--account-secondary:' . $accountSecondary . ';' .
+            '--account-text: ' . $accountText . ';';
         ?>
         }
     </style>
@@ -52,8 +73,21 @@ $user = $user[0];
         <div class="account">
             <div class="banner">
                 <?php
-                    echo '<img src="upload/pfp/' . $user['pfp'] . '" alt="' . $user['pfp'] . '">'
+                    echo '<img src="upload/pfp/' . $user['pfp'] . '" alt="' . $user['pfp'] . '">';
                 ?>
+                <div class="bio">
+                    <?php
+                        echo
+                        '<h2>' . $user['accountname'] . '</h2>' .
+                        '<p>' . $user['bio'] . '</p>';
+                    ?>
+                </div>
+                <div class="about">
+                    <?php
+                        echo 
+                        '<p class="level">Level: #' . $user['level'] . '</p>';
+                    ?>
+                </div>
             </div>
             <div class="list">
 
