@@ -50,6 +50,12 @@ header .login{
     gap: 10px;
 }
 
+header .login img {
+    width: 40px;
+    height: 40px;
+    object-fit: fill;
+}
+
 header .login a{
     color: var(--text-colour);
 }

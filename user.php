@@ -9,6 +9,7 @@
 include "components/sql-login.php";
 $dbname = 'accounts';
 $log = '';
+$warning = '';
 try
 {
     $dbHandler = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -39,7 +40,7 @@ if(empty($user))
         'pfp'           => 'dev/missing_textures.png',
         'bio'           => 'This user does not exists in the database. Would you perhaps like to <a href="login.php">create an account?</a>',
         'level'         => NAN,
-        'primary'       => 'var(--primary-colour)',
+        'color'         => 'var(--primary-colour)',
         'secondary'     => 'var(--secondary-colour)',
         'text'          => 'var(--text-colour)'
     ];
@@ -49,18 +50,55 @@ else
     $user = $user[0];
     if($user['level'] == 0)
     {
-        $user['bio'] = 'Hello, World!';
-        $user['primary'] = 'red';
-        $user['secondary'] = 'green';
-        $user['text'] = 'blue';
+        $user['bio']        = 'Hello, World!';
+        $user['color']      = 'red';
+        $user['secondary']  = 'green';
+        $user['text']       = 'blue';
     };
 };
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
-    $user['primary']    = filter_input(INPUT_POST, 'primary');
+    $user['color']      = filter_input(INPUT_POST, 'primary');
     $user['secondary']  = filter_input(INPUT_POST, 'secondary');
     $user['text']       = filter_input(INPUT_POST, 'text');
     $user['bio']        = filter_input(INPUT_POST, 'bio');
+    $passwd             = filter_input(INPUT_POST, 'password');
+    if($_POST['submit'] == 'done')
+    {
+        if(!empty($passwd))
+        {
+            if(password_verify($passwd, $_SESSION['user']['password']))
+            {
+                try
+                {
+                    $stmt = $dbHandler->prepare("UPDATE account SET bio=:bio, color=:color, secondary=:secondary, text=:text WHERE accountname=:name");
+                    $stmt->bindParam(':name', $_SESSION['user']['accountname']);
+                    $stmt->bindParam(':bio', $user['bio']);
+                    $stmt->bindParam(':color', $user['color']);
+                    $stmt->bindParam(':secondary', $user['secondary']);
+                    $stmt->bindParam(':text', $user['text']);
+                    $stmt->execute();
+                    $log .= 'sucesfully updated entry';
+                    $warning = 'Succesfully saved profile!';
+                }
+                catch(Exception $Ex)
+                {
+                    echo $Ex;
+                    $log .= 'Unable to update entry';
+                };
+            }
+            else
+            {
+                $log .='invalid password';
+                $warning = 'Invalid password';
+            };
+        }
+        else
+        {
+            $log .='unset password';
+            $warning = 'Unset password!';
+        };
+    };
 };
 ?>
 <!DOCTYPE html>
@@ -95,14 +133,18 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                     echo
                     '<form action="?' . http_build_query($_GET) . '" method="post" class="settings">' .
                         '<label for="primary">Primary colour</label>' .
-                        '<input type="color" name="primary" id="primary">' .
+                        '<input type="color" name="primary" id="primary" value="' . $user['color'] . '">' .
                         '<label for="secondary">Secondary colour</label>' .
-                        '<input type="color" name="secondary" id="secondary">' .
+                        '<input type="color" name="secondary" id="secondary" value="' . $user['secondary'] . '">' .
                         '<label for="text">Text colour</label>' .
-                        '<input type="color" name="text" id="text">' .
+                        '<input type="color" name="text" id="text" value="' . $user['text'] . '">' .
                         '<label for="bio">Biopgrahpy</label>' .
                         '<textarea name="bio" maxlenght="512">' . $user['bio'] . '</textarea>' .
-                        '<button type="submit">Check it out!</button>' .
+                        '<button type="submit" name="submit" value="test">Check it out!</button>' .
+                        '<label for="password">Enter password to update</label>' .
+                        '<input type="password" name="password" id="password">' .
+                        '<button type="submit" name="submit" value="done">Apply</button>'  .
+                        '<p class="warning">' . $warning . '</p>' .
                     '</form>';
                 }
                 else

@@ -7,6 +7,7 @@ $logTime = microtime(true); //start time logging
 * Programmer    : Mart Velema
 */
 include 'components/sql-login.php';
+$maxOptions = 3 //maximum amount of options SCUFF can reliably create, this is an artificial limit that can be increased, but changes need to be reflected in the json encoder
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,12 +50,10 @@ include 'components/sql-login.php';
                         case "generate":
                             //putting all the form data into the session to proccess later on
                             //decoding options
-                            $option1 = filter_input(INPUT_POST, "option1");
-                            $option1 = !empty($option1) ? filter_input(INPUT_POST, "option1action") . $option1 : NULL;
-                            $option2 = filter_input(INPUT_POST, "option2");
-                            $option2 = !empty($option2) ? filter_input(INPUT_POST, "option2action") . $option2 : NULL;
-                            $option3 = filter_input(INPUT_POST, "option3");
-                            $option3 = !empty($option3) ? filter_input(INPUT_POST, "option3action") . $option3 : NULL;
+                            for ($i=0; $i < $maxOptions; $i++) { 
+                                ${'option' . $i} = filter_input(INPUT_POST, "option". $i);
+                                ${'option' . $i} = !empty(${'option' . $i}) ? filter_input(INPUT_POST, "option" . $i . "action") . ${'option' . $i} : NULL;
+                            };
                             if($_GET['scene'] == 1)
                             {   //encoding for single-image scenes
                                 $page = empty($_SESSION['form-data']) ? 0 : count($_SESSION['form-data']);
@@ -66,14 +65,14 @@ include 'components/sql-login.php';
                                         "talking"   => filter_input(INPUT_POST, "img-talking"),
                                         "rotate"    => filter_input(INPUT_POST, "img-rotate")
                                     ],
-                                    "item"           => str_replace('.png', '', filter_input(INPUT_POST, "item")),
-                                    "dialogue"       => filter_input(INPUT_POST, "dialogue"),
+                                    "item"          => str_replace('.png', '', filter_input(INPUT_POST, "item")),
+                                    "dialogue"      => filter_input(INPUT_POST, "dialogue"),
                                     "action" =>
                                     [
                                         "setMarker" => filter_input(INPUT_POST, "setMarker"),
-                                        "option1" => $option1,
-                                        "option2" => $option2,
-                                        "option3" => $option3
+                                        "option0"   => $option0,
+                                        "option1"   => $option1,
+                                        "option2"   => $option2
                                     ]
                                 ];
                             }
@@ -94,14 +93,14 @@ include 'components/sql-login.php';
                                         "talking"   => filter_input(INPUT_POST, "imgR-talking"),
                                         "rotate"    => filter_input(INPUT_POST, "imgR-rotate")
                                     ],
-                                    "item"           => str_replace('.png', '', filter_input(INPUT_POST, "item")),
-                                    "dialogue"       => filter_input(INPUT_POST, "dialogue"),
+                                    "item"          => str_replace('.png', '', filter_input(INPUT_POST, "item")),
+                                    "dialogue"      => filter_input(INPUT_POST, "dialogue"),
                                     "action" =>
                                     [
                                         "setMarker" => filter_input(INPUT_POST, "setMarker"),
-                                        "option1" => $option1,
-                                        "option2" => $option2,
-                                        "option3" => $option3
+                                        "option1"   => $option0,
+                                        "option1"   => $option1,
+                                        "option2"   => $option2
                                     ]
                                 ];
                             };
@@ -168,27 +167,18 @@ include 'components/sql-login.php';
             <h3>Actions</h3>
             <label for="setMarker">Marker (Set to 0 to mark current page)</label>
             <input type="text" name="setMarker" id="setMarker" placeholder="marker">
-            <label for="option1">Option 1</label>
-            <select name="option1action" id="option1action">
-                <option value="give_">give</option>
-                <option value="take_">take</option>
-                <option value="jump_">jump</option>
-            </select>
-            <input type="text" name="option1" id="option1" placeholder="1st option">
-            <label for="option1">Option 2</label>
-            <select name="option2action" id="option2action">
-                <option value="give_">give</option>
-                <option value="take_">take</option>
-                <option value="jump_">jump</option>
-            </select>
-            <input type="text" name="option2" id="option2" placeholder="2nd option">
-            <label for="option3">Option 3</label>
-            <select name="option3action" id="option3action">
-                <option value="give_">give</option>
-                <option value="take_">take</option>
-                <option value="jump_">jump</option>
-            </select>
-            <input type="text" name="option3" id="option3" placeholder="3rd option">
+            <?php
+                for ($i=0; $i < $maxOptions; $i++) { 
+                    echo
+                    '<label for="option' . $i .'">Option ' . $i .'</label>' .
+                    '<select name="option' . $i .'action" id="option' . $i .'action">' .
+                        '<option value="give_">give</option>' .
+                        '<option value="take_">take</option>' .
+                        '<option value="jump_">jump</option>' .
+                    '</select>' .
+                    '<input type="text" name="option' . $i .'" id="option' . $i .'" placeholder="option' . $i .'">';
+                };
+            ?>
             <div>
                 <?php
                     if(!empty($_GET['dir']))
