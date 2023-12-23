@@ -54,6 +54,7 @@ else
         $user['color']      = 'red';
         $user['secondary']  = 'green';
         $user['text']       = 'blue';
+        $note = 'Legacy account will soon no longer be supported, make sure to set up your account before 1-2-2024';
     };
 };
 if($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -173,6 +174,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                         if(($_SESSION['user']['accountname'] ?? NULL) == $user['accountname'])
                         {
                             echo '<a href="user.php?user=' . $user['accountname'] . '&edit=1" class="level" style="opacity: 0.9;">Edit profile</a>';
+                        };
+                        if(!empty($note))
+                        {
+                            echo '<p class="warning">' . $note . '</p>';
                         };
                     ?>
                 </div>
