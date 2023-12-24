@@ -173,7 +173,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                         '<p class="level">This is where your bages will be displayed</p>';
                         if(($_SESSION['user']['accountname'] ?? NULL) == $user['accountname'])
                         {
-                            echo '<a href="user.php?user=' . $user['accountname'] . '&edit=1" class="level" style="opacity: 0.9;">Edit profile</a>';
+                            echo 
+                            '<button><a href="user.php?user=' . $user['accountname'] . '&edit=1" style="width: 100%; display: inline-block;">Edit profile</a></button>' .
+                            '<button><a href="logout.php" style="width: 100%; display: inline-block;">Logout</a></button>';
                         };
                         if(!empty($note))
                         {

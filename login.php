@@ -172,7 +172,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 </head>
 <body>
     <?php
-        // include "components/header.php";
+        include "components/header.php";
     ?>
     <main>
         <form action="#" method="post" enctype="multipart/form-data">
