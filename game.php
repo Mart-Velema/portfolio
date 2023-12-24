@@ -35,22 +35,21 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 </head>
 <body>
     <?php
-        // if(isset($_GET['nonav']))   //check if the nonav variable exists inside of the URL
-        // {
-        //     if($_GET['nonav'] == 0) //check if hte nonav variable is 0, if so, add the navbar
-        //     {
-        //         include "components/header.php";
-        //     };
-        // }
-        // else
-        // {
-        //     $_GET['nonav'] = 0;
-        //     include "components/header.php";
-        // };
+        if(isset($_GET['nonav']))   //check if the nonav variable exists inside of the URL
+        {
+            if($_GET['nonav'] == 0) //check if the nonav variable is 0, if so, add the navbar
+            {
+                include "components/header.php";
+            };
+        }
+        else
+        {
+            $_GET['nonav'] = 0;
+            include "components/header.php";
+        };
     ?>
     <main style="padding-top: 0px; background-image: none;">
         <?php
-            var_dump($_FILES);
             include "components/SCUFF.php";
             $logTime = (microtime(true) - $logTime);
             // echo '' . $logTime . ' &micro;s';

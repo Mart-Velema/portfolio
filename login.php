@@ -37,88 +37,97 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 {
     if($_GET['newaccount'])
     { 
-        $name   = filter_input(INPUT_POST, 'name');
-        $email  = filter_input(INPUT_POST, 'email');
-        $pfp    = $_FILES['pfp']['name'];
-        $passwd = password_hash(filter_input(INPUT_POST, 'password'), PASSWORD_BCRYPT); //encrypt password
-        //check if account name is already in use
-        $check = $dbHandler->prepare("SELECT COUNT(*) FROM account WHERE accountname=:name");
-        $check->bindParam(':name', $name);
-        $check->execute();
-        $check = $check->fetchColumn();
-        //set pfp to default pfp if unset
-        empty($pfp) ? $pfp = 'dev/missing_textures.png' : TRUE;
-        //check if everything is filled in
-        if(isset($name, $email, $passwd, $pfp))
+        $name           = filter_input(INPUT_POST, 'name');
+        $email          = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+        $pfp            = $_FILES['pfp']['name'];
+        $passwd         = filter_input(INPUT_POST, 'password');
+        $passwdVeryify  = filter_input(INPUT_POST, 'passwdVeryify');
+        if(!empty($name) && !empty($email) && !empty($passwd))
         {
-            if($check == 0)
+            if($passwd === $passwdVeryify)
             {
-                try
+                password_hash($passwd, PASSWORD_BCRYPT);
+                //check if account name is already in use
+                $check = $dbHandler->prepare("SELECT COUNT(*) FROM account WHERE accountname=:name");
+                $check->bindParam(':name', $name);
+                $check->execute();
+                $check = $check->fetchColumn();
+                //set pfp to default pfp if unset
+                empty($pfp) ? $pfp = 'dev/missing_textures.png' : TRUE;
+                //check if everything is filled in
+                if($check == 0)
                 {
-                    $stmt->bindParam(':name', $name);
-                    $stmt->bindParam(':email', $email);
-                    $stmt->bindParam(':passwd', $passwd);
-                    $stmt->bindParam(':pfp', $pfp);
-                    $stmt->bindValue(':bio', 'Hello, World!');
-                    $stmt->bindValue(':level', 1);
-                    $stmt->bindValue(':color', 'var(--primary-colour)');
-                    $stmt->bindValue(':secondary', 'var(--secondary-colour)');
-                    $stmt->bindValue(':text', 'var(--text-colour)');
-                    $stmt->execute();
-                    $warning .= 'Succesfully made account!';
-                    header('refresh:3 url=login.php?newaccount=0');
-                }
-                catch(PDOException $ex)
-                {
-                    echo $ex->getMessage();
-                };
-                //upload pfp
-                if($pfp !== 'dev/missing_textures.png')
-                {
-                    if($_FILES["pfp"]["error"] == 0)
+                    try
                     {
-                        if($_FILES["pfp"]["size"] <= 10*1024*1024)
+                        $stmt->bindParam(':name', $name);
+                        $stmt->bindParam(':email', $email);
+                        $stmt->bindParam(':passwd', $passwd);
+                        $stmt->bindParam(':pfp', $pfp);
+                        $stmt->bindValue(':bio', 'Hello, World!');
+                        $stmt->bindValue(':level', 1);
+                        $stmt->bindValue(':color', 'var(--primary-colour)');
+                        $stmt->bindValue(':secondary', 'var(--secondary-colour)');
+                        $stmt->bindValue(':text', 'var(--text-colour)');
+                        $stmt->execute();
+                        $warning .= 'Succesfully made account!';
+                        header('refresh:3 url=login.php?newaccount=0');
+                    }
+                    catch(PDOException $ex)
+                    {
+                        echo $ex->getMessage();
+                    };
+                    //upload pfp
+                    if($pfp !== 'dev/missing_textures.png')
+                    {
+                        if($_FILES["pfp"]["error"] == 0)
                         {
-                            $fileInfo = finfo_open(FILEINFO_MIME_TYPE);
-                            $acceptedFileTypes = ["image/png", "image/jpeg", "image/jpg"];
-                            $uploadedFileType = finfo_file($fileInfo, $_FILES["pfp"]["tmp_name"]);
-                            if(in_array($uploadedFileType, $acceptedFileTypes))
+                            if($_FILES["pfp"]["size"] <= 10*1024*1024)
                             {
-                                if(!file_exists('upload/' . $_FILES['pfp']['name'] . ''))
+                                $fileInfo = finfo_open(FILEINFO_MIME_TYPE);
+                                $acceptedFileTypes = ["image/png", "image/jpeg", "image/jpg"];
+                                $uploadedFileType = finfo_file($fileInfo, $_FILES["pfp"]["tmp_name"]);
+                                if(in_array($uploadedFileType, $acceptedFileTypes))
                                 {
-                                    if(move_uploaded_file($_FILES['pfp']['tmp_name'], 'upload/pfp/' . $_FILES['pfp']['name'] . ''))
+                                    if(!file_exists('upload/' . $_FILES['pfp']['name'] . ''))
                                     {
-                                        $warning .= "<br>Succesfully uploaded profile picture!";
+                                        if(move_uploaded_file($_FILES['pfp']['tmp_name'], 'upload/pfp/' . $_FILES['pfp']['name'] . ''))
+                                        {
+                                            $warning .= "<br>Succesfully uploaded profile picture!";
+                                        }
+                                        else
+                                        {
+                                            $warning .= "Failed to upload file, please try again or contact administrator";
+                                        };
                                     }
                                     else
                                     {
-                                        $warning .= "Failed to upload file, please try again or contact administrator";
+                                        $warning .= "Filename is already in use";
                                     };
                                 }
                                 else
                                 {
-                                    $warning .= "Filename is already in use";
+                                    $warning .= "File isn't a png, jpeg, jpg or gif";
                                 };
                             }
                             else
                             {
-                                $warning .= "File isn't a png, jpeg, jpg or gif";
+                                $warning .= "File needs to be below 10mb";
                             };
                         }
                         else
                         {
-                            $warning .= "File needs to be below 10mb";
+                            $warning .= "Something went wrong...";
                         };
-                    }
-                    else
-                    {
-                        $warning .= "Something went wrong...";
                     };
-                };
+                }
+                else
+                {
+                    $warning .= 'Username is already in use';
+                };        
             }
             else
             {
-                $warning .= 'Username is already in use';
+                $warning .= 'Passwords did not match, please try again';
             };
         }
         else
@@ -186,6 +195,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                 '<input type="email" name="email" id="email" placeholder="example@email.com">' .
                 '<label for="password">Password</label>' .
                 '<input type="password" name="password" id="password">' .
+                '<label for="passwdVeryify">Confirm password</label>' .
+                '<input type="password" name="passwdVeryify" id="passwdVeryify">' .
                 '<label for="pfp">Profile-picture</label>' .
                 '<input type="file" name="pfp" id="pfp">';
                 $_GET['newaccount'] = FALSE;
