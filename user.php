@@ -70,17 +70,23 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             if(password_verify($passwd, $_SESSION['user']['password']))
             {
+                if($user['level'] == 0)
+                {
+                    $user['level'] = 1;
+                };
                 try
                 {
-                    $stmt = $dbHandler->prepare("UPDATE account SET bio=:bio, color=:color, secondary=:secondary, text=:text WHERE accountname=:name");
+                    $stmt = $dbHandler->prepare("UPDATE account SET level=:level, bio=:bio, color=:color, secondary=:secondary, text=:text WHERE accountname=:name");
                     $stmt->bindParam(':name', $_SESSION['user']['accountname']);
                     $stmt->bindParam(':bio', $user['bio']);
                     $stmt->bindParam(':color', $user['color']);
                     $stmt->bindParam(':secondary', $user['secondary']);
                     $stmt->bindParam(':text', $user['text']);
+                    $stmt->bindParam(':level', $user['level']);
                     $stmt->execute();
                     $log .= 'sucesfully updated entry';
                     $warning = 'Succesfully saved profile!';
+                    header('refresh:3 url=user.php?user=' . $user['accountname']);
                 }
                 catch(Exception $Ex)
                 {
@@ -90,13 +96,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
             }
             else
             {
-                $log .='invalid password';
                 $warning = 'Invalid password';
             };
         }
         else
         {
-            $log .='unset password';
             $warning = 'Unset password!';
         };
     };
@@ -174,8 +178,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                         if(($_SESSION['user']['accountname'] ?? NULL) == $user['accountname'])
                         {
                             echo 
-                            '<button><a href="user.php?user=' . $user['accountname'] . '&edit=1" style="width: 100%; display: inline-block;">Edit profile</a></button>' .
-                            '<button><a href="logout.php" style="width: 100%; display: inline-block;">Logout</a></button>';
+                            '<a href="user.php?user=' . $user['accountname'] . '&edit=1"><button>Edit profile</button></a>' .
+                            '<a href="logout.php"><button>Logout</button></a>';
                         };
                         if(!empty($note))
                         {

@@ -140,3 +140,7 @@ main table {
     object-fit: fill;
     box-shadow: 0px 0px 10px 5px var(--account-secondary);
 }
+
+.account .banner .about button {
+    width: 100%;
+}
