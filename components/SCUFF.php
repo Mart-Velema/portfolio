@@ -82,6 +82,7 @@
                                     {
                                         $pattern = '/^#?([a-f0-9]{6}|[a-f0-9]{3})$/i';      //check if value is hex
                                         $background = str_replace('#', '', $background);    //remove # from string
+                                        $background = str_replace('.png', '', $background); //remove .png from string
                                         $background = preg_match($pattern, $background) ? 'style="background-color:#' . $background . ';"' : 'style="background-image: url(/portfolio2/img/assets/' . $dir . '/' . $background .'.png);"'; 
                                         //Set the backgrond to either image or fixed colour depending on if value is hex
                                     };

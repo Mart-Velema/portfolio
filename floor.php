@@ -50,10 +50,17 @@ $maxOptions = 3 //maximum amount of options SCUFF can reliably create, this is a
                         case "generate":
                             //putting all the form data into the session to proccess later on
                             //decoding options
-                            for ($i=0; $i < $maxOptions; $i++) { 
+                            for ($i=0; $i < $maxOptions; $i++) 
+                            { 
                                 ${'option' . $i} = filter_input(INPUT_POST, "option". $i);
                                 ${'option' . $i} = !empty(${'option' . $i}) ? filter_input(INPUT_POST, "option" . $i . "action") . ${'option' . $i} : NULL;
                             };
+                            $backgroundImg = filter_input(INPUT_POST, "backgroundImg");
+                            $background = empty($backgroundImg) ? filter_input(INPUT_POST, "background") : $backgroundImg;
+                            if($background === '#000000')
+                            {
+                                $background = NULL;
+                            }
                             if($_GET['scene'] == 1)
                             {   //encoding for single-image scenes
                                 $page = empty($_SESSION['form-data']) ? 0 : count($_SESSION['form-data']);
@@ -67,6 +74,7 @@ $maxOptions = 3 //maximum amount of options SCUFF can reliably create, this is a
                                     ],
                                     "item"          => str_replace('.png', '', filter_input(INPUT_POST, "item")),
                                     "dialogue"      => filter_input(INPUT_POST, "dialogue"),
+                                    "background"    => $background,
                                     "action" =>
                                     [
                                         "setMarker" => filter_input(INPUT_POST, "setMarker"),
@@ -95,6 +103,7 @@ $maxOptions = 3 //maximum amount of options SCUFF can reliably create, this is a
                                     ],
                                     "item"          => str_replace('.png', '', filter_input(INPUT_POST, "item")),
                                     "dialogue"      => filter_input(INPUT_POST, "dialogue"),
+                                    "background"    => $background,
                                     "action" =>
                                     [
                                         "setMarker" => filter_input(INPUT_POST, "setMarker"),
@@ -119,7 +128,9 @@ $maxOptions = 3 //maximum amount of options SCUFF can reliably create, this is a
                             break;
                     };
                 };
-                echo '<form action="floor.php?' . http_build_query($_GET) . '" method="post">';
+                echo 
+                '<form action="floor.php?' . http_build_query($_GET) . '" method="post">' . 
+                '<h3>Primary images</h3>';
                 if(array_key_exists('submit', $_POST) && $_POST['submit'] === 'done')
                 {
                     //download link for .json :)
@@ -164,6 +175,10 @@ $maxOptions = 3 //maximum amount of options SCUFF can reliably create, this is a
             <input type="text" name="item" id="item" placeholder="item name">
             <label for="dialogue">Dialogue</label>
             <textarea name="dialogue" id="dialogue" placeholder="Put here your dialogue"></textarea>
+            <label for="background">Backgrond (leave default for default colour)</label>
+            <input type="color" name="background" id="background">
+            <label for="backgroundImg">Or set a background image</label>
+            <input type="text" name="backgroundImg" id="backgroundImg">
             <h3>Actions</h3>
             <label for="setMarker">Marker (Set to 0 to mark current page)</label>
             <input type="text" name="setMarker" id="setMarker" placeholder="marker">
@@ -212,7 +227,8 @@ $maxOptions = 3 //maximum amount of options SCUFF can reliably create, this is a
             </div>
             <p>
             Welcome to the FLOOR Level-Editor. In here, you can make levels for the SCUFF Engine.<br>
-            To use this engine, you first need to set up the correct directory and scene. You can do so in the menu on the top left side of this page. Set up the mode for single or double image scene, and enter a directory where the imgaes are saved.<br><br>
+            To use this engine, you first need to set up the correct directory and scene. You can do so in the menu on the top left side of this page. Set up the mode for single or double image scene, and enter a directory where the imgaes are saved.<br>
+            When setting up a background for the scene, a background iamge takes priorty over a background colour.<br><br>
             Once all the input fields are filled in, press "Generate" to complete a page.<br>
             Repeat untill you have made all of the pages, select the "done" checkbox to get the .json file that contains all the data for SCUFF to use.<br><br>
             <?php
