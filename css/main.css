@@ -144,3 +144,12 @@ main table {
 .account .banner .about button {
     width: 100%;
 }
+
+.console {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color:white; 
+    background-color:black; 
+    width:99%;   
+}

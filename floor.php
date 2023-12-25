@@ -45,6 +45,10 @@ $maxOptions = 3 //maximum amount of options SCUFF can reliably create, this is a
                 };
                 if($_SERVER['REQUEST_METHOD'] == 'POST')
                 {
+                    if(!array_key_exists('submit', $_POST))
+                    {
+                        $_POST['submit'] = NULL;
+                    };
                     switch($_POST['submit'])
                     {   //switch to decode what action to preform
                         case "generate":
@@ -129,8 +133,8 @@ $maxOptions = 3 //maximum amount of options SCUFF can reliably create, this is a
                     };
                 };
                 echo 
-                '<form action="floor.php?' . http_build_query($_GET) . '" method="post">' . 
-                '<h3>Primary images</h3>';
+                '<form action="floor.php?' . http_build_query($_GET) . '#editor" method="post">' . 
+                '<h3 id="editor">Primary images</h3>';
                 if(array_key_exists('submit', $_POST) && $_POST['submit'] === 'done')
                 {
                     //download link for .json :)
@@ -206,31 +210,32 @@ $maxOptions = 3 //maximum amount of options SCUFF can reliably create, this is a
                     };
                 ?>
             </div>
-            <div style="color:white; background-color:black; width:99%;">
+            <a href="#manual"><button>View manual</button></a>
+            <div class="console">
                 <?php
                     if(!empty($_GET['dir']))
                     {
-                        echo '<p><a href="game.php?page=dev&level=' . $_GET['dir'] . '" target="_blank">Images:' . $_GET['dir'] .'</a>';    //dev page where all the images of said dir are put in a grid
+                        echo '<p><a href="game.php?page=dev&level=' . $_GET['dir'] . '" target="_blank">Images:' . $_GET['dir'] .'</a> Output console:</p>';    //dev page where all the images of said dir are put in a grid
                     };
                     if(isset($_SESSION['form-data']))
                     {
-                        //output console
-                        echo
-                        'Output console:</p>';
-                        for ($i=0; $i < count($_SESSION['form-data']); $i++) 
+                        for ($i=0; $i < count($_SESSION['form-data']); $i++)
                         { 
+                            echo '<pre>page #' . $i . '<br>';
                             var_export($_SESSION['form-data'][$i]);
-                            echo "<br><br>";
+                            echo ';</pre>';
                         };
                     };
                 ?>
             </div>
+            <h3 id="manual">Manual</h3>
             <p>
             Welcome to the FLOOR Level-Editor. In here, you can make levels for the SCUFF Engine.<br>
             To use this engine, you first need to set up the correct directory and scene. You can do so in the menu on the top left side of this page. Set up the mode for single or double image scene, and enter a directory where the imgaes are saved.<br>
             When setting up a background for the scene, a background iamge takes priorty over a background colour.<br><br>
             Once all the input fields are filled in, press "Generate" to complete a page.<br>
             Repeat untill you have made all of the pages, select the "done" checkbox to get the .json file that contains all the data for SCUFF to use.<br><br>
+            <a href="#editor"><button>Go to top</button></a>
             <?php
                 //stop logging time and output recorded time
                 $logTime = (microtime(true) - $logTime);
