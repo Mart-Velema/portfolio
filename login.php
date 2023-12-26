@@ -37,7 +37,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 {
     if($_GET['newaccount'])
     { 
-        $name           = filter_input(INPUT_POST, 'name');
+        $name           = htmlspecialchars(filter_input(INPUT_POST, 'name'));
         $email          = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
         $pfp            = $_FILES['pfp']['name'];
         $passwd         = filter_input(INPUT_POST, 'password');

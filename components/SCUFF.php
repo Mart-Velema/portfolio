@@ -45,12 +45,13 @@
                 if(file_exists('data/games/' . $_GET['level'] . '.json'))
                 {
                     //decoding .json into something useable
-                    $data = json_decode(file_get_contents("data/games/" . $_GET['level'] . ".json"), true); //import .json file and decode it into an array
-                    $dir = $data[0]['dir'];                                                                 //setting the directory to the same directory found in the first .json entry
+                    $json = json_decode(file_get_contents("data/games/" . $_GET['level'] . ".json"), true); //import .json file and decode it into an array
+                    $dir = $json[0]['dir'];                                                                 //setting the directory to the same directory found in the first .json entry
                     //decoding array into something that can be used in HTML
-                    if(isset($data[$_GET['page']])) 
+                    if(isset($json[$_GET['page']])) 
                     {
-                        foreach($data[$_GET['page']] as $name => $contents)
+                        $data = $json[$_GET['page']];
+                        foreach($data as $name => $contents)
                         {
                             ${$name} = $contents;
                             switch($name)   
@@ -72,7 +73,7 @@
                                     {
                                         ${$name}['img'] = "dev/missing_textures";                       //Set the image to default missing textures when images is not set correctly
                                     };
-                                    $images .= '<img src="img/assets/' . $dir . '/' . ${$name}['img'] . '.png" alt="' . ${$name}['img'] . '" class="game-image" ' . $style . '"> '; //Sets the images in series to allow loading into HTML
+                                    $images .= '<img src="img/assets/' . $dir . '/' . ${$name}['img'] . '.png" alt="' . ${$name}['img'] . '" class="game-image" style="' . $style . '"> '; //Sets the images in series to allow loading into HTML
                                     break;
                                 case "item":                                                            //Set the image for item
                                     $item = '<img src="img/assets/' . $dir . '/' . $item . '.png" alt="' . $item . '" class="item">';
@@ -83,7 +84,7 @@
                                         $pattern = '/^#?([a-f0-9]{6}|[a-f0-9]{3})$/i';      //check if value is hex
                                         $background = str_replace('#', '', $background);    //remove # from string
                                         $background = str_replace('.png', '', $background); //remove .png from string
-                                        $background = preg_match($pattern, $background) ? 'style="background-color:#' . $background . ';"' : 'style="background-image: url(/portfolio2/img/assets/' . $dir . '/' . $background .'.png);"'; 
+                                        $background = preg_match($pattern, $background) ? 'background-color:#' . $background . ';"' : 'background-image: url(/portfolio2/img/assets/' . $dir . '/' . $background .'.png);'; 
                                         //Set the backgrond to either image or fixed colour depending on if value is hex
                                     };
                                     break;
@@ -153,27 +154,27 @@
                                 $talking = '';
                                 break;
                             case "img":
-                                $arrow = 'style="display: none;"';
+                                $arrow = 'display: none;';
                                 $talking = '';
                                 break;
                             case "imgR":
                                 $arrow = '';
-                                $talking = 'style="transform: scaleX(-1);"';
+                                $talking = 'transform: scaleX(-1);';
                                 break;
                             default:
-                                $arrow = 'style="display: none;"';
-                                $talking = 'style="transform: scaleX(-1);"';
+                                $arrow = 'display: none;';
+                                $talking = 'transform: scaleX(-1);';
                                 break;
                         };
                     }
                     else                    //if empty, set to empty in a way HTML understands
                     {
-                        $talking = "";
-                        $arrow = 'style="display: none;"';
+                        $talking = '';
+                        $arrow = 'display: none;';
                     };
                     //setting the button for the next page
                     $_GET['page']++;
-                    if(empty($data[$_GET['page']]))
+                    if(empty($json[$_GET['page']]))
                     {
                         $_GET['page'] = $_GET['page'] - 2;
                         $pageRefBack = '<a href="?' . http_build_query($_GET) . '"><button>&larr;Previous</button></a>';
@@ -185,17 +186,17 @@
                         $pageRef = isset($jump) ? '<a href="?' . http_build_query($jump) . '">' . $next . '</a>' : '<a href="?' . http_build_query($_GET) . '"><button>' . $next . '&rarr;</button></a>';   //If jump is set, make button to go to jump page, if not, use default next button
                         empty($options) ? '' : $pageRef = '';
                         $_GET['page'] = $_GET['page'] - 2;
-                        $pageRefBack = isset($data[$_GET['page']]) ? '<a href="?' . http_build_query($_GET) . '"><button>&larr;Previous</button></a>' : '';  //Setting back button if previous page exists
+                        $pageRefBack = isset($json[$_GET['page']]) ? '<a href="?' . http_build_query($_GET) . '"><button>&larr;Previous</button></a>' : '';  //Setting back button if previous page exists
                     };
                     //going from arrays and variables to actual HTML
                     $_GET['page'] = $_GET['page'] + 2;
                     echo
-                    '<div id="main-game" class="main-game" ' . $background . '>' . 
+                    '<div id="main-game" class="main-game" style="' . $background . '">' . 
                         '<div class="game">' .
                             $images .
                         '</div>' .
-                        '<div class="game-talking" ' . $talking . '>' .
-                            '<img src="img/assets/dev/speech_bubble.png" alt="speech bubble" ' . $arrow . '>' .
+                        '<div class="game-talking" style="' . $talking . '">' .
+                            '<img src="img/assets/dev/speech_bubble.png" alt="speech bubble" style="' . $arrow . '">' .
                             $item .
                         '</div>' .
                         '<div class="game-center">' .

@@ -62,7 +62,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     $user['color']      = filter_input(INPUT_POST, 'primary');
     $user['secondary']  = filter_input(INPUT_POST, 'secondary');
     $user['text']       = filter_input(INPUT_POST, 'text');
-    $user['bio']        = filter_input(INPUT_POST, 'bio');
+    $user['bio']        = htmlspecialchars(filter_input(INPUT_POST, 'bio'));
     $passwd             = filter_input(INPUT_POST, 'password');
     if($_POST['submit'] == 'done')
     {
