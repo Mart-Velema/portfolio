@@ -46,7 +46,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         {
             if($passwd === $passwdVeryify)
             {
-                password_hash($passwd, PASSWORD_BCRYPT);
+                $passwd = password_hash($passwd, PASSWORD_BCRYPT);
                 //check if account name is already in use
                 $check = $dbHandler->prepare("SELECT COUNT(*) FROM account WHERE accountname=:name");
                 $check->bindParam(':name', $name);
