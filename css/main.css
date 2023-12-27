@@ -2,7 +2,9 @@ main {
     padding-top: calc(5vh + 50px);
     display: grid;
     grid-template-columns: 10% 80% 10%;
-    background-image: url(portfolio/img/assets/GR-Portrait/k_souko.png);
+    background-image: 
+        url(../img/assets/GR-Portrait/k_souko.png),
+        url(../img/assets/dev/k_souko_small.png);
     background-attachment: fixed;
     background-size: cover;
     background-color: darkslategray;

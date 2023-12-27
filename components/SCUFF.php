@@ -84,7 +84,7 @@
                                         $pattern = '/^#?([a-f0-9]{6}|[a-f0-9]{3})$/i';      //check if value is hex
                                         $background = str_replace('#', '', $background);    //remove # from string
                                         $background = str_replace('.png', '', $background); //remove .png from string
-                                        $background = preg_match($pattern, $background) ? 'background-color:#' . $background . ';"' : 'background-image: url(/portfolio2/img/assets/' . $dir . '/' . $background .'.png);'; 
+                                        $background = preg_match($pattern, $background) ? 'background-color:#' . $background . ';"' : 'background-image: url(img/assets/' . $dir . '/' . $background .'.png);'; 
                                         //Set the backgrond to either image or fixed colour depending on if value is hex
                                     };
                                     break;
@@ -143,7 +143,7 @@
                     {   //error handling in case empty 
                         $images = '<img src="img/assets/dev/missing_textures.png">';
                         $dialogue = 'ERROR: Missing JSON entry, redirecting to fallback page';
-                        $background = 'style="background-image: url(/portfolio2/img/assets/dev/missing_textures.png)"';
+                        $background = 'background-image: url(img/assets/dev/missing_textures.png)';
                     };
                     if(isset($talking))     //if the talking tag exists, run this
                     {

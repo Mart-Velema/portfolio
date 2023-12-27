@@ -16,7 +16,7 @@
 }
 
 .game-image {
-    background-image: url(/portfolio/img/assets/dev/missing_textures.png);
+    background-image: url(../img/assets/dev/missing_textures.png);
     font-size: xx-large;
     width: 25%;
     border-radius: 15px;
@@ -35,7 +35,7 @@
 }
 
 .game-talking .item {
-    background-image: url(/portfolio/img/assets/dev/missing_textures.png);
+    background-image: url(../img/assets/dev/missing_textures.png);
     scale: 1.5;
     margin-left: 30px;
     border: .3px solid black;
