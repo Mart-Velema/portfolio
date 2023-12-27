@@ -7,7 +7,6 @@
 * Programmer    : Mart Velema
 */
 include "components/sql-login.php";
-$dbname = 'accounts';
 $log = '';
 $warning = '';
 try
@@ -76,7 +75,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                 };
                 try
                 {
-                    $stmt = $dbHandler->prepare("UPDATE account SET level=:level, bio=:bio, color=:color, secondary=:secondary, text=:text WHERE accountname=:name");
+                    $stmt = $dbHandler->prepare(
+                        "UPDATE account 
+                        SET level=:level, bio=:bio, color=:color, secondary=:secondary, text=:text 
+                        WHERE accountname=:name
+                    ");
                     $stmt->bindParam(':name', $_SESSION['user']['accountname']);
                     $stmt->bindParam(':bio', $user['bio']);
                     $stmt->bindParam(':color', $user['color']);

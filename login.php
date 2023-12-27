@@ -11,7 +11,6 @@ if(!isset($_GET['newaccount']))
     $_GET['newaccount'] = FALSE;
 };
 include 'components/sql-login.php';
-$dbname = 'accounts';
 $warning = '';
 try
 {
@@ -26,8 +25,15 @@ catch(Exception $ex)
 try
 {
     $stmt = $_GET['newaccount'] ? 
-    $dbHandler->prepare('INSERT INTO account (accountname, email, `password`, pfp, bio, `level`, color, `secondary`, `text`) VALUES(:name, :email, :passwd, :pfp, :bio, :level, :color, :secondary, :text)') : 
-    $dbHandler->prepare('SELECT * FROM account WHERE accountname = :name');
+    $dbHandler->prepare(
+        'INSERT INTO account (accountname, email, `password`, pfp, bio, `level`, color, `secondary`, `text`) 
+        VALUES(:name, :email, :passwd, :pfp, :bio, :level, :color, :secondary, :text)
+    ') : 
+    $dbHandler->prepare(
+        'SELECT * 
+        FROM account 
+        WHERE accountname = :name
+    ');
 }
 catch (PDOException $ex)
 {
@@ -48,7 +54,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             {
                 $passwd = password_hash($passwd, PASSWORD_BCRYPT);
                 //check if account name is already in use
-                $check = $dbHandler->prepare("SELECT COUNT(*) FROM account WHERE accountname=:name");
+                $check = $dbHandler->prepare(
+                    'SELECT COUNT(*) 
+                    FROM account 
+                    WHERE accountname=:name
+                ');
                 $check->bindParam(':name', $name);
                 $check->execute();
                 $check = $check->fetchColumn();

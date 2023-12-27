@@ -8,7 +8,6 @@
 */
 //set data for database
 include 'components/sql-login.php';
-$dbname = 'bugReporter';
 $submit='';
 try
 {
@@ -23,9 +22,20 @@ catch(Exception $ex)
     echo '<br>failed to connect, please contact system administrator';
 };
 //Setting up stmt with the data of the DB Handler with the querry to add something to the database
+if(isset($_GET['bug']))
+{
+    $bugID = intval($_GET['bug']);
+};
 $stmt = isset($_GET['bug']) ? 
-$dbHandler->prepare('UPDATE bugReports SET product=:product, `version`=:version, browser=:browser, OS=:OS, frequency=:frequency, comment=:comment WHERE id=' . $_GET['bug'] . ''):
-$dbHandler->prepare('INSERT INTO bugReports (product, `version`, browser, OS, frequency, comment) VALUES(:product, :version, :browser, :OS, :frequency, :comment)');
+$dbHandler->prepare(
+    'UPDATE bugReports 
+    SET product=:product, `version`=:version, browser=:browser, OS=:OS, frequency=:frequency, comment=:comment 
+    WHERE id=' . $bugID
+):
+$dbHandler->prepare(
+    'INSERT INTO bugReports (account_id, product, `version`, browser, OS, frequency, comment) 
+    VALUES(:user, :product, :version, :browser, :OS, :frequency, :comment)
+');
 //Form handling
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
@@ -38,6 +48,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     if(isset($product, $version, $browser, $OS, $frequency, $comment))
     {
         //Convert variables to SQL values
+        $stmt->bindParam(':user', $_SESSION['user']['id']);
         $stmt->bindParam(':product', $product);
         $stmt->bindParam(':version', $version);
         $stmt->bindParam(':browser', $browser);
@@ -51,17 +62,38 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     else
     {
         $submit = FALSE;
-    }
+    };
 };
 //select all the entries from the table bugReports and put it into the stmt variable
-$stmt = $dbHandler->query('SELECT * FROM bugReports');
+$stmt = $dbHandler->query(
+    'SELECT * 
+    FROM bugReports
+    JOIN account ON bugReports.account_id = account.id;
+');
 //convert the stmt variable into an associative array into the bugs variable
 $bugs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if(isset($_GET['bug']))
 {
-    $stmt = $dbHandler->query('SELECT * FROM bugReports WHERE id=' . $_GET['bug'] . '');
+    $stmt = $dbHandler->query(
+    'SELECT * 
+    FROM bugReports 
+    WHERE id=' . $bugID
+);
     $currentBugs = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $content = $currentBugs[0];
+    if(empty($currentBugs))
+    {
+        $content = [
+            "version"   => "Version",
+            "browser"   => "Browser",
+            "OS"        => "OS",
+            "comment"   => ""
+        ];
+        $warning = '<p class="warning">Invalid bug entry</p>';
+    }
+    else
+    {
+        $content = $currentBugs[0];
+    };
 }
 else
 {
@@ -69,7 +101,7 @@ else
         "version"   => "Version",
         "browser"   => "Browser",
         "OS"        => "OS",
-        "comment"   => "Comment"
+        "comment"   => ""
     ];
 };
 ?>
@@ -114,8 +146,22 @@ else
                     '<option value="consistent">Consistent</option>' .
                 '</select>' .
                 '<label for="comment">comment</label>' .
-                '<textarea name="comment" id="comment" maxlength="2048" placeholder="Describe issue in more detail">' . $content['comment'] . '</textarea>' .
-                '<button type="submit">Submit bug</button>';
+                '<textarea name="comment" id="comment" maxlength="2048" placeholder="Describe issue in more detail">' . $content['comment'] . '</textarea>';
+                if(!empty($_SESSION['user']))
+                {
+                    if(isset($warning))
+                    {
+                        echo $warning;
+                    }
+                    else
+                    {
+                        echo '<button type="submit">Submit bug</button>';
+                    };
+                }
+                else
+                {
+                    echo '<p class="warning">Log in to submit a bug</p>';
+                };
                 //error handling in case submitting failed
                 if($_SERVER['REQUEST_METHOD'] == 'POST')
                 {
@@ -158,6 +204,7 @@ else
                     <th>OS</th>
                     <th>frequency</th>
                     <th>comment</th>
+                    <th>user</th>
                     <th>edit</th>
                 </tr>
                 <?php
@@ -174,7 +221,15 @@ else
                         '<td>' .$bug['OS'] . '</td>'.
                         '<td>' .$bug['frequency'] . '</td>'.
                         '<td>' .$bug['comment'] . '</td>'.
-                        '<td><a href="?bug=' . $bug['id'] . '">Edit</a></td>' .
+                        '<td>' .$bug['accountname'] . '</td>';
+                        if(($_SESSION['user']['accountname'] ?? NULL) === $bug['accountname'])
+                        {
+                            echo '<td><a href="?bug=' . $bug['id'] . '">Edit</a></td>';
+                        }
+                        else
+                        {
+                            echo '<td>denied</td>';
+                        };
                         '</tr>';
                     };
                 ?>
