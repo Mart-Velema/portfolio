@@ -1,0 +1,4 @@
+components/sql-login.php
+upload/*
+img/assets/*
+!img/assets/dev/
