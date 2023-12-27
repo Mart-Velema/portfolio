@@ -4,11 +4,6 @@
 @import "block.css";    /* Importing css for the block-renderer*/
 @import "game.css";     /* Importing css for games*/
 
-@font-face {
-    font-family: gr2-font;
-    src: url(../fonts/GravityFontv2_by_203Null.ttf);
-}
-
 * {
     margin: 0px;
     text-decoration: none;
