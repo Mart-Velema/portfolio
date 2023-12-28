@@ -13,7 +13,7 @@
     $images = '';
     $item = '';
     $dialogue = '';
-    $background = 'style="background-color:darkslategray"';
+    $background = 'background-color:darkslategray';
     $options = '';
     $next = 'Next';
     switch ($_GET['page']) {
@@ -59,7 +59,7 @@
                                 case "imgL":
                                 case "imgR":
                                 case "img":
-                                    $style = 'style="';
+                                    $style = '';
                                     if(array_key_exists('rotate', ${$name}) && ${$name}['rotate'] == 1)
                                     {
                                         $style .= "transform: scaleX(-1); ";                            //Set the rotate CSS when rotate is set
@@ -119,10 +119,10 @@
                                                     switch($actionSubstring)
                                                     {                                                               //decoding action type
                                                         case "give_":
-                                                            $options .= '<button type="submit" value="' . $action . '" name="give">take: ' . $action . '</button> ';
+                                                            $options .= '<button type="submit" value="' . $action . '" name="give">take: ' . $action . ' </button>';
                                                             break;
                                                         case "take_":
-                                                            $options .= '<button type="submit" value="' . $action . '" name="take">give: ' . $action . '</button> ';
+                                                            $options .= '<button type="submit" value="' . $action . '" name="take">give: ' . $action . ' </button>';
                                                             break;
                                                         case "jump_":
                                                             $action == 0 ? $action = $_GET['marker'] : '';      //if jump has no page number, go to marker
@@ -177,16 +177,16 @@
                     if(empty($json[$_GET['page']]))
                     {
                         $_GET['page'] = $_GET['page'] - 2;
-                        $pageRefBack = '<a href="?' . http_build_query($_GET) . '"><button>&larr;Previous</button></a>';
-                        $pageRef = isset($jump) ? '<a href="?' . http_build_query($jump) . '"><button>' . $next . '</button></a>' : '<a href="games.php"><button>Homepage</button></a>';
+                        $pageRefBack = '<a href="?' . http_build_query($_GET) . '">&larr;Previous</a>';
+                        $pageRef = isset($jump) ? '<a href="?' . http_build_query($jump) . '">' . $next . '</a>' : '<a href="games.php">Homepage</a>';
                     }
                     else
                     {   
                         //Make both the previous and next page button if next json entry is not empty
-                        $pageRef = isset($jump) ? '<a href="?' . http_build_query($jump) . '">' . $next . '</a>' : '<a href="?' . http_build_query($_GET) . '"><button>' . $next . '&rarr;</button></a>';   //If jump is set, make button to go to jump page, if not, use default next button
+                        $pageRef = isset($jump) ? '<a href="?' . http_build_query($jump) . '">' . $next . '</a>' : '<a href="?' . http_build_query($_GET) . '">' . $next . '&rarr;</a>';   //If jump is set, make button to go to jump page, if not, use default next button
                         empty($options) ? '' : $pageRef = '';
                         $_GET['page'] = $_GET['page'] - 2;
-                        $pageRefBack = isset($json[$_GET['page']]) ? '<a href="?' . http_build_query($_GET) . '"><button>&larr;Previous</button></a>' : '';  //Setting back button if previous page exists
+                        $pageRefBack = isset($json[$_GET['page']]) ? '<a href="?' . http_build_query($_GET) . '">&larr;Previous</a>' : '';  //Setting back button if previous page exists
                     };
                     //going from arrays and variables to actual HTML
                     $_GET['page'] = $_GET['page'] + 2;
@@ -202,9 +202,9 @@
                         '<div class="game-center">' .
                             '<p>' . $dialogue . '</p>' .
                             '<form method="post" action="?' . http_build_query($_GET) . '" class="game-button">' .
-                                $pageRefBack .
+                                '<button>' . $pageRefBack . '</button>' .
                                 $options .
-                                $pageRef .
+                                '<button>' . $pageRef . '</button>' .
                             '</form>' .
                         '</div>' .
                     '</div>';

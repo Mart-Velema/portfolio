@@ -53,6 +53,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
             include "components/SCUFF.php";
             $logTime = (microtime(true) - $logTime);
             // echo '' . $logTime . ' &micro;s';
+            if($_GET['nonav'] == 1)
+            {
+                echo
+                '<div class="game-nonav">' .
+                    '<button><a href="games.php">Go back</a></button>' .              
+                '</div>';
+            };
         ?>
     </main>
 </body>

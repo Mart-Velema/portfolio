@@ -1,10 +1,11 @@
 .main-game {
     display: flex;
     align-items: center;
+    justify-content: end;
     grid-column: 1 / 4;
     flex-direction: column;
     height: calc(95vh - 50px);
-    padding-top: calc(5vh + 50px);
+    padding-bottom: calc(5vh + 50px);
     background-attachment: fixed;
     background-size: cover;
 }
@@ -75,17 +76,23 @@
     padding: 0px;
 }
 
+.game-button a, .game-button a:visited {
+    font-size: x-large;
+    color: black;
+}
+
 .game-button button {
     font-size: x-large;
     transition: 0.2s;
 }
 
-.game-button button:hover, .game-center a:hover {
+.game-button button:hover{
     scale: 1.2;
 }
 
 .game-nonav {
     grid-column: 3 / 4;
+    grid-row: 1 / 2;
 }
 
 /* CSS for dev-page */
