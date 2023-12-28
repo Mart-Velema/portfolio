@@ -191,7 +191,7 @@
                     //going from arrays and variables to actual HTML
                     $_GET['page'] = $_GET['page'] + 2;
                     echo
-                    '<div id="main-game" class="main-game" style="' . $background . '">' . 
+                    '<div id="main-game" style="' . $background . '">' . 
                         '<div class="game">' .
                             $images .
                         '</div>' .

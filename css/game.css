@@ -1,8 +1,9 @@
-.main-game {
+#main-game {
     display: flex;
     align-items: center;
     justify-content: end;
     grid-column: 1 / 4;
+    grid-row: 1 / 2;
     flex-direction: column;
     height: calc(95vh - 50px);
     padding-bottom: calc(5vh + 50px);
