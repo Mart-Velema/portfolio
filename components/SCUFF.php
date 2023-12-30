@@ -9,36 +9,34 @@
     if(empty($_GET['page']))
     {
         $_GET['page'] = 0;
+        $_GET['scene'] = 'default';
     };
-    $images = '';
-    $item = '';
-    $dialogue = '';
+    $images     = '';
+    $item       = '';
+    $dialogue   = '';
     $background = 'background-color:darkslategray';
-    $options = '';
-    $next = 'Next';
-    switch ($_GET['page']) {
+    $options    = '';
+    $next       = 'Next';
+    switch ($_GET['scene']) {
         case 'dev':  
             //dev-interface
-            //to access the dev interface, set the page= in the URL to dev and level= to the directory you want to see
-            echo "<a href=games.php style='background-color: white; padding: 10px;'>go back</a>
-            <div class='dev'>";
+            echo '<div class="dev">';
             $portraits = glob('img/assets/' . $_GET['level'] . '/*.png');     //make array out of all the images inside of the directory
-            foreach($portraits as $portrait)                        //display each image
+            foreach($portraits as $portrait)
             {
-                echo "
-                <div class='image'>
-                    <img src='".$portrait."' alt='".$portrait."'>
-                    <p>".$portrait."<br></p>";
-                $portrait = str_replace("img/assets/" . $_GET['level'] . "/", "", $portrait);     //strip out directory out of portrait name
-                $portrait = str_replace(".png", "", $portrait);                         //strip out .png out of portrait name
-                echo "
-                    <p>". $portrait ."<br><br></p>
-                </div>";
+                $portraitCode = str_replace("img/assets/" . $_GET['level'] . "/", "", $portrait);   //strip out directory out of portrait name
+                $portraitCode = str_replace(".png", "", $portrait);                                 //strip out .png out of portrait name
+                echo
+                '<div class="image">' . 
+                    '<img src="'. $portrait . '" alt="' . $portrait . '">' . 
+                    '<p>' . $portrait . '<br></p>' .
+                    '<p>' . $portraitCode . '<br><br></p>' .
+                '</div>';
             };
-            echo "
-            </div>
-";  
+            echo '</div>';  
             break;
+        // case 'battle'
+        //     break;
         default:
             if(isset($_GET['level']))
             {
@@ -68,10 +66,6 @@
                                     {
                                         $style .= "scale: 1.1; box-shadow: 0px 0px 5px whitesmoke;";    //Set the talking CSS when talking is set
                                         $talking = $name;
-                                    };
-                                    if(!array_key_exists('img', ${$name}) || empty(${$name}['img']))
-                                    {
-                                        ${$name}['img'] = "dev/missing_textures";                       //Set the image to default missing textures when images is not set correctly
                                     };
                                     $images .= '<img src="img/assets/' . $dir . '/' . ${$name}['img'] . '.png" alt="' . ${$name}['img'] . '" class="game-image" style="' . $style . '"> '; //Sets the images in series to allow loading into HTML
                                     break;
