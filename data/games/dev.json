@@ -13,7 +13,10 @@
         "next": "Hello, World!"
     },
     {
-        "img": "test",
+        "img":
+        {
+            "img": "k_100diary"
+        },
         "dialogue":"Test dev page 1" 
     },
     {

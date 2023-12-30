@@ -50,9 +50,27 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     ?>
     <main style="padding-top: 0px; background-image: none;">
         <?php
-            include "components/SCUFF.php";
-            $logTime = (microtime(true) - $logTime);
-            // echo '' . $logTime . ' &micro;s';
+            if($_GET['scene'] == 'dev')
+            {
+                echo '<div class="dev">';
+                $portraits = glob('img/assets/' . $_GET['page'] . '/*.png');     //make array out of all the images inside of the directory
+                foreach($portraits as $portrait)
+                {
+                    $portraitCode = str_replace("img/assets/" . $_GET['page'] . "/", "", $portrait);   //strip out directory out of portrait name
+                    $portraitCode = str_replace(".png", "", $portraitCode);                                 //strip out .png out of portrait name
+                    echo
+                    '<div class="image">' . 
+                        '<img src="'. $portrait . '" alt="' . $portrait . '">' . 
+                        '<p>' . $portrait . '<br></p>' .
+                        '<p>' . $portraitCode . '<br><br></p>' .
+                    '</div>';
+                };
+                echo '</div>';  
+            }
+            else
+            {
+                include "components/SCUFF.php";
+            };
             if($_GET['nonav'] == 1)
             {
                 echo
@@ -60,6 +78,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                     '<button><a href="games.php">Go back</a></button>' .              
                 '</div>';
             };
+            $logTime = (microtime(true) - $logTime);
+            // echo '' . $logTime . ' &micro;s';
         ?>
     </main>
 </body>

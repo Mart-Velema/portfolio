@@ -17,34 +17,18 @@
     $background = 'background-color:darkslategray';
     $options    = '';
     $next       = 'Next';
-    switch ($_GET['scene']) {
-        case 'dev':  
-            //dev-interface
-            echo '<div class="dev">';
-            $portraits = glob('img/assets/' . $_GET['level'] . '/*.png');     //make array out of all the images inside of the directory
-            foreach($portraits as $portrait)
+    if(isset($_GET['level']))
+    {
+        if(file_exists('data/games/' . $_GET['level'] . '.json'))
+        {
+            //decoding .json into something useable
+            $json = json_decode(file_get_contents("data/games/" . $_GET['level'] . ".json"), true); //import .json file and decode it into an array
+            $dir = $json[0]['dir'];  
+            switch ($_GET['scene'])
             {
-                $portraitCode = str_replace("img/assets/" . $_GET['level'] . "/", "", $portrait);   //strip out directory out of portrait name
-                $portraitCode = str_replace(".png", "", $portrait);                                 //strip out .png out of portrait name
-                echo
-                '<div class="image">' . 
-                    '<img src="'. $portrait . '" alt="' . $portrait . '">' . 
-                    '<p>' . $portrait . '<br></p>' .
-                    '<p>' . $portraitCode . '<br><br></p>' .
-                '</div>';
-            };
-            echo '</div>';  
-            break;
-        // case 'battle'
-        //     break;
-        default:
-            if(isset($_GET['level']))
-            {
-                if(file_exists('data/games/' . $_GET['level'] . '.json'))
-                {
-                    //decoding .json into something useable
-                    $json = json_decode(file_get_contents("data/games/" . $_GET['level'] . ".json"), true); //import .json file and decode it into an array
-                    $dir = $json[0]['dir'];                                                                 //setting the directory to the same directory found in the first .json entry
+                // case 'battle'
+                //     break;
+                default:                                                               //setting the directory to the same directory found in the first .json entry
                     //decoding array into something that can be used in HTML
                     if(isset($json[$_GET['page']])) 
                     {
@@ -202,16 +186,16 @@
                             '</form>' .
                         '</div>' .
                     '</div>';
-                }
-                else
-                {
-                    echo '<a href="games.php" class="warning"><br><br><br><br><br>Json level file does not exist! Click to go back</a>';
-                };
-            }
-            else
-            {
-                echo '<a href="games.php" class="warning"><br><br><br><br><br>Level not set, click to go back</a>';
+                    break;
             };
-            break;
+        }
+        else
+        {
+            echo '<a href="games.php" class="warning"><br><br><br><br><br>Json level file does not exist! Click to go back</a>';
         };
+    }
+    else
+    {
+        echo '<a href="games.php" class="warning"><br><br><br><br><br>Level not set, click to go back</a>';
+    };
 ?>
