@@ -164,12 +164,12 @@
                         $pageRef = isset($jump) ? '<a href="?' . http_build_query($jump) . '">' . $next . '</a>' : '<a href="?' . http_build_query($_GET) . '">' . $next . '&rarr;</a>';   //If jump is set, make button to go to jump page, if not, use default next button
                         empty($options) ? '' : $pageRef = '';
                         $_GET['page'] = $_GET['page'] - 2;
-                        $pageRefBack = isset($json[$_GET['page']]) ? '<a href="?' . http_build_query($_GET) . '">&larr;Previous</a>' : '';  //Setting back button if previous page exists
+                        $pageRefBack = isset($json[$_GET['page']]) ? '<a href="?' . http_build_query($_GET) . '">&larr;Previous</a>' : '<a href="games.php">Main menu</a>';  //Setting back button if previous page exists
                     };
                     //going from arrays and variables to actual HTML
                     $_GET['page'] = $_GET['page'] + 2;
                     echo
-                    '<div id="main-game" style="' . $background . '">' . 
+                    '<div id="default-game" style="' . $background . '">' . 
                         '<div class="game">' .
                             $images .
                         '</div>' .

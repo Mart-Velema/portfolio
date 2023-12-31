@@ -1,4 +1,6 @@
-#main-game {
+/* CSS for default scene */
+
+#default-game {
     display: flex;
     align-items: center;
     justify-content: end;
@@ -90,6 +92,22 @@
 .game-button button:hover{
     scale: 1.2;
 }
+
+
+/* CSS for combat scene */
+
+#combat-game {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    grid-column: 1 / 4;
+    grid-row: 1 / 2;
+    flex-direction: column;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+/* CSS for everything else related */
 
 .game-nonav {
     grid-column: 3 / 4;
