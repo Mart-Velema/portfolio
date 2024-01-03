@@ -1,7 +1,7 @@
 <?php
 $logTime = microtime(true);
 /*
-* Filename      : game.php
+* Filename      : game-launcher.php
 * Created       : 26-11-2023
 * Description   : PHP page for enabling SCUFF to work
 * Programmer    : Mart Velema
@@ -75,7 +75,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
             {
                 echo
                 '<div class="game-nonav">' .
-                    '<button><a href="games.php">Go back</a></button>' .              
+                    '<a href="games.php">Go back</a>' .
                 '</div>';
             };
             $logTime = (microtime(true) - $logTime);

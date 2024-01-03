@@ -13,13 +13,13 @@
     background-size: cover;
 }
 
-.game {
+#default-game .game {
     display: flex;
     justify-content: space-evenly;
     width: 100%;
 }
 
-.game-image {
+#default-game .game-image {
     background-image: url(../img/assets/dev/missing_textures.png);
     font-size: xx-large;
     width: 25%;
@@ -99,12 +99,28 @@
 #combat-game {
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: space-between;
     grid-column: 1 / 4;
     grid-row: 1 / 2;
     flex-direction: column;
     background-attachment: fixed;
     background-size: cover;
+    margin-top: 150px;
+    height: calc(100vh - 150px);
+}
+
+#combat-game .game {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+#combat-game .game-image {
+    background-image: url(../img/assets/dev/missing_textures.png);
+    font-size: xx-large;
+    width: 20%;
+    border-radius: 15px;
+    object-fit: scale-down;
 }
 
 /* CSS for everything else related */
@@ -112,6 +128,8 @@
 .game-nonav {
     grid-column: 3 / 4;
     grid-row: 1 / 2;
+    background-color: white;
+    height: 1rem;
 }
 
 /* CSS for dev-page */

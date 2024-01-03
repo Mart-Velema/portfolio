@@ -11,10 +11,11 @@
         $_GET['page'] = 0;
         $_GET['scene'] = 'default';
     };
+    //init
     $images     = '';
     $item       = '';
     $dialogue   = '';
-    $background = 'background-color:darkslategray';
+    $background = '';
     $options    = '';
     $next       = 'Next';
     if(isset($_GET['level']))
@@ -156,12 +157,12 @@
                     {
                         $_GET['page'] = $_GET['page'] - 2;
                         $pageRefBack = '<a href="?' . http_build_query($_GET) . '">&larr;Previous</a>';
-                        $pageRef = isset($jump) ? '<a href="?' . http_build_query($jump) . '">' . $next . '</a>' : '<a href="games.php">Homepage</a>';
+                        $pageRef = isset($jump) ? $next . '&rarr;' : '<a href="games.php">Homepage</a>';
                     }
                     else
                     {   
                         //Make both the previous and next page button if next json entry is not empty
-                        $pageRef = isset($jump) ? '<a href="?' . http_build_query($jump) . '">' . $next . '</a>' : '<a href="?' . http_build_query($_GET) . '">' . $next . '&rarr;</a>';   //If jump is set, make button to go to jump page, if not, use default next button
+                        $pageRef = isset($jump) ? '<a href="?' . http_build_query($jump) . '">' . $next . '</a>' : $next . '&rarr;';   //If jump is set, make button to go to jump page, if not, use default next button
                         empty($options) ? '' : $pageRef = '';
                         $_GET['page'] = $_GET['page'] - 2;
                         $pageRefBack = isset($json[$_GET['page']]) ? '<a href="?' . http_build_query($_GET) . '">&larr;Previous</a>' : '<a href="games.php">Main menu</a>';  //Setting back button if previous page exists
