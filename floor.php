@@ -215,7 +215,7 @@ $maxOptions = 3 //maximum amount of options SCUFF can reliably create, this is a
                 <?php
                     if(!empty($_GET['dir']))
                     {
-                        echo '<p><a href="game.php?scene=dev&page=' . $_GET['dir'] . '" target="_blank">Images:' . $_GET['dir'] .'</a> Output console:</p>';    //dev page where all the images of said dir are put in a grid
+                        echo '<p><a href="game-launcher.php?scene=dev&page=' . $_GET['dir'] . '" target="_blank">Images:' . $_GET['dir'] .'</a> Output console:</p>';    //dev page where all the images of said dir are put in a grid
                     };
                     if(isset($_SESSION['form-data']))
                     {

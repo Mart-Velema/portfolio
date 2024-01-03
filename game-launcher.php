@@ -21,7 +21,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         setcookie($action, 1, time() - (60 * 60 * 24 * 365 + 10));
         $action = '';
     };
-    $_SERVER['REQUEST_METHOD'] = NULL;
+    unset($_SERVER['REQUEST_METHOD']);
 };
 ?>
 <!DOCTYPE html>

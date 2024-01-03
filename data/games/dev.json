@@ -57,6 +57,17 @@
         "dialogue":"Test dev page 4",
         "action":
         {
+            "option3": "jump_0"
+        }
+    },
+    {
+        "img":
+        {
+            "img": "k_100diary"
+        },
+        "dialogue":"Test dev page 4",
+        "action":
+        {
             "redirect": "floor.php",
             "option3": "jump_0"
         }
