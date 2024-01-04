@@ -17,6 +17,7 @@ function levelDecode($json)
     $next         = 'Next';
     $jump         = '';
     $options      = '';
+    $moves        = '';
     //check if the json entry that corresponds with the page exists
     if(isset($json[$_GET['page']])) 
     {
@@ -25,6 +26,7 @@ function levelDecode($json)
             ${$name} = $contents;
             switch($name)   
             {   //decodes the data from the decoded .json into something that can be used in HTML
+                //image decoder
                 case "imgL":
                 case "imgR":
                 case "img":
@@ -40,9 +42,11 @@ function levelDecode($json)
                     };
                     $images .= '<img src="img/assets/' . $dir . '/' . ${$name}['img'] . '.png" alt="' . ${$name}['img'] . '" class="game-image" style="' . $style . '"> '; //Sets the images in series to allow loading into HTML
                     break;
+                //item decoder
                 case "item":                                                            //Set the image for item
                     $item = '<img src="img/assets/' . $dir . '/' . $item . '.png" alt="' . $item . '" class="item">';
                     break;
+                //background decoder
                 case "background":
                     if(isset($background))
                     {
@@ -53,6 +57,7 @@ function levelDecode($json)
                         //Set the backgrond to either image or fixed colour depending on if value is hex
                     };
                     break;
+                //action decoder
                 case "action":
                     foreach(${$name} as $option => $action)
                     {
@@ -105,6 +110,21 @@ function levelDecode($json)
                         };
                     };
                     break;
+                // moves decoder, this will overwrite previously obtained move
+                case "moves" :
+                    /*
+                    $moves = 
+                    [
+                        [
+                            1 =>
+                            [
+                                'name' => 'Test',
+                                'description => 'Hello, World!'
+                            ]
+                        ],
+                    ]
+                    */
+                    break;
             };
         };
     }
@@ -122,14 +142,10 @@ function levelDecode($json)
     $levelDecode['next']        = $next;
     $levelDecode['jump']        = $jump;
     $levelDecode['options']     = $options;
+    $levelDecode['moves']       = $moves;
     return $levelDecode;
 };
 
-    if(empty($_GET['page']))
-    {
-        $_GET['page'] = 0;
-        $_GET['scene'] = 'default';
-    };
     if(isset($_GET['level']))
     {
         if(file_exists('data/games/' . $_GET['level'] . '.json'))
@@ -140,10 +156,90 @@ function levelDecode($json)
             switch ($_GET['scene'])
             {
                 case 'battle' :
-                    $levelDecode = levelDecode($json);  //running the levelDecode funtion
+                    //temporary array, this will be moved sometime soon &tm;
+                    $moves =
+                    [
+                        [
+                            1 =>
+                            [
+                                'name' => 'LOCATE & FETCH',
+                                'description' => 'Locates an object, location or subject related to the specific spellcasting class. This will tell the spellcaster where such point of interest is located, and moves the point of interest towards the spellcaster by physically moving the point of interest.'
+                            ],
+                            2 =>
+                            [
+                                'name' => 'SPAWN',
+                                'description' => 'Creates an entity related to the spellcast in question. This will be a standard size entity that will fizzle out if left unattended.'
+                            ]
+                        ],
+                        [
+                            1 =>
+                            [
+                                'name' => 'MOVE',
+                                'description' => ' moves entities spawned by the spellcaster. '
+                            ],
+                            2 =>
+                            [
+                                'name' => 'SIZE ADJUST',
+                                'description' => 'SIZE-ADJUST changes the physical size of a spawned entity.'
+                            ],
+                            3 =>
+                            [
+                                'name' => 'SHAPE',
+                                'description' => 'contains several sub-events that determine the physical form of a spawned entity. These shapes can be either 2D or 3D, with 3D shapes taking considerably more mental capacity to keep stable.'
+                            ],
+                            4 =>
+                            [
+                                'name' => 'ATTATCH',
+                                'description' => 'ATTACH mounts a spawned entity to an object. The entity will now move with the object as if it was glued to it.'
+                            ]
+                
+                        ]
+                    ];
+                    $levelDecode    = levelDecode($json);  //running the levelDecode funtion
+                    $moveCards      = '';
+                    if(count($moves) > count($_GET))
+                    {
+                        foreach($_GET as $key => $value)
+                        {
+                            //creating hidden cards that are used to move the values along to the next page
+                            $moveCards .= '<input type="hidden" name="' . $key . '" value="' . $value . '">';
+                        };
+                        for ($i=1; $i <= (count($moves[count($_GET)]) - 3 /* -3 to offset level data */) && $i <= 5; $i++) 
+                        {
+                            //creating the cards
+                            $moveCards .=
+                            '<button type="submit" name="' . count($_GET) . '" value="' . $moves[count($_GET)][$i]['name'] .'" class=game-card id="card-' . $i . '">'.
+                                '<h2>' . $moves[count($_GET)][$i]['name'] . '</h2>' . 
+                                '<p>' . $moves[count($_GET)][$i]['description'] . '</p>' .
+                            '</button>';
+                        };
+                    }
+                    else
+                    {
+                        //execute the instruction, currently just throws an error
+                        $moveCards = '<a href="games.php" class="warning">Ecountered unrecoverable error, click to back to the main menu</a>';
+                    };
+                    //Going from PHP variables to HTML
+                    echo
+                    '<div id="combat-game" style="' . $levelDecode['background'] . '">' . 
+                        '<div class="game">' .
+                            $levelDecode['images'] .
+                        '</div>' .
+                        '<div class="game-center">' .
+                            '<div class="stats">' .
+                            
+                            '</div>' .
+                            '<form method="get">' .
+                                $moveCards .
+                            '</form>' .
+                            '<div class="stats">' .
+                                
+                            '</div>' .
+                        '</div>' .
+                    '</div>';
                     break;
                 default:
-                    $levelDecode = levelDecode($json);  //running the levelDecode funtion
+                    $levelDecode    = levelDecode($json);  //running the levelDecode funtion
                     if(isset($talking))     //if the talking tag exists, run this
                     {
                         switch($talking)
@@ -183,7 +279,7 @@ function levelDecode($json)
                     {   
                         //Make both the previous and next page button if next json entry is not empty
                         $pageRef = !empty($levelDecode['jump']) ? '<button><a href="?' . $levelDecode['jump'] . '">' . $levelDecode['next'] . '</a></button>' : '<button>' . $levelDecode['next'] . '&rarr;</button>';   //If jump is set, make button to go to jump page, if not, use default next button
-                        if(isset($levelDecode['options']))
+                        if(!empty($levelDecode['options']))
                         {
                             $pageRef = '';
                         };

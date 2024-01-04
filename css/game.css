@@ -27,6 +27,20 @@
     object-fit: scale-down;
 }
 
+#default-game .game-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: x-large;
+    min-height: 196px;
+    width: 65vw;
+    background-color: wheat;
+    padding: 30px;
+    border: 1px solid black;
+    border-radius: 15px;
+    z-index: 1;
+}
+
 .game-talking {
     margin-top: 10px;
     display: flex;
@@ -52,20 +66,6 @@
 .game-talking .item:hover{
     scale: 3;
     margin-left: 35px;
-}
-
-.game-center {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    font-size: x-large;
-    min-height: 196px;
-    width: 65vw;
-    background-color: wheat;
-    padding: 30px;
-    border: 1px solid black;
-    border-radius: 15px;
-    z-index: 1;
 }
 
 .game-button {
@@ -123,6 +123,51 @@
     object-fit: scale-down;
 }
 
+#combat-game .game-center {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    font-size: x-large;
+    height: 250px;
+    width: 100vw;
+}
+
+#combat-game form {
+    all: inherit;
+    display: flex;
+    justify-content: space-evenly;
+    width: 76%;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    background-color: black;
+    width: 12%;
+    height: 200px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.game-card {
+    background-color: whitesmoke;
+    width: 100%;
+    min-width: 19.5%;
+    transition: 0.2s;
+    height: 200px;
+    p {
+        display: none;
+    }
+}
+
+.game-card:hover {
+    background-color: wheat;
+    height: 250px !important;
+    p {
+        display: block;
+        font-size: large;
+    }
+}
 /* CSS for everything else related */
 
 .game-nonav {

@@ -50,6 +50,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     ?>
     <main style="padding-top: 0px; background-image: none;">
         <?php
+            if(empty($_GET['page']))
+            {
+                $_GET['page']   = 0;
+                $_GET['scene']  = 'default';
+            };
             if($_GET['scene'] == 'dev')
             {
                 echo '<div class="dev">';
