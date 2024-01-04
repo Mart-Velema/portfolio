@@ -1,9 +1,9 @@
 <?php
 /*
-* Filename      :
-* Assignment    :
-* Created       :
-* Description   :
+* Filename      : user.php
+* Assignment    : login pagina
+* Created       : 22-12-2023
+* Description   : user page for portfolio
 * Programmer    : Mart Velema
 */
 include "components/sql-login.php";
@@ -19,43 +19,52 @@ catch(Exception $Ex)
     echo $Ex;
     $log .= 'unable to connect to database.';
 };
-$stmt = $dbHandler->prepare("SELECT * FROM account WHERE accountname=:name");
-try
+//either fetch one user, or all users depending on if a user is specified in the url
+if(array_key_exists('user', $_GET))
 {
-    $stmt->bindParam(':name', $_GET['user']);
-    $stmt->execute();
-    $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $log .= 'succesfully fetched user data.';
-}
-catch(Exception $Ex)
-{
-    echo $Ex;
-    $log .= 'Unable to find username.';
-};
-if(empty($user))
-{
-    $user = [
-        'accountname'   => '<p class="warning">ERROR, Invalid user!</p>',
-        'pfp'           => 'dev/missing_textures.png',
-        'bio'           => 'This user does not exists in the database. Would you perhaps like to <a href="login.php">create an account?</a>',
-        'level'         => NAN,
-        'color'         => 'var(--primary-colour)',
-        'secondary'     => 'var(--secondary-colour)',
-        'text'          => 'var(--text-colour)'
-    ];
+    try
+    {
+        $stmt = $dbHandler->prepare("SELECT * FROM account WHERE accountname=:name");
+        $stmt->bindParam(':name', $_GET['user']);
+        $stmt->execute();
+        $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $log .= 'succesfully fetched user data.';
+        $list = FALSE;
+    }
+    catch(Exception $Ex)
+    {
+        echo $Ex;
+        $log .= 'Unable to find username.';
+    };
+    if(!empty($user))
+    {
+        $user = $user[0];
+    };
 }
 else
 {
-    $user = $user[0];
-    if($user['level'] == 0)
+    try
     {
-        $user['bio']        = 'Hello, World!';
-        $user['color']      = 'red';
-        $user['secondary']  = 'green';
-        $user['text']       = 'blue';
-        $note = 'Legacy account will soon no longer be supported, make sure to set up your account before 1-2-2024';
+        $stmt = $dbHandler->prepare("SELECT * FROM account LIMIT 50");
+        $stmt->execute();
+        $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $log .= 'succesfully fetched users data.';
+        $list = TRUE;
+    }
+    catch(Exception $Ex)
+    {
+        echo $Ex;
+        $log .= 'Unable to find users.';
     };
 };
+//go to default page when the user does not exists
+if(empty($user))
+{
+    //There must be a smarter way, but if the user does not exists, then just go to the 'list' page.. when that is done...
+    sleep(10);
+    header('location:user.php');
+};
+//update profile
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     $user['color']      = filter_input(INPUT_POST, 'primary');
@@ -69,10 +78,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             if(password_verify($passwd, $_SESSION['user']['password']))
             {
-                if($user['level'] == 0)
-                {
-                    $user['level'] = 1;
-                };
                 try
                 {
                     $stmt = $dbHandler->prepare(
@@ -120,10 +125,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     <style>
         * {
         <?php
-            echo
-            '--account-primary: ' . $user['color'] . ';' .
-            '--account-secondary:' . $user['secondary'] . ';' .
-            '--account-text: ' . $user['text'] . ';';
+            if(!$list)
+            {
+                echo
+                '--account-primary: ' . $user['color'] . ';' .
+                '--account-secondary:' . $user['secondary'] . ';' .
+                '--account-text: ' . $user['text'] . ';';
+            };
         ?>
         }
     </style>
@@ -164,7 +172,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         <div class="account">
             <div class="banner">
                 <?php
-                    echo '<img src="upload/pfp/' . $user['pfp'] . '" alt="' . $user['pfp'] . '">';
+                    echo '<img src="upload/pfp/' . $user['accountname'] . '" alt="' . $user['accountname'] . '">';
                 ?>
                 <div class="bio">
                     <?php

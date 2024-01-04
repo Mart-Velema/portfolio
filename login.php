@@ -26,8 +26,8 @@ try
 {
     $stmt = $_GET['newaccount'] ? 
     $dbHandler->prepare(
-        'INSERT INTO account (accountname, email, `password`, pfp, bio, `level`, color, `secondary`, `text`) 
-        VALUES(:name, :email, :passwd, :pfp, :bio, :level, :color, :secondary, :text)
+        'INSERT INTO account (accountname, email, `password`, bio, `level`, color, `secondary`, `text`) 
+        VALUES(:name, :email, :passwd, :bio, :level, :color, :secondary, :text)
     ') : 
     $dbHandler->prepare(
         'SELECT * 
@@ -45,7 +45,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     { 
         $name           = htmlspecialchars(filter_input(INPUT_POST, 'name'));
         $email          = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-        $pfp            = $_FILES['pfp']['name'];
         $passwd         = filter_input(INPUT_POST, 'password');
         $passwdVeryify  = filter_input(INPUT_POST, 'passwdVeryify');
         if(!empty($name) && !empty($email) && !empty($passwd))
@@ -62,8 +61,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                 $check->bindParam(':name', $name);
                 $check->execute();
                 $check = $check->fetchColumn();
-                //set pfp to default pfp if unset
-                empty($pfp) ? $pfp = 'dev/missing_textures.png' : TRUE;
                 //check if everything is filled in
                 if($check == 0)
                 {
@@ -72,7 +69,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                         $stmt->bindParam(':name', $name);
                         $stmt->bindParam(':email', $email);
                         $stmt->bindParam(':passwd', $passwd);
-                        $stmt->bindParam(':pfp', $pfp);
                         $stmt->bindValue(':bio', 'Hello, World!');
                         $stmt->bindValue(':level', 1);
                         $stmt->bindValue(':color', 'var(--primary-colour)');
@@ -87,47 +83,39 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                         echo $ex->getMessage();
                     };
                     //upload pfp
-                    if($pfp !== 'dev/missing_textures.png')
+                    if($_FILES["pfp"]["error"] == 0)
                     {
-                        if($_FILES["pfp"]["error"] == 0)
+                        if($_FILES["pfp"]["size"] <= 3*1024*1024)
                         {
-                            if($_FILES["pfp"]["size"] <= 10*1024*1024)
+                            // $extention  = pathinfo($_FILES['pfp']['name'], PATHINFO_EXTENSION);
+                            $_FILES['pfp']['name'] = $name;
+                            $fileInfo = finfo_open(FILEINFO_MIME_TYPE);
+                            $acceptedFileTypes = ["image/png", "image/jpeg", "image/jpg"];
+                            $uploadedFileType = finfo_file($fileInfo, $_FILES["pfp"]["tmp_name"]);
+                            if(in_array($uploadedFileType, $acceptedFileTypes))
                             {
-                                $fileInfo = finfo_open(FILEINFO_MIME_TYPE);
-                                $acceptedFileTypes = ["image/png", "image/jpeg", "image/jpg"];
-                                $uploadedFileType = finfo_file($fileInfo, $_FILES["pfp"]["tmp_name"]);
-                                if(in_array($uploadedFileType, $acceptedFileTypes))
+                                if(move_uploaded_file($_FILES['pfp']['tmp_name'], 'upload/pfp/' . $_FILES['pfp']['name'] . ''))
                                 {
-                                    if(!file_exists('upload/' . $_FILES['pfp']['name'] . ''))
-                                    {
-                                        if(move_uploaded_file($_FILES['pfp']['tmp_name'], 'upload/pfp/' . $_FILES['pfp']['name'] . ''))
-                                        {
-                                            $warning .= "<br>Succesfully uploaded profile picture!";
-                                        }
-                                        else
-                                        {
-                                            $warning .= "Failed to upload file, please try again or contact administrator";
-                                        };
-                                    }
-                                    else
-                                    {
-                                        $warning .= "Filename is already in use";
-                                    };
+                                    $warning .= "<br>Succesfully uploaded profile picture!";
                                 }
                                 else
                                 {
-                                    $warning .= "File isn't a png, jpeg, jpg or gif";
+                                    $warning .= "Failed to upload file, please try again or contact administrator";
                                 };
                             }
                             else
                             {
-                                $warning .= "File needs to be below 10mb";
+                                $warning .= "File isn't a png, jpeg, jpg or gif";
                             };
                         }
                         else
                         {
-                            $warning .= "Something went wrong...";
+                            $warning .= "File needs to be below 10mb";
                         };
+                    }
+                    else
+                    {
+                        $warning .= "Something went wrong...";
                     };
                 }
                 else

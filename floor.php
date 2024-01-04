@@ -238,8 +238,7 @@ $maxOptions = 3 //maximum amount of options SCUFF can reliably create, this is a
             <a href="#editor"><button>Go to top</button></a>
             <?php
                 //stop logging time and output recorded time
-                $logTime = (microtime(true) - $logTime);
-                echo 'loadtime: ' . $logTime . ' &micro;s';
+                echo microtime(true) - $logTime . ' seconds';
             ?>
             </p>
         </form>

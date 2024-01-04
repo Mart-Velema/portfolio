@@ -36,6 +36,9 @@ include 'components/sql-login.php';
                     {
                         if($_FILES["bestand"]["size"] <= 3*1024*1024)
                         {
+                            $name       = 'DingusMingus';
+                            $extention  = pathinfo($_FILES['bestand']['name'], PATHINFO_EXTENSION);
+                            $_FILES['bestand']['name'] = $name . '.' . $extention;
                             $fileInfo = finfo_open(FILEINFO_MIME_TYPE);
                             $acceptedFileTypes = ["image/png", "image/jpeg", "image/jpg", "image/gif"];
                             $uploadedFileType = finfo_file($fileInfo, $_FILES["bestand"]["tmp_name"]);

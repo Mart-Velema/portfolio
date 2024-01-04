@@ -83,8 +83,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                     '<a href="games.php">Go back</a>' .
                 '</div>';
             };
-            $logTime = (microtime(true) - $logTime);
-            // echo '' . $logTime . ' &micro;s';
+            //echo microtime(true) - $logTime . ' seconds';
         ?>
     </main>
 </body>
