@@ -27,8 +27,8 @@ $maxOptions = 3 //maximum amount of options SCUFF can reliably create, this is a
             <h3>settings</h3>
             <label for="scene">Select scene mode</label>
             <select name="scene" id="scene">
-                <option value="1">Single-image scenes</option>
-                <option value="2">Double-image scenes</option>
+                <option value="single">Single-image scenes</option>
+                <option value="double">Double-image scenes</option>
             </select>
             <label for="dir">Set directory</label>
             <input type="text" name="dir" id="dir">
@@ -142,7 +142,7 @@ $maxOptions = 3 //maximum amount of options SCUFF can reliably create, this is a
                 };
                 switch($_GET['scene'])
                 {
-                    case 1:
+                    case 'single':
                         //form for single-image scenes
                         echo
                         '<label for="img">Filename image</label>' .
@@ -152,7 +152,7 @@ $maxOptions = 3 //maximum amount of options SCUFF can reliably create, this is a
                         '<label for="img-rotate">Rotate</label>' .
                         '<input type="checkbox" name="img-rotate" id="img-rotate" value="1">';
                         break;
-                    case 2:
+                    case 'double':
                         //form for double-image scenes
                         echo
                         '<label for="imgL">Filename left image</label>' .

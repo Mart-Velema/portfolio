@@ -84,7 +84,7 @@ main table {
     width: 100%;
 }
 
-.account {
+#single {
     display: flex;
     row-gap: 50px;
     justify-self: center;
@@ -94,19 +94,19 @@ main table {
     grid-column: 2 / 3;
 }
 
-.account .list {
+#single .list {
     display: flex;
     background-color: var(--account-secondary);
     min-height: 50%;
 }
 
-.account .banner {
+#single .banner {
     display: flex;
     height: 220px;
     gap: 30px;
 }
 
-.account .banner .bio{
+#single .banner .bio{
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -116,7 +116,7 @@ main table {
     color: var(--account-text);
 }
 
-.account .banner .about {
+#single .banner .about {
     display: flex;
     flex-direction: column;
     margin-right: 20px;
@@ -125,7 +125,7 @@ main table {
     gap: 20px;
 }
 
-.account .banner .about .level {
+#single .banner .about .level {
     width: 100%;
     color: var(--account-text);
     background-color: var(--account-secondary);
@@ -134,7 +134,7 @@ main table {
     border-radius: 5px;
 }
 
-.account .banner img{
+#single .banner img{
     height: 180px;
     width: 180px;
     margin-left: 20px;
@@ -143,7 +143,7 @@ main table {
     box-shadow: 0px 0px 10px 5px var(--account-secondary);
 }
 
-.account .banner .about button {
+#single .banner .about button {
     width: 100%;
 }
 
@@ -154,4 +154,36 @@ main table {
     color:white; 
     background-color:black; 
     width:99%;   
+}
+
+#list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 80%;
+    grid-column: 2 / 3;
+    background-color: var(--primary-colour);
+    justify-self: center;
+}
+
+#list .user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    height: 60px;
+}
+
+#list img {
+    height: 50px;
+    width: 50px;
+    object-fit: fill;
+}
+
+#list a {
+    display: grid;
+    grid-template-columns: 50px calc(100% - 50px);
+    grid-template-rows: 1fr;
+    width: 98%;
+    gap: 10px;
 }

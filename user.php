@@ -24,12 +24,15 @@ if(array_key_exists('user', $_GET))
 {
     try
     {
-        $stmt = $dbHandler->prepare("SELECT * FROM account WHERE accountname=:name");
-        $stmt->bindParam(':name', $_GET['user']);
-        $stmt->execute();
-        $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $log .= 'succesfully fetched user data.';
-        $list = FALSE;
+        if(filter_var($user = (int)$_GET['user'], FILTER_VALIDATE_INT))
+        {
+            $stmt = $dbHandler->prepare("SELECT * FROM account WHERE id=:id");
+            $stmt->bindParam(':id', $user, PDO::PARAM_INT);
+            $stmt->execute();
+            $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $log .= 'succesfully fetched user data.';
+            $list = FALSE;
+        };
     }
     catch(Exception $Ex)
     {
@@ -39,17 +42,23 @@ if(array_key_exists('user', $_GET))
     if(!empty($user))
     {
         $user = $user[0];
+        $user['pfp'] = str_replace(' ', '_', $user['accountname']);
     };
 }
 else
 {
+    $limit = isset($_GET['limit']) && $_GET['limit'] != 0 ? $_GET['limit'] : 30;
     try
     {
-        $stmt = $dbHandler->prepare("SELECT * FROM account LIMIT 50");
-        $stmt->execute();
-        $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $log .= 'succesfully fetched users data.';
-        $list = TRUE;
+        if(filter_var($limit = (int)$limit, FILTER_VALIDATE_INT))
+        {
+            $stmt = $dbHandler->prepare("SELECT * FROM account ORDER BY RAND() LIMIT :limit");
+            $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+            $stmt->execute();
+            $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $log .= 'succesfully fetched users data.';
+            $list = TRUE;
+        };
     }
     catch(Exception $Ex)
     {
@@ -131,6 +140,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                 '--account-primary: ' . $user['color'] . ';' .
                 '--account-secondary:' . $user['secondary'] . ';' .
                 '--account-text: ' . $user['text'] . ';';
+            }
+            else
+            {
+                echo
+                '--account-primary: var(--primary-colour);';
             };
         ?>
         }
@@ -169,10 +183,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                 };
             };
         ?>
-        <div class="account">
+        <?php if(array_key_exists('user', $_GET)): ?>
+        <div id="single">
             <div class="banner">
                 <?php
-                    echo '<img src="upload/pfp/' . $user['accountname'] . '" alt="' . $user['accountname'] . '">';
+                    echo '<img src="upload/pfp/' . $user['pfp'] . '" alt="' . $user['pfp'] . '">';
                 ?>
                 <div class="bio">
                     <?php
@@ -192,10 +207,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                             '<a href="user.php?user=' . $user['accountname'] . '&edit=1"><button>Edit profile</button></a>' .
                             '<a href="logout.php"><button>Logout</button></a>';
                         };
-                        if(!empty($note))
-                        {
-                            echo '<p class="warning">' . $note . '</p>';
-                        };
                     ?>
                 </div>
             </div>
@@ -203,6 +214,23 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 
             </div>
         </div>
+        <?php else: ?>
+        <div id="list">
+            <?php
+                foreach($user as $data)
+                {
+                    $data['pfp'] = str_replace(' ', '_', $data['accountname']);
+                    echo
+                    '<div class="user" style="background-color:' . $data['color'] . ';">' .
+                        '<a href="?user=' . $data['id'] . '" style="background-color:' . $data['secondary'] . '; color:' . $data['text'] . '">' .
+                            '<img src="upload/pfp/' . $data['pfp'] . '" alt="' . $data['pfp'] . '">' .
+                            '<h2>' . $data['accountname'] . '</h2>' .
+                        '</a>' .
+                    '</div>';
+                };
+            ?>
+        </div>
+        <?php endif; ?>
     </main>
     <?php
         include "components/footer.php";

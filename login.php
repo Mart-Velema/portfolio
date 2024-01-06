@@ -89,6 +89,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                         {
                             // $extention  = pathinfo($_FILES['pfp']['name'], PATHINFO_EXTENSION);
                             $_FILES['pfp']['name'] = $name;
+                            $_FILES['pfp']['name'] = str_replace(' ', '_', $_FILES['pfp']['name']);
                             $fileInfo = finfo_open(FILEINFO_MIME_TYPE);
                             $acceptedFileTypes = ["image/png", "image/jpeg", "image/jpg"];
                             $uploadedFileType = finfo_file($fileInfo, $_FILES["pfp"]["tmp_name"]);
@@ -214,9 +215,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             };
             echo
             '<div>' .
-            '<button type="submit">' . $button . '</button> ' .
-            '<a href="?' . http_build_query($_GET) . '">' . $message . '</a>' .
-            '<p class="warning">' . $warning . '</p>' .
+                '<button type="submit">' . $button . '</button> ' .
+                '<a href="?' . http_build_query($_GET) . '">' . $message . '</a>' .
+                '<p class="warning">' . $warning . '</p>' .
             '</div>';
             ?>
         </form>
