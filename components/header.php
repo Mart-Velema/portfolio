@@ -19,8 +19,8 @@
             if(isset($_SESSION['user']))
             {
                 echo 
-                '<a href="user.php?user=' . $_SESSION['user']['accountname'] . '"><img src="upload/pfp/' . $_SESSION['user']['accountname'] . '" alt="pfp of ' . $_SESSION['user']['accountname'] . '"></a>' . 
-                '<a href="user.php?user=' . $_SESSION['user']['accountname'] . '">' . $_SESSION['user']['accountname'] . '</a>';
+                '<a href="user.php?user=' . $_SESSION['user']['id'] . '"><img src="upload/pfp/' . $_SESSION['user']['accountname'] . '" alt="pfp of ' . $_SESSION['user']['accountname'] . '"></a>' . 
+                '<a href="user.php?user=' . $_SESSION['user']['id'] . '">' . $_SESSION['user']['accountname'] . '</a>';
             }
             else
             {

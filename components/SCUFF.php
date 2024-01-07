@@ -137,6 +137,7 @@ function levelDecode($json)
     //packages all the variables into an array to be outputted by the function
     $levelDecode['background']  = $background;
     $levelDecode['images']      = $images;
+    $levelDecode['talking']     = $talking;
     $levelDecode['item']        = $item;
     $levelDecode['dialogue']    = $dialogue;
     $levelDecode['next']        = $next;
@@ -197,20 +198,21 @@ function levelDecode($json)
                     ];
                     $levelDecode    = levelDecode($json);  //running the levelDecode funtion
                     $moveCards      = '';
-                    if(count($moves) > count($_GET))
+                    $stage = count($_GET) - 4;
+                    if(count($moves) > $stage)
                     {
                         foreach($_GET as $key => $value)
                         {
                             //creating hidden cards that are used to move the values along to the next page
                             $moveCards .= '<input type="hidden" name="' . $key . '" value="' . $value . '">';
                         };
-                        for ($i=1; $i <= (count($moves[count($_GET)]) - 3 /* -3 to offset level data */) && $i <= 5; $i++) 
+                        for ($i=1; $i <= count($moves[$stage]) && $i <= 5; $i++) 
                         {
                             //creating the cards
                             $moveCards .=
-                            '<button type="submit" name="' . count($_GET) . '" value="' . $moves[count($_GET)][$i]['name'] .'" class=game-card id="card-' . $i . '">'.
-                                '<h2>' . $moves[count($_GET)][$i]['name'] . '</h2>' . 
-                                '<p>' . $moves[count($_GET)][$i]['description'] . '</p>' .
+                            '<button type="submit" name="move' . count($_GET) . '" value="' . $moves[$stage][$i]['name'] .'" class=game-card id="card-' . $i . '">'.
+                                '<h2>' . $moves[$stage][$i]['name'] . '</h2>' . 
+                                '<p>' . $moves[$stage][$i]['description'] . '</p>' .
                             '</button>';
                         };
                     }
@@ -240,9 +242,9 @@ function levelDecode($json)
                     break;
                 default:
                     $levelDecode    = levelDecode($json);  //running the levelDecode funtion
-                    if(isset($talking))     //if the talking tag exists, run this
+                    if(isset($levelDecode['talking']))     //if the talking tag exists, run this
                     {
-                        switch($talking)
+                        switch($levelDecode['talking'])
                         {                   //set the display and scale property of specific variables, depending on what's in the talking variable
                             case "imgL":
                                 $arrow = '';
@@ -268,10 +270,9 @@ function levelDecode($json)
                         $arrow = 'display: none;';
                     };
                     //setting the button for the next page
-                    $_GET['page']++;
-                    if(empty($json[$_GET['page']]))
+                    if(empty($json[($_GET['page'] + 1)]))
                     {
-                        $_GET['page'] = $_GET['page'] - 2;
+                        $_GET['page']--;
                         $pageRefBack = '<a href="?' . http_build_query($_GET) . '">&larr;Previous</a>';
                         $pageRef = isset($levelDecode['jump']) ? $levelDecode['next'] . '&rarr;' : '<a href="games.php">Homepage</a>';
                     }
@@ -283,7 +284,7 @@ function levelDecode($json)
                         {
                             $pageRef = '';
                         };
-                        $_GET['page'] = $_GET['page'] - 2;
+                        $_GET['page']--;
                         $pageRefBack = isset($json[$_GET['page']]) ? '<a href="?' . http_build_query($_GET) . '">&larr;Previous</a>' : '<a href="games.php">Main menu</a>';  //Setting back button if previous page exists
                     };
                     //going from arrays and variables to actual HTML

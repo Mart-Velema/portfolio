@@ -150,7 +150,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                 {
                     $_SESSION['user'] = $user;
                     $warning = 'Logged in succesfully! Redirecting in 3 seconds...';
-                    header('refresh:3 url=user.php?user=' . $user['accountname'] . '');
+                    header('refresh:3 url=user.php?user=' . $user['id'] . '');
                 }
                 else
                 {
