@@ -29,7 +29,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Mart - SCUFF</title>
+    <title>Portfolio Mart - SCUFF Launcher</title>
     <link href="css/style.css" rel="stylesheet">
     <link href="img/fedora.png" rel="icon">
 </head>
@@ -80,10 +80,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
             {
                 echo
                 '<div class="game-nonav">' .
-                    '<a href="games.php">Go back</a>' .
+                    '<a href="games.php">Main menu</a>' .
                 '</div>';
             };
-            //echo microtime(true) - $logTime . ' seconds';
+            $logTime = microtime(true) - $logTime . ' seconds';
+            // echo '<p class="warning">' . $logTime . '</p>';
         ?>
     </main>
 </body>

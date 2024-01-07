@@ -12,6 +12,7 @@ function levelDecode($json)
     $dir          = $json[0]['dir'];  
     $background   = '';
     $images       = '';
+    $talking      = '';
     $item         = '';
     $dialogue     = '';
     $next         = 'Next';

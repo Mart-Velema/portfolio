@@ -237,8 +237,8 @@ $maxOptions = 3 //maximum amount of options SCUFF can reliably create, this is a
             Repeat untill you have made all of the pages, select the "done" checkbox to get the .json file that contains all the data for SCUFF to use.<br><br>
             <a href="#editor"><button>Go to top</button></a>
             <?php
-                //stop logging time and output recorded time
-                echo microtime(true) - $logTime . ' seconds';
+                $logTime = microtime(true) - $logTime . ' seconds';
+                echo '<p class="warning">Loadtime: ' . $logTime . ' Seconds</p>';
             ?>
             </p>
         </form>
